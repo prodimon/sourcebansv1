@@ -38,6 +38,17 @@ $srv_cfg = '"Databases"
 		"port"			"{port}"
 	}
 	
+	"sourcecomms"
+	{
+		"driver"			"mysql"
+		"host"				"{server}"
+		"database"			"{db}"
+		"user"				"{user}"
+		"pass"				"{pass}"
+		//"timeout"			"0"
+		"port"			"{port}"
+	}
+	
 	"storage-local"
 	{
 		"driver"			"sqlite"

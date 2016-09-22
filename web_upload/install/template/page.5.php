@@ -37,6 +37,17 @@ define('DB_PORT','{port}');							// The SQL port (Default: 3306)
 		//"timeout"			"0"
 		"port"			"{port}"
 	}
+	
+	"sourcecomms"
+	{
+		"driver"			"default"
+		"host"				"{server}"
+		"database"			"{db}"
+		"user"				"{user}"
+		"pass"				"{pass}"
+		//"timeout"			"0"
+		"port"			"{port}"
+	}
 ';
 	
 	$web_cfg = str_replace("{server}", $_POST['server'], $web_cfg);

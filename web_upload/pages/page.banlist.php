@@ -342,7 +342,7 @@ if(isset($_GET['advSearch']))
 		case "comment":
 			if($userbank->is_admin())
 			{
-				$where = "WHERE CO.commenttxt LIKE ?";
+				$where = "WHERE CO.type = 'B' AND CO.commenttxt LIKE ?";
 				$advcrit = array("%$value%");
 			}
 			else
@@ -473,6 +473,7 @@ while (!$res->EOF)
 		$data['reban_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Reban',"index.php?p=admin&c=bans".$pagelink."&rebanid=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
 	else
 		$data['reban_link'] = false;
+	$data['blockcomm_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Block Comms',"index.php?p=admin&c=comms".$pagelink."&blockfromban=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
 	$data['details_link'] = CreateLinkR('click','getdemo.php?type=B&id='.$res->fields['ban_id']);
 	$data['groups_link'] = CreateLinkR('<img src="images/groups.png" border="0" alt="" style="vertical-align:middle" /> Show Groups',"index.php?p=admin&c=bans&fid=".$data['communityid']."#^4");
 	$data['friend_ban_link'] = CreateLinkR('<img src="images/group_delete.png" border="0" alt="" style="vertical-align:middle" /> Ban Friends', '#', '', '_self', false, "BanFriendsProcess('".$data['communityid']."','".StripQuotes($data['player'])."');return false;");

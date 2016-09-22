@@ -166,6 +166,7 @@
                 <td width="30%" rowspan="{if $ban.unbanned}13{else}11{/if}" class="listtable_2 opener">
                   <div class="ban-edit">
                     <ul>
+					  <li>{$ban.blockcomm_link}</li>
                       <li>{$ban.demo_link}</li>
                     </ul>
                   </div>

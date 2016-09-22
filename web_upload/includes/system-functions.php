@@ -132,9 +132,10 @@ function AddTab($title, $url, $desc, $active=false)
 	$tab_arr = array(	);
 	$tab_arr[0] = "Dashboard";
 	$tab_arr[1] = "Ban List";
-	$tab_arr[2] = "Servers";
-	$tab_arr[3] = "Submit a ban";
-	$tab_arr[4] = "Protest a ban";
+	$tab_arr[2] = "Comm List";
+	$tab_arr[3] = "Servers";
+	$tab_arr[4] = "Submit a ban";
+	$tab_arr[5] = "Protest a ban";
 	$tabs = array();
 	$tabs['title'] = $title;
 	$tabs['url'] = $url;
@@ -167,6 +168,7 @@ function BuildPageTabs()
 	global $userbank;
 	AddTab("Dashboard", "index.php?p=home", "This page shows an overview of your bans and servers.");
 	AddTab("Ban List", "index.php?p=banlist", "All of the bans in the database can be viewed from here.");
+	AddTab("Comm List", "index.php?p=commslist", "All of the communication bans (such as chat gags and voice mutes) in the database can be viewed from here.");
 	AddTab("Servers", "index.php?p=servers", "All of your servers and their status can be viewed here");
 	if($GLOBALS['config']['config.enablesubmit']=="1")
 		AddTab("Submit a ban", "index.php?p=submit", "You can submit a demo or screenshot of a suspected cheater here. It will then be up for review by one of the admins");
@@ -185,6 +187,8 @@ function BuildPageTabs()
 			$submenu->addMenuItem("Servers", 0,"", "index.php?p=admin&amp;c=servers", true);
 		if($userbank->HasAccess( ADMIN_OWNER|ADMIN_ADD_BAN|ADMIN_EDIT_OWN_BANS|ADMIN_EDIT_GROUP_BANS|ADMIN_EDIT_ALL_BANS|ADMIN_BAN_PROTESTS|ADMIN_BAN_SUBMISSIONS))
 			$submenu->addMenuItem("Bans", 0,"", "index.php?p=admin&amp;c=bans", true);
+		if($userbank->HasAccess( ADMIN_OWNER|ADMIN_ADD_BAN|ADMIN_EDIT_OWN_BANS|ADMIN_EDIT_ALL_BANS))
+			$submenu->addMenuItem("Comms", 0,"", "index.php?p=admin&amp;c=comms", true);
 		if($userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_GROUPS|ADMIN_ADD_GROUP|ADMIN_EDIT_GROUPS|ADMIN_DELETE_GROUPS))
 			$submenu->addMenuItem("Groups", 0,"", "index.php?p=admin&amp;c=groups", true);
 		if($userbank->HasAccess(ADMIN_OWNER|ADMIN_WEB_SETTINGS))
@@ -214,6 +218,9 @@ function BuildBreadcrumbs()
 				break;
 			case "bans":
 				$cat = "Ban management";
+				break;
+			case "comms":
+				$cat = "Communication blocks management";
 				break;
 			case "groups":
 				$cat = "Group management";
@@ -743,6 +750,13 @@ function PruneBans()
     return $res?true:false;
 }
 
+function PruneComms()
+{
+	global $userbank;
+
+	$res = $GLOBALS['db']->Execute('UPDATE `'.DB_PREFIX.'_comms` SET `RemovedBy` = 0, `RemoveType` = \'E\', `RemovedOn` = UNIX_TIMESTAMP() WHERE `length` != 0 and `ends` < UNIX_TIMESTAMP() and `RemoveType` IS NULL');
+	return $res?true:false;
+}
 
 function GetSVNRev()
 {

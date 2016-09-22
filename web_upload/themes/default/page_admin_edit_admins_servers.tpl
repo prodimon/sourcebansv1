@@ -1,16 +1,16 @@
 <form action="" method="post">
 	<div id="admin-page-content">
 		<div id="add-group">
-			<h3>Admin Server Access</h3>
-			Please select the servers and/or groups of servers you want this admin to have access to.<br /><br />
+			<h3>Доступ к серверу</h3>
+			Выберите сервер или группу серверов.<br /><br />
 			<table width="90%" border="0" cellspacing="0" cellpadding="4" align="center">
 				{if $row_count < 1}
 					<tr>
-						<td colspan="3" class=""><b><i>You need to add a server or a server group, before you can setup admin server permissions</i></b></td>
+						<td colspan="3" class=""><b><i>Вам нужно добавить сервер или группу серверов, прежде, чем вы сможете настроить разрешения админов сервера</i></b></td>
 					</tr>
 				{else}
 					<tr>
-						<td colspan="3" class="tablerow4"><b><i>Server Groups</i></b></td>
+						<td colspan="3" class="tablerow4"><b><i>Группы серверов</i></b></td>
 					</tr>
 					{foreach from="$group_list" item="group"}			  
 						<tr>
@@ -19,11 +19,11 @@
 						</tr>
 					{/foreach}
 					<tr>
-						<td colspan="3" class="tablerow4"><b><i>Servers</i></b></td>
+						<td colspan="3" class="tablerow4"><b><i>Серверы</i></b></td>
 					</tr>
 					{foreach from="$server_list" item="server"}
 						<tr class="tablerow1">
-				    		<td colspan="2" class="tablerow1" id="server_host_{$server.sid}">Please Wait...</td>
+				    		<td colspan="2" class="tablerow1" id="server_host_{$server.sid}">Ждите...</td>
 				   			<td align="center" class="tablerow1">
 								<input type="checkbox" name="servers[]" id="server_{$server.sid}" value="s{$server.sid}" onclick=""/>
 				  			</td> 
@@ -34,10 +34,10 @@
 				<tr>
 					<td align="center">
 						{if $row_count > 0}
-							{sb_button text="Save Changes" class="ok" id="editadminserver" submit=true}
+							{sb_button text="Сохранить" class="ok" id="editadminserver" submit=true}
 							&nbsp;
 						{/if}
-		      			{sb_button text="Back" onclick="history.go(-1)" class="cancel" id="aback"}
+		      			{sb_button text="Назад" onclick="history.go(-1)" class="cancel" id="aback"}
 					</td>
 				</tr>
 			</table>

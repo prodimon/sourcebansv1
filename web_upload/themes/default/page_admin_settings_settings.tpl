@@ -2,11 +2,11 @@
 	<input type="hidden" name="settingsGroup" value="mainsettings" />
 	<table width="99%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 		<tr>
-		    <td valign="top" colspan="2"><h3>Main Settings</h3>For more information or help regarding a certain subject move your mouse over the question mark.<br /><br /></td>
+		    <td valign="top" colspan="2"><h3>Главные настройки</h3>За дополнительной информацией или помощью наведите курсор мыши на знак вопроса.<br /><br /></td>
 		 </tr>
 		
 		<tr>
-		    <td valign="top"><div class="rowdesc">{help_icon title="Title" message="Define the title shown in the title of your browser."}Title </div></td>
+		    <td valign="top"><div class="rowdesc">{help_icon title="Заголовок" message="Задайте заголовок."}Заголовок </div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="text" TABINDEX=1 class="submit-fields" id="template_title" name="template_title" value="{$config_title}" />
@@ -15,7 +15,7 @@
 		</tr>
 		
 		<tr>
-		    <td valign="top"><div class="rowdesc">{help_icon title="Path to logo" message="Here you can define a new location for the logo, so you can use your own image."}Path to logo </div></td>
+		    <td valign="top"><div class="rowdesc">{help_icon title="Путь к логотипу" message="Задайте путь до логотипа."}Путь к логотипу </div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="text" TABINDEX=2 class="submit-fields" id="template_logo" name="template_logo" value="{$config_logo}" />
@@ -24,7 +24,7 @@
 		</tr>
 		  
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Min Password Length" message="Define the shortest length a password can be."}Min password length </div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Минимальная длина пароля" message="Задайте минимальную длину пароля."}Минимальная длина пароля </div></td>
 			<td>
 				<div align="left">
 					<input type="text" TABINDEX=3 class="submit-fields" id="config_password_minlength" name="config_password_minlength" value="{$config_min_password}" />
@@ -34,60 +34,60 @@
 		</tr>
     
 		<tr>
-		    <td valign="top"><div class="rowdesc">{help_icon title="Date format" message="Here you can change the date format, displayed in the banlist and other pages."}Date format </div></td>
+		    <td valign="top"><div class="rowdesc">{help_icon title="Формат даты" message="Задайте формат даты, который будет отображаться в банлисте и на других страницах.."}Формат даты </div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="text" TABINDEX=4 class="submit-fields" id="config_dateformat" name="config_dateformat" value="{$config_dateformat}" />
-              <a href="http://www.php.net/date" target="_blank">See: PHP date()</a>
+              <a href="http://www.php.net/date" target="_blank">См. PHP date()</a>
 		    	</div>
 		    </td>
 		</tr>
 		
 		<tr>
-		    <td valign="top"><div class="rowdesc">{help_icon title="Timezone" message="Here you can change the default timezone that SourceBans displays times in"}Timezone </div></td>
+		    <td valign="top"><div class="rowdesc">{help_icon title="Часовой пояс" message="Задайте часовой пояс"}Часовой пояс </div></td>
 		    <td>
 		    	<div align="left">
 		      		<select TABINDEX=4 name="timezoneoffset" id="sel_timezoneoffset">
-						<option value="-12" class="">(GMT -12:00) Eniwetok, Kwajalein</option>
+						<option value="-12" class="">(GMT -12:00) Эниветок, Кваджалейн</option>
 						
-						<option value="-11" id="-39600" class="" >(GMT -11:00) Midway Island, Samoa</option>
-						<option value="-10" id="-36000" class="">(GMT -10:00) Hawaii</option>
-						<option value="-9" class="">(GMT -9:00) Alaska</option>
-						<option value="-8" class="">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
-						<option value="-7" class="">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
-						<option value="-6" class="">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+						<option value="-11" id="-39600" class="" >(GMT -11:00) Мидуэй, Самоа</option>
+						<option value="-10" id="-36000" class="">(GMT -10:00) Гавайи</option>
+						<option value="-9" class="">(GMT -9:00) Аляска</option>
+						<option value="-8" class="">(GMT -8:00) Тихоокеанское время (США &amp; Канада)</option>
+						<option value="-7" class="">(GMT -7:00) Горное время (США &amp; Канада)</option>
+						<option value="-6" class="">(GMT -6:00) Центральное время (США &amp; Канада), Мехико</option>
 						
-						<option value="-5" class="">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
-						<option value="-4" class="">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
-						<option value="-3.5" class="">(GMT -3:30) Newfoundland</option>
-						<option value="-3" class="">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
-						<option value="-2" class="">(GMT -2:00) Mid-Atlantic</option>
-						<option value="-1" class="">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
-						<option value="0" class="">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
-						<option value="1" class="">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+						<option value="-5" class="">(GMT -5:00) Восточное время (США &amp; Канада), Богота, Лима</option>
+						<option value="-4" class="">(GMT -4:00) Атлантическое время (Канада), Каракас, Ла-Пас</option>
+						<option value="-3.5" class="">(GMT -3:30) Ньюфаундленд</option>
+						<option value="-3" class="">(GMT -3:00) Бразилия, Буэнос-Айрес, Джорджтаун</option>
+						<option value="-2" class="">(GMT -2:00) Средне-атлантическое время</option>
+						<option value="-1" class="">(GMT -1:00 hour) Азорские острова, Острова Зеленого Мыса</option>
+						<option value="0" class="">(GMT) Западноевропейское время, Лондон, Лиссабон, Касабланка</option>
+						<option value="1" class="">(GMT +1:00 hour) Брюссель, Копенгаген, Мадрид, Париж</option>
 						
-						<option value="2" class="">(GMT +2:00) Kaliningrad, South Africa</option>
-						<option value="3" class="">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
-						<option value="3.5" class="">(GMT +3:30) Tehran</option>
-						<option value="4" class="">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
-						<option value="4.5" class="">(GMT +4:30) Kabul</option>
-						<option value="5" class="">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
-						<option value="5.5" class="">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
-						<option value="6" class="">(GMT +6:00) Almaty, Dhaka, Colombo</option>
-						<option value="7" class="">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+						<option value="2" class="">(GMT +2:00) Калининград, Южная африка</option>
+						<option value="3" class="">(GMT +3:00) Багдад, Рияд</option>
+						<option value="3.5" class="">(GMT +3:30) Тегеран</option>
+						<option value="4" class="">(GMT +4:00) Москва, Санкт-Петербург, Мускат, Баку, Тбилиси</option>
+						<option value="4.5" class="">(GMT +4:30) Кабул</option>
+						<option value="5" class="">(GMT +5:00) Исламабад, Карачи, Ташкент</option>
+						<option value="5.5" class="">(GMT +5:30) Бомбей, Калькутта, Мадрас, Нью Дели</option>
+						<option value="6" class="">(GMT +6:00) Екатеринбург, Алматы, Дакка, Коломбо</option>
+						<option value="7" class="">(GMT +7:00) Бангкок, Ханой, Джакарта</option>
 						
-						<option value="8" class="">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
-						<option value="9" class="">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
-						<option value="9.5" class="">(GMT +9:30) Adelaide, Darwin</option>
-						<option value="10" class="">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
-						<option value="11" class="">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
-						<option value="12" class="">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+						<option value="8" class="">(GMT +8:00) Пекин, Перт, Сингапур, Гонк-Конг</option>
+						<option value="9" class="">(GMT +9:00) Токио, Сеул, Осака, Саппоро, Якутск</option>
+						<option value="9.5" class="">(GMT +9:30) Аделаида, Дарвин</option>
+						<option value="10" class="">(GMT +10:00) Восточная Австралия, Гуам, Владивосток</option>
+						<option value="11" class="">(GMT +11:00) Магадан, Соломоновы Острова, Новая Каледония</option>
+						<option value="12" class="">(GMT +12:00) Окленд, Веллингтон, Фиджи, Камчатка</option>
 					</select>
 		    	</div>
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Summertime" message="Check this box to enable summertime."}Summertime</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Летнее время" message="Включить автоматический переход на летнее время."}Летнее время</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=5 name="config_summertime" id="config_summertime" />
@@ -95,7 +95,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Debugmode" message="Check this box to enable the debugmode permanently."}Debugmode</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Режим отладки" message="Включить режим отладки."}Режим отладки</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=6 name="config_debug" id="config_debug" />
@@ -104,10 +104,10 @@
 		</tr>
     	
 		<tr>
-			<td valign="top" colspan="2"><h3>Dashboard Settings</h3></td>
+			<td valign="top" colspan="2"><h3>Настройки приветствия</h3></td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Intro Title" message="Set the title for the dashboard introduction."}Intro Title </div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Заголовок приветствия" message="Введите заголовок приветствия."}Заголовок приветствия </div></td>
 			<td>
 				<div align="left">
 					<input type="text" TABINDEX=7 class="submit-fields" id="dash_intro_title" name="dash_intro_title" value="{$config_dash_title}" />
@@ -115,18 +115,18 @@
 		    <div id="dash.intro.msg" class="badentry"></div></td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Intro Text" message="Set the text for the dashboard introduction."}Intro Text </div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Текст приветствия" message="Введите текст приветствия."}Приветствие </div></td>
 			<td><div align="left">  </div></td>
 		</tr>
 		<tr>
 			<td valign="top" colspan="2"> <textarea TABINDEX=6 cols="80" rows="20" id="dash_intro_text" name="dash_intro_text">{$config_dash_text}</textarea>
 				<div>
-				<a href="javascript:void(0);" onclick="toggleMCE('dash_intro_text');">Enable/Disable WYSIWYG editor</a><div id="dash.text.msg" class="badentry">
+				<a href="javascript:void(0);" onclick="toggleMCE('dash_intro_text');">Включить/Выключить редактор WYSIWYG</a><div id="dash.text.msg" class="badentry">
 				</div>
 			</td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Disable Log Popup" message="Check this box to disable the log info popup and use direct link."}Disable Log Popup</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Выключить всплывающие окна" message="Установите этот флажок, чтобы отключить всплывающие подсказки и использовать прямые ссылки."}Выключить всплывающие окна</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=8 name="dash_nopopup" id="dash_nopopup" />
@@ -134,10 +134,10 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top" colspan="2"><h3>Page Settings</h3></td>
+			<td valign="top" colspan="2"><h3>Настройки страницы</h3></td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Protest Ban" message="Check this box to enable the protest ban page."}Enable Protest Ban</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Включить протест банов" message="Поставьте галку чтобы включить страницу протеста банов."}Включить протест банов</div></td>
 			<td>
 				<div align="left">
 					<input type="checkbox" TABINDEX=9 name="enable_protest" id="enable_protest" />
@@ -145,7 +145,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Only Send One Email" message="Check this box to only send the protest notification email to the admin who banned the protesting player."}Only Send One Email</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Только отправка e-mail" message="Если включено - при протесте бана будет только отправляться e-mail админу."}Только отправка e-mail</div></td>
 			<td>
 				<div align="left">
 					<input type="checkbox" TABINDEX=9 name="protest_emailonlyinvolved" id="protest_emailonlyinvolved" />
@@ -153,7 +153,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Submit Ban" message="Check this box to enable the submit ban page."}Enable Submit Ban</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Предложение бана" message="Поставьте галку чтобы включить страницу запроса банов."}Предложения банов</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=10 name="enable_submit" id="enable_submit" />
@@ -161,32 +161,32 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Default Page" message="Choose the page that will be the first page people will see."}Default Page</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Главная страница" message="Выберите главную страницу."}Главная страница</div></td>
 		    <td>
 		    	<div align="left">
 					<select TABINDEX=11 class="inputbox" name="default_page" id="default_page">
-				        <option value="0">Dashboard</option>
-				      	<option value="1">Ban List</option>
-				      	<option value="2">Servers</option>
-				        <option value="3">Submit a ban</option>
-				        <option value="4">Protest a ban</option>
+				        <option value="0">Главная</option>
+				      	<option value="1">Банлист</option>
+				      	<option value="2">Серверы</option>
+				        <option value="3">Предложить бан</option>
+				        <option value="4">Протест бана</option>
 					</select>
 		    	</div>
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Clear Cache" message="Click this button, to clean the themes_c folder."}Clear Cache</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Очистить кэш" message="Кликните по этой кнопке, чтобы очистить папку themes_c."}Очистить кэш</div></td>
 			<td>
 				<div align="left">
-					{sb_button text="Clear Cache" onclick="xajax_ClearCache();" class="cancel" id="clearcache" submit=false}
+					{sb_button text="Очистить кэш" onclick="xajax_ClearCache();" class="cancel" id="clearcache" submit=false}
 				</div><div id="clearcache.msg"></div>
 			</td>
 		</tr>
 		<tr>
-			<td valign="top" colspan="2"><h3>Banlist Settings</h3></td>
+			<td valign="top" colspan="2"><h3>Настройки банлиста</h3></td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Items per page" message="Choose how many items to show on each page."}Items Per Page </div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Банов на странице" message="Выберите количество банов на страницу."}Банов на страницу </div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="text" TABINDEX=12 class="submit-fields" id="banlist_bansperpage" name="banlist_bansperpage" value="{$config_bans_per_page}" />
@@ -195,7 +195,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Hide Admin Name" message="Check this box, if you want to hide the name of the admin in the baninfo."}Hide Admin Name</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Скрыть имя админа" message="Поставьте галку чтобы скрыть имя админа в деталях бана."}Скрыть имя админа</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=13 name="banlist_hideadmname" id="banlist_hideadmname" />
@@ -204,7 +204,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="No Country Research" message="Check this box, if you don't want to display the country out of an IP in the banlist. Use if you encounter display problems."}No Country Research</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Не показывать страну" message="Поставьте галку чтобы не показывать страну забаненного игрока."}Не показывать страну</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=14 name="banlist_nocountryfetch" id="banlist_nocountryfetch" />
@@ -213,7 +213,7 @@
 		    </td>
 		</tr>
         <tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Hide Player IP" message="Check this box, if you want to hide the player IP from the public."}Hide Player IP</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Скрыть IP игрока" message="Поставьте галку чтобы скрыть IP адрес игрока в деталях бана."}Скрыть IP игрока</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" TABINDEX=15 name="banlist_hideplayerips" id="banlist_hideplayerips" />
@@ -222,7 +222,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Custom Banreasons" message="Type the custom banreasons you want to appear in the dropdown menu."}Custom Banreasons</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Свои причины бана" message="Введите свои причины банов."}Свои причины</div></td>
 		    <td>
 		    	<div align="left">
 					<table width="100%" border="0" style="border-collapse:collapse;" id="custom.reasons" name="custom.reasons">
@@ -238,7 +238,7 @@
 							<td><input type="text" class="submit-fields" name="bans_customreason[]" id="bans_customreason[]"/></td>
 						</tr>
 					</table>
-					<a href="javascript:void(0)" onclick="MoreFields();" title="Add more fields">[+]</a>
+					<a href="javascript:void(0)" onclick="MoreFields();" title="Добавть полей">[+]</a>
 		    	</div>
 		    	<div id="bans_customreason.msg" class="badentry"></div>
 		    </td>
@@ -249,9 +249,9 @@
 		<tr>
 			<td>&nbsp;</td>
 		    <td>
-		      {sb_button text="Save Changes" class="ok" id="asettings" submit=true}
+		      {sb_button text="Сохранить" class="ok" id="asettings" submit=true}
 		      &nbsp;
-		      {sb_button text="Back" class="cancel" id="aback"}
+		      {sb_button text="Назад" class="cancel" id="aback"}
 			</td>
 		</tr>
 	</table>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * =============================================================================
  * Update an icon
@@ -19,8 +19,8 @@ global $theme, $userbank;
 
 if (!$userbank->HasAccess(ADMIN_OWNER|ADMIN_EDIT_MODS|ADMIN_ADD_MODS))
 {
-    $log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty('user') . " tried to upload a mod icon, but doesn't have access.");
-	echo 'You don\'t have access to this!';
+    $log = new CSystemLog("w", "Ошибка доступа", $userbank->GetProperty('user') . " пытался загрузить иконку МОДа, не имея на это прав.");
+	echo 'У Вас недостаточно прав!';
 	die();
 }
 
@@ -31,19 +31,19 @@ if(isset($_POST['upload']))
 	{
 		move_uploaded_file($_FILES['icon_file']['tmp_name'],SB_ICONS."/".$_FILES['icon_file']['name']);
 		$message =  "<script>window.opener.icon('" . $_FILES['icon_file']['name'] . "');self.close()</script>";
-        $log = new CSystemLog("m", "Mod Icon Uploaded", "A new mod icon has been uploaded: ".htmlspecialchars($_FILES['icon_file']['name']));
+        $log = new CSystemLog("m", "Иконка МОДа загружена", "Иконка МОДа: ".htmlspecialchars($_FILES['icon_file']['name'])." была успешно загружена");
 	}
 	else 
 	{
-		$message =  "<b> File must be gif, jpg or png filetype.</b><br><br>";
+		$message =  "<b> Можно загружать только JPG, GIF или PNG файлы.</b><br><br>";
 	}
 }
 
-$theme->assign("title", "Upload Icon");
+$theme->assign("title", "Загрузить иконку");
 $theme->assign("message", $message);
 $theme->assign("input_name", "icon_file");
 $theme->assign("form_name", "iconup");
-$theme->assign("formats", "a GIF, PNG or JPG");
+$theme->assign("formats", "GIF, PNG или JPG");
 
 $theme->display('page_uploadfile.tpl');
 ?>

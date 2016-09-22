@@ -1,6 +1,6 @@
 <div id="msg-red-debug" style="display:none;" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Debug</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Отладка</b>
 	<br />
 	<div id="debug-text">
 	</div>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * =============================================================================
  * Upload a map image
@@ -19,8 +19,8 @@ global $theme, $userbank;
 
 if (!$userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_SERVER))
 {
-    $log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty('user') . " tried to upload a mapimage, but doesn't have access.");
-	echo 'You don\'t have access to this!';
+    $log = new CSystemLog("w", "Ошибка доступа", $userbank->GetProperty('user') . " пытался загрузить изображение карты, не имея на это прав.");
+	echo 'У Вас недостаточно прав!';
 	die();
 }
 
@@ -31,19 +31,19 @@ if(isset($_POST['upload']))
 	{
 		move_uploaded_file($_FILES['mapimg_file']['tmp_name'],SB_MAP_LOCATION."/".$_FILES['mapimg_file']['name']);
 		$message =  "<script>window.opener.mapimg('" . $_FILES['mapimg_file']['name'] . "');self.close()</script>";
-		$log = new CSystemLog("m", "Map Image Uploaded", "A new map image has been uploaded: ".htmlspecialchars($_FILES['mapimg_file']['name']));
+		$log = new CSystemLog("m", "Загружено изображение карты", "Изображение карты ".htmlspecialchars($_FILES['mapimg_file']['name'])." было успешно загружено");
 	}
 	else 
 	{
-		$message =  "<b> File must be jpg filetype.</b><br><br>";
+		$message =  "<b> Можно загружать только JPG файлы.</b><br><br>";
 	}
 }
 
-$theme->assign("title", "Upload Mapimage");
+$theme->assign("title", "Загрузить изображение карты");
 $theme->assign("message", $message);
 $theme->assign("input_name", "mapimg_file");
 $theme->assign("form_name", "mapimgup");
-$theme->assign("formats", "a JPG");
+$theme->assign("formats", "JPG");
 
 $theme->display('page_uploadfile.tpl');
 ?>

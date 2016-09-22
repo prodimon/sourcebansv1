@@ -16,7 +16,7 @@ global $userbank, $ui, $theme;
 if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 if($GLOBALS['config']['config.enablesubmit']!="1")
 {
-	CreateRedBox("Error", "This page is disabled. You should not be here.");
+	CreateRedBox("Ошибка", "Страница отключена.");
 	PageDie();
 }
 if (!isset($_POST['subban']) || $_POST['subban'] != 1)
@@ -42,32 +42,32 @@ else
 	$errors = "";
 	if((strlen($SteamID)!=0 && $SteamID != "STEAM_0:") && !validate_steam($SteamID))
 	{
-		$errors .= '* Please type a valid STEAM ID.<br>';
+		$errors .= '* Введите действительный STEAM ID.<br>';
 		$validsubmit = false;
 	}
 	if(strlen($BanIP)!=0 && !validate_ip($BanIP))
 	{
-		$errors .= '* Please type a valid IP-address.<br>';
+		$errors .= '* Введите действительный IP.<br>';
 		$validsubmit = false;
 	}
 	if (strlen($PlayerName) == 0)
 	{
-		$errors .= '* You must include a player name<br>';
+		$errors .= '* Введите ник игрока<br>';
 		$validsubmit = false;
 	}
 	if (strlen($BanReason) == 0)
 	{
-		$errors .= '* You must include comments<br>';
+		$errors .= '* Напишите пару строк коментария<br>';
 		$validsubmit = false;
 	}
 	if (!check_email($Email))
 	{
-		$errors .= '* You must include a valid email address<br>';
+		$errors .= '* Введите действительный адрес электронной почты<br>';
 		$validsubmit = false;
 	}
 	if($SID == -1)
 	{
-		$errors .= '* Please select a server.<br>';
+		$errors .= '* Выберите сервер.<br>';
 		$validsubmit = false;
 	}
 	if(!empty($_FILES['demo_file']['name']))
@@ -75,7 +75,7 @@ else
 		if(!CheckExt($_FILES['demo_file']['name'], "zip") && !CheckExt($_FILES['demo_file']['name'], "rar") && !CheckExt($_FILES['demo_file']['name'], "dem") &&
 		   !CheckExt($_FILES['demo_file']['name'], "7z") && !CheckExt($_FILES['demo_file']['name'], "bz2") && !CheckExt($_FILES['demo_file']['name'], "gz"))
 		{
-			$errors .= '* A demo can only be a dem, zip, rar, 7z, bz2 or a gz filetype.<br>';
+			$errors .= '* Демо можно загружать только в .rar, .zip или .dem формате.<br>';
 			$validsubmit = false;
 		}
 	}
@@ -83,13 +83,13 @@ else
 	$numcheck = $checkres->RecordCount();
 	if($numcheck == 1 && $checkres->fields['length'] == 0)
 	{
-		$errors .= '* The player is already banned permanent.<br>';
+		$errors .= '* Этот игрок забанен навсегда.<br>';
 		$validsubmit = false;
 	}
 
 
 	if(!$validsubmit)
-		CreateRedBox("Error", $errors);
+		CreateRedBox("Ошибка", $errors);
 
 	if ($validsubmit)
 	{
@@ -104,12 +104,12 @@ else
 				$sinfo = new CServerInfo($res[0],$res[1]);
 				$info = $sinfo->getInfo();
 				if(!empty($info['hostname']))
-					$mailserver = "Server: " . $info['hostname'] . " (" . $res[0] . ":" . $res[1] . ")\n";
+					$mailserver = "Сервер: " . $info['hostname'] . " (" . $res[0] . ":" . $res[1] . ")\n";
 				else
-					$mailserver = "Server: Error Connecting (" . $res[0] . ":" . $res[1] . ")\n";
+					$mailserver = "Сервер: Ошибка соединения (" . $res[0] . ":" . $res[1] . ")\n";
 				$modid = $GLOBALS['db']->GetRow("SELECT m.mid FROM `".DB_PREFIX."_servers` as s LEFT JOIN `".DB_PREFIX."_mods` as m ON m.mid = s.modid WHERE s.sid = '".$SID."';");
 			} else {
-				$mailserver = "Server: Other server\n";
+				$mailserver = "Сервер: Другой сервер\n";
 				$modid[0] = 0;
 			}
 			if($SteamID == "STEAM_0:") $SteamID = "";
@@ -135,19 +135,19 @@ else
 			foreach($admins AS $admin)
 			{
 				$message = "";
-				$message .= "Hello " . $admin['user'] . ",\n\n";
-				$message .= "A new ban submission has been posted on your SourceBans page:\n\n";
-				$message .= "Player: ".$_POST['PlayerName']." (".$_POST['SteamID'].")\nDemo: ".(empty($_FILES['demo_file']['name'])?'no':'yes (http://' . $_SERVER['HTTP_HOST'] . $requri . 'getdemo.php?type=S&id='.$subid.')')."\n".$mailserver."Reason: ".$_POST['BanReason']."\n\n";
-				$message .= "Click the link below to view the current ban submissions.\n\nhttp://" . $_SERVER['HTTP_HOST'] . $requri . "index.php?p=admin&c=bans#^2";
+				$message .= "Здравствуйте " . $admin['user'] . ",\n\n";
+				$message .= "Новая заявка была опубликована на вашей странице SourceBans:\n\n";
+				$message .= "Игрок: ".$_POST['PlayerName']." (".$_POST['SteamID'].")\nДемо: ".(empty($_FILES['demo_file']['name'])?'no':'yes (http://' . $_SERVER['HTTP_HOST'] . $requri . 'getdemo.php?type=S&id='.$subid.')')."\n".$mailserver."Reason: ".$_POST['BanReason']."\n\n";
+				$message .= "Нажмите на ссылку выше для просмотра заявки о бане.\n\nhttp://" . $_SERVER['HTTP_HOST'] . $requri . "index.php?p=admin&c=bans#^2";
 				if($userbank->HasAccess(ADMIN_OWNER|ADMIN_BAN_SUBMISSIONS, $admin['aid']) && $userbank->HasAccess(ADMIN_NOTIFY_SUB, $admin['aid']))
-					mail($admin['email'], "[SourceBans] Ban Submission Added", $message, $headers);
+					mail($admin['email'], "[SourceBans] Заявка на бан добавлена", $message, $headers);
 			}
-			CreateGreenBox("Successful", "Your submission has been added into the database, and will be reviewed by one of our admins");
+			CreateGreenBox("Успешно", "Ваше предложение бана было успешно отправлено и будет рассмотрено администрацией");
 		}
 		else
 		{
-			CreateRedBox("Error", "There was an error uploading your demo to the server. Please try again later.");
-			$log = new CSystemLog("e", "Demo Upload Failed", "A demo failed to upload for a submission from (". $Email . ")");
+			CreateRedBox("Ошибка", "Ошибка загрузки демо. попробуйте позже.");
+			$log = new CSystemLog("e", "Ошибка загрузки демо", "Ошибка загрузки демо для заявки на бан от (". $Email . ")");
 		}
 	}
 }
@@ -164,7 +164,7 @@ while (!$server_list->EOF)
 	$info = $sinfo->getInfo();
 	if(empty($info['hostname']))
 	{
-		$info['hostname'] = "Error Connecting (" . $server_list->fields[1] . ":" . $server_list->fields[2] . ")";
+		$info['hostname'] = "Ошибка соединения (" . $server_list->fields[1] . ":" . $server_list->fields[2] . ")";
 	}
 	$info['sid'] = $server_list->fields[0];
 	array_push($servers,$info);

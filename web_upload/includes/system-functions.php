@@ -130,12 +130,12 @@ function AddTab($title, $url, $desc, $active=false)
 {
 	global $tabs;
 	$tab_arr = array(	);
-	$tab_arr[0] = "Dashboard";
-	$tab_arr[1] = "Ban List";
-	$tab_arr[2] = "Comm List";
-	$tab_arr[3] = "Servers";
-	$tab_arr[4] = "Submit a ban";
-	$tab_arr[5] = "Protest a ban";
+	$tab_arr[0] = "Главная";
+	$tab_arr[1] = "Банлист";
+    $tab_arr[2] = "Блоклист";
+	$tab_arr[3] = "Серверы";
+	$tab_arr[4] = "Запрос бана";
+	$tab_arr[5] = "Протест бана";
 	$tabs = array();
 	$tabs['title'] = $title;
 	$tabs['url'] = $url;
@@ -166,35 +166,35 @@ function AddTab($title, $url, $desc, $active=false)
 function BuildPageTabs()
 {
 	global $userbank;
-	AddTab("Dashboard", "index.php?p=home", "This page shows an overview of your bans and servers.");
-	AddTab("Ban List", "index.php?p=banlist", "All of the bans in the database can be viewed from here.");
-	AddTab("Comm List", "index.php?p=commslist", "All of the communication bans (such as chat gags and voice mutes) in the database can be viewed from here.");
-	AddTab("Servers", "index.php?p=servers", "All of your servers and their status can be viewed here");
+	AddTab("Главная", "index.php?p=home", "Главная страница.");
+	AddTab("Банлист", "index.php?p=banlist", "Список всех банов.");
+	AddTab("Блоклист", "index.php?p=commslist", "Тут находится список отключения чата/микрофона на сервере.");
+	AddTab("Серверы", "index.php?p=servers", "Список всех серверов");
 	if($GLOBALS['config']['config.enablesubmit']=="1")
-		AddTab("Submit a ban", "index.php?p=submit", "You can submit a demo or screenshot of a suspected cheater here. It will then be up for review by one of the admins");
+		AddTab("Запрос бан", "index.php?p=submit", "На этой странице Вы можете предложить демо или скриншот предполагаемого читера. Админы рассмотрят заявку.");
 	if($GLOBALS['config']['config.enableprotest']=="1")
-		AddTab("Protest a ban", "index.php?p=protest", "Here you can protest your ban. And prove your case as to why you should be unbanned.");
+		AddTab("Протест бана", "index.php?p=protest", "На этой странице Вы можете опротестовать бан, и доказать свою невиновность.");
 	if ($userbank->is_admin())
-		AddTab(" Admin Panel ", "index.php?p=admin", "This is the control panel for SourceBans where you can setup new admins, add new server, etc.");
+		AddTab(" Админцентр ", "index.php?p=admin", "Административный центр SourceBans. Тут Вы можете управлять админами, группами, серверами, банами и т.д.");
 
 		include INCLUDES_PATH . "/CTabsMenu.php";
 
 		// BUILD THE SUB-MENU's FOR ADMIN PAGES
 		$submenu = new CTabsMenu();
 		if( $userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_ADMINS|ADMIN_ADD_ADMINS|ADMIN_EDIT_ADMINS|ADMIN_DELETE_ADMINS ) )
-			$submenu->addMenuItem("Admins", 0,"", "index.php?p=admin&amp;c=admins", true);
+			$submenu->addMenuItem("Админы", 0,"", "index.php?p=admin&amp;c=admins", true);
 		if($userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_SERVERS|ADMIN_ADD_SERVER|ADMIN_EDIT_SERVERS|ADMIN_DELETE_SERVERS))
-			$submenu->addMenuItem("Servers", 0,"", "index.php?p=admin&amp;c=servers", true);
+			$submenu->addMenuItem("Серверы", 0,"", "index.php?p=admin&amp;c=servers", true);
 		if($userbank->HasAccess( ADMIN_OWNER|ADMIN_ADD_BAN|ADMIN_EDIT_OWN_BANS|ADMIN_EDIT_GROUP_BANS|ADMIN_EDIT_ALL_BANS|ADMIN_BAN_PROTESTS|ADMIN_BAN_SUBMISSIONS))
-			$submenu->addMenuItem("Bans", 0,"", "index.php?p=admin&amp;c=bans", true);
+			$submenu->addMenuItem("Баны", 0,"", "index.php?p=admin&amp;c=bans", true);
 		if($userbank->HasAccess( ADMIN_OWNER|ADMIN_ADD_BAN|ADMIN_EDIT_OWN_BANS|ADMIN_EDIT_ALL_BANS))
-			$submenu->addMenuItem("Comms", 0,"", "index.php?p=admin&amp;c=comms", true);
+			$submenu->addMenuItem("Блокировки", 0,"", "index.php?p=admin&amp;c=comms", true);
 		if($userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_GROUPS|ADMIN_ADD_GROUP|ADMIN_EDIT_GROUPS|ADMIN_DELETE_GROUPS))
-			$submenu->addMenuItem("Groups", 0,"", "index.php?p=admin&amp;c=groups", true);
+			$submenu->addMenuItem("Группы", 0,"", "index.php?p=admin&amp;c=groups", true);
 		if($userbank->HasAccess(ADMIN_OWNER|ADMIN_WEB_SETTINGS))
-			$submenu->addMenuItem("Settings", 0,"", "index.php?p=admin&amp;c=settings", true);
+			$submenu->addMenuItem("Настройки", 0,"", "index.php?p=admin&amp;c=settings", true);
 		if($userbank->HasAccess( ADMIN_OWNER|ADMIN_LIST_MODS|ADMIN_ADD_MODS|ADMIN_EDIT_MODS|ADMIN_DELETE_MODS))
-			$submenu->addMenuItem("Mods", 0,"", "?p=admin&amp;c=mods", true);
+			$submenu->addMenuItem("МОДы", 0,"", "?p=admin&amp;c=mods", true);
 		SubMenu( $submenu->getMenuArray() );
 }
 
@@ -211,25 +211,25 @@ function BuildBreadcrumbs()
 		switch($_GET['c'])
 		{
 			case "admins":
-				$cat = "Admin management";
+				$cat = "Управление админами";
 				break;
 			case "servers":
-				$cat = "Server management";
+				$cat = "Управление серверами";
 				break;
 			case "bans":
-				$cat = "Ban management";
+				$cat = "Управление админами";
 				break;
 			case "comms":
-				$cat = "Communication blocks management";
+				$cat = "Управление блокировками";
 				break;
 			case "groups":
-				$cat = "Group management";
+				$cat = "Управление группами";
 				break;
 			case "settings":
-				$cat = "SourceBans settings";
+				$cat = "Настройки SourceBans";
 				break;
 			case "mods":
-				$cat = "Mod management";
+				$cat = "Управление МОДами";
 				break;
 			default:
 				unset($_GET['c']);
@@ -252,9 +252,9 @@ function BuildBreadcrumbs()
 	}
 
 	if(!empty($bread))
-		$text = "&raquo; <a href='index.php?p=home'>Home</a> &raquo; " . $bread;
+		$text = "&raquo; <a href='index.php?p=home'>Главная</a> &raquo; " . $bread;
 	else
-		$text = "&raquo; <a href='index.php?p=home'>Home</a>";
+		$text = "&raquo; <a href='index.php?p=home'>Главная</a>";
 	echo '<script type="text/javascript">$("breadcrumb").setHTML("' . $text . '");</script>';
 
 }
@@ -352,82 +352,82 @@ function BitToString($mask, $masktype=0, $head=true)
 {
 	$string = "";
 		if($head)
-			$string .= "<span style='font-size:10px;color:#1b75d1;'>Web Permissions</span><br>";
+			$string .= "<span style='font-size:10px;color:#1b75d1;'>ВЕБ разрешения</span><br>";
 		if($mask == 0)
 		{
-			$string .= "<i>None</i>";
+			$string .= "<i>Нет</i>";
 			return $string;
 		}
 		if(($mask & ADMIN_LIST_ADMINS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; View admins<br />";
+			$string .= "&bull; Просмотр админов<br />";
 		if(($mask & ADMIN_ADD_ADMINS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Add admins<br />";
+			$string .= "&bull; Добавление админов<br />";
 		if(($mask & ADMIN_EDIT_ADMINS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Edit admins<br />";
+			$string .= "&bull; Редактирование админов<br />";
 		if(($mask & ADMIN_DELETE_ADMINS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Delete admins<br />";
+			$string .= "&bull; Удаление админаов<br />";
 
 		if(($mask & ADMIN_LIST_SERVERS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; View servers<br />";
+			$string .= "&bull; Просмотр серверов<br />";
 		if(($mask & ADMIN_ADD_SERVER) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Add servers<br />";
+			$string .= "&bull; Добавление серверы<br />";
 		if(($mask & ADMIN_EDIT_SERVERS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Edit servers<br />";
+			$string .= "&bull; Редактирование серверы<br />";
 		if(($mask & ADMIN_DELETE_SERVERS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Delete servers<br />";
+			$string .= "&bull; Удаление сервер<br />";
 
 		if(($mask & ADMIN_ADD_BAN) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Add bans<br />";
+			$string .= "&bull; Добавление бан<br />";
 		if(($mask & ADMIN_EDIT_OWN_BANS) !=0 && ($mask & ADMIN_EDIT_ALL_BANS) ==0)
-			$string .="&bull; Edit own bans<br />";
+			$string .="&bull; Редактирование свои баны<br />";
 		if(($mask & ADMIN_EDIT_GROUP_BANS) !=0 && ($mask & ADMIN_EDIT_ALL_BANS) ==0)
-			$string .= "&bull; Edit groups bans<br />";
+			$string .= "&bull; Редактирование баны групп<br />";
 		if(($mask & ADMIN_EDIT_ALL_BANS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Edit all bans<br />";
+			$string .= "&bull; Редактирование все баны<br />";
 		if(($mask & ADMIN_BAN_PROTESTS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Ban protests<br />";
+			$string .= "&bull; Протесты банов<br />";
 		if(($mask & ADMIN_BAN_SUBMISSIONS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Ban submissions<br />";
+			$string .= "&bull; Предложения банов<br />";
 
 		if(($mask & ADMIN_UNBAN_OWN_BANS) !=0 && ($mask & ADMIN_UNBAN) ==0)
-			$string .= "&bull; Unban own bans<br />";
+			$string .= "&bull; Разбан своих банов<br />";
 		if(($mask & ADMIN_UNBAN_GROUP_BANS) !=0 && ($mask & ADMIN_UNBAN) ==0)
-			$string .= "&bull; Unban group bans<br />";
+			$string .= "&bull; Разбан банов групп<br />";
 		if(($mask & ADMIN_UNBAN) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Unban all bans<br />";
+			$string .= "&bull; Разбан всех банов<br />";
 		if(($mask & ADMIN_DELETE_BAN) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Delete All bans<br />";
+			$string .= "&bull; Удаление всех банов<br />";
 		if(($mask & ADMIN_BAN_IMPORT) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Import bans<br />";
+			$string .= "&bull; Импорт банов<br />";
 
 		if(($mask & ADMIN_LIST_GROUPS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; View groups<br />";
+			$string .= "&bull; Просмотр групп<br />";
 		if(($mask & ADMIN_ADD_GROUP) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Add groups<br />";
+			$string .= "&bull; Добавление группы<br />";
 		if(($mask & ADMIN_EDIT_GROUPS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Edit groups<br />";
+			$string .= "&bull; Редактирование группы<br />";
 		if(($mask & ADMIN_DELETE_GROUPS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Delete groups<br />";
+			$string .= "&bull; Удаление группы<br />";
 
 		if(($mask & ADMIN_NOTIFY_SUB) !=0 || ($mask & ADMIN_NOTIFY_SUB) !=0)
-			$string .= "&bull; Submission email notifying<br />";
+			$string .= "&bull; Уведомление по e-mail о предложении бана<br />";
 		if(($mask & ADMIN_NOTIFY_PROTEST) !=0 || ($mask & ADMIN_NOTIFY_PROTEST) !=0)
-			$string .= "&bull; Protest email notifying<br />";
+			$string .= "&bull; Уведомление по e-mail о протесте бана<br />";
 
 		if(($mask & ADMIN_WEB_SETTINGS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Web settings<br />";
+			$string .= "&bull; Настройки ВЕБ<br />";
 
 		if(($mask & ADMIN_LIST_MODS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; View mods<br />";
+			$string .= "&bull; Просмотр МОДов<br />";
 		if(($mask & ADMIN_ADD_MODS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Add mods<br />";
+			$string .= "&bull; Добавление МОДы<br />";
 		if(($mask & ADMIN_EDIT_MODS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Edit mods<br />";
+			$string .= "&bull; Редактирование МОДы<br />";
 		if(($mask & ADMIN_DELETE_MODS) !=0 || ($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Delete mods<br />";
+			$string .= "&bull; Удаление МОДов<br />";
 
 		if(($mask & ADMIN_OWNER) !=0)
-			$string .= "&bull; Owner<br />";
+			$string .= "&bull; Главный админ<br />";
 
 	return $string;
 }
@@ -438,55 +438,55 @@ function SmFlagsToSb($flagstring, $head=true)
 
 	$string = "";
 	if($head)
-		$string .= "<span style='font-size:10px;color:#1b75d1;'>Server Permissions</span><br>";
+		$string .= "<span style='font-size:10px;color:#1b75d1;'>Серверные разрешения</span><br>";
 	if(empty($flagstring))
 		{
-			$string .= "<i>None</i>";
+			$string .= "<i>Нет</i>";
 			return $string;
 		}
 	if((strstr($flagstring, "a") || strstr($flagstring, "z")))
-		$string .= "&bull; Reserved slot<br />";
+		$string .= "&bull; Резервный слот<br />";
 	if((strstr($flagstring, "b") || strstr($flagstring, "z")))
-		$string .= "&bull; Generic admin<br />";
+		$string .= "&bull; Админ<br />";
 	if((strstr($flagstring, "c") || strstr($flagstring, "z")))
-		$string .= "&bull; Kick<br />";
+		$string .= "&bull; Кик<br />";
 	if((strstr($flagstring, "d") || strstr($flagstring, "z")))
-		$string .= "&bull; Ban<br />";
+		$string .= "&bull; Бан<br />";
 	if((strstr($flagstring, "e") || strstr($flagstring, "z")))
-		$string .= "&bull; Unban<br />";
+		$string .= "&bull; Разбан<br />";
 	if((strstr($flagstring, "f") || strstr($flagstring, "z")))
-		$string .= "&bull; Slay<br />";
+		$string .= "&bull; Слэй<br />";
 	if((strstr($flagstring, "g") || strstr($flagstring, "z")))
-		$string .= "&bull; Map change<br />";
+		$string .= "&bull; Смена карты<br />";
 	if((strstr($flagstring, "h") || strstr($flagstring, "z")))
-		$string .= "&bull; Change cvars<br />";
+		$string .= "&bull; Изменение КВАРов<br />";
 	if((strstr($flagstring, "i") || strstr($flagstring, "z")))
-		$string .= "&bull; Run configs<br />";
+		$string .= "&bull; Исполнение конфигов<br />";
 	if((strstr($flagstring, "j") || strstr($flagstring, "z")))
-		$string .= "&bull; Admin chat<br />";
+		$string .= "&bull; Админский чат<br />";
 	if((strstr($flagstring, "k") || strstr($flagstring, "z")))
-		$string .="&bull; Start votes<br />";
+		$string .= "&bull; Голосования<br />";
 	if((strstr($flagstring, "l") || strstr($flagstring, "z")))
-		$string .="&bull; Password server<br />";
+		$string .= "&bull; Пароль сервера<br />";
 	if((strstr($flagstring, "m") || strstr($flagstring, "z")))
-		$string .="&bull; RCON<br />";
+		$string .= "&bull; РКОН<br />";
 	if((strstr($flagstring, "n") || strstr($flagstring, "z")))
-		$string .="&bull; Enable Cheats<br />";
+		$string .= "&bull; Разрешение читов<br />";
 	if((strstr($flagstring, "z")))
-		$string .="&bull; Full Admin<br />";
+		$string .= "&bull; Главный админ<br />";
 
 	if((strstr($flagstring, "o") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 1<br />";
+		$string .= "&bull; Дополнительный флаг 1<br />";
 	if((strstr($flagstring, "p") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 2<br />";
+		$string .= "&bull; Дополнительный флаг 2<br />";
 	if((strstr($flagstring, "q") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 3<br />";
+		$string .= "&bull; Дополнительный флаг 3<br />";
 	if((strstr($flagstring, "r") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 4<br />";
+		$string .= "&bull; Дополнительный флаг 4<br />";
 	if((strstr($flagstring, "s") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 5<br />";
+		$string .= "&bull; Дополнительный флаг 5<br />";
 	if((strstr($flagstring, "t") || strstr($flagstring, "z")))
-		$string .="&bull; Custom flag 6<br />";
+		$string .= "&bull; Дополнительный флаг 6<br />";
 
 
 	//if(($mask & SM_DEF_IMMUNITY) != 0)
@@ -551,7 +551,7 @@ function StripQuotes($str)
 function CreateRedBox($title, $content)
 {
 	$text = '<div id="msg-red-debug" style="">
-	<i><img src="./images/warning.png" alt="Warning" /></i>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
 	<b>' . $title .'</b>
 	<br />
 	' . $content . '</i>
@@ -637,7 +637,7 @@ function SecondsToString($sec, $textual=true)
 	if($textual)
 	{
 		$div = array( 2592000, 604800, 86400, 3600, 60, 1 );
-		$desc = array('mo','wk','d','hr','min','sec');
+		$desc = array('мес','нед','сут','ч','мин','сек');
 		$ret = null;
 		foreach($div as $index => $value)
 		{

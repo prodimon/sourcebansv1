@@ -19,12 +19,12 @@ global $theme;
 
 if ($_GET['key'] != $_SESSION['banlist_postkey'])
 {
-	echo '<script>ShowBox("Error", "Possible hacking attempt (URL Key mismatch)!", "red", "index.php?p=admin&c=bans");</script>';
+	echo '<script>ShowBox("Ошибка", "Возможно попытка взлома (URL Key mismatch)!", "red", "index.php?p=admin&c=bans");</script>';
 	PageDie();
 }
 if(!isset($_GET['id']) || !is_numeric($_GET['id']))
 {
-	echo '<script>ShowBox("Error", "No ban id specified. Please only follow links!", "red", "index.php?p=admin&c=bans");</script>';
+	echo '<script>ShowBox("Ошибка", "Не указан id бана!", "red", "index.php?p=admin&c=bans");</script>';
 	PageDie();
 }
 
@@ -38,7 +38,7 @@ $res = $GLOBALS['db']->GetRow("
 
 if (!$userbank->HasAccess(ADMIN_OWNER|ADMIN_EDIT_ALL_BANS)&&(!$userbank->HasAccess(ADMIN_EDIT_OWN_BANS) && $res[8]!=$userbank->GetAid())&&(!$userbank->HasAccess(ADMIN_EDIT_GROUP_BANS) && $res->fields['gid']!=$userbank->GetProperty('gid')))
 {
-	echo '<script>ShowBox("Error", "You don\'t have access to this!", "red", "index.php?p=admin&c=bans");</script>';
+	echo '<script>ShowBox("Ошибка", "У Вас недостаточно прав!", "red", "index.php?p=admin&c=bans");</script>';
 	PageDie();
 }
 
@@ -57,7 +57,7 @@ if(isset($_POST['name']))
 	if(empty($_POST['steam']) && $_POST['type'] == 0)
 	{
 		$error++;
-		$errorScript .= "$('steam.msg').innerHTML = 'You must type a Steam ID or Community ID';";
+		$errorScript .= "$('steam.msg').innerHTML = 'Введите Steam ID или Community ID';";
 		$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 	}
 	else if(($_POST['type'] == 0 
@@ -68,20 +68,20 @@ if(isset($_POST['name']))
 	|| !validate_steam($_POST['steam'] = FriendIDToSteamID($_POST['steam'])))))
 	{
 		$error++;
-		$errorScript .= "$('steam.msg').innerHTML = 'Please enter a valid Steam ID or Community ID';";
+		$errorScript .= "$('steam.msg').innerHTML = 'Введите действительный Steam ID или Community ID';";
 		$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 	}
 	// Didn't type an IP
 	else if (empty($_POST['ip']) && $_POST['type'] == 1)
 	{
 		$error++;
-		$errorScript .= "$('ip.msg').innerHTML = 'You must type an IP';";
+		$errorScript .= "$('ip.msg').innerHTML = 'Введите IP';";
 		$errorScript .= "$('ip.msg').setStyle('display', 'block');";
 	}
 	else if ($_POST['type'] == 1 && !validate_ip($_POST['ip']))
 	{
 		$error++;
-		$errorScript .= "$('ip.msg').innerHTML = 'You must type a valid IP';";
+		$errorScript .= "$('ip.msg').innerHTML = 'Введите действительный IP';";
 		$errorScript .= "$('ip.msg').setStyle('display', 'block');";
 	}
 	
@@ -89,7 +89,7 @@ if(isset($_POST['name']))
 	if($_POST['listReason'] == "other" && empty($_POST['txtReason']))
 	{
 		$error++;
-		$errorScript .= "$('reason.msg').innerHTML = 'You must type a reason';";
+		$errorScript .= "$('reason.msg').innerHTML = 'Введите причину';";
 		$errorScript .= "$('reason.msg').setStyle('display', 'block');";
 	}
 	
@@ -106,7 +106,7 @@ if(isset($_POST['name']))
 			if((int)$chk[0] > 0)
 			{
 				$error++;
-				$errorScript .= "$('steam.msg').innerHTML = 'This SteamID is already banned';";
+				$errorScript .= "$('steam.msg').innerHTML = 'Этот SteamID уже забанен';";
 				$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 			}
 			else
@@ -118,7 +118,7 @@ if(isset($_POST['name']))
 					if($admin['authid'] == $_POST['steam'] && $userbank->GetProperty('srv_immunity') < $admin['srv_immunity'])
 					{
 						$error++;
-						$errorScript .= "$('steam.msg').innerHTML = 'Admin ".$admin['user']." is immune';";
+						$errorScript .= "$('steam.msg').innerHTML = 'У админа ".$admin['user']." иммунитет';";
 						$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 						break;
 					}
@@ -133,7 +133,7 @@ if(isset($_POST['name']))
 			if((int)$chk[0] > 0)
 			{
 				$error++;
-				$errorScript .= "$('ip.msg').innerHTML = 'This IP is already banned';";
+				$errorScript .= "$('ip.msg').innerHTML = 'Этот IP уже забанен';";
 				$errorScript .= "$('ip.msg').setStyle('display', 'block');";
 			}
 		}
@@ -189,21 +189,21 @@ if(isset($_POST['name']))
 		}
 		
 		if($_POST['banlength'] != $lengthrev->fields['length'])
-			$log = new CSystemLog("m", "Ban length edited", "Ban length for (" . $lengthrev->fields['authid'] . ") has been updated, before: ".$lengthrev->fields['length'].", now: ".$_POST['banlength']);
-		echo '<script>ShowBox("Ban updated", "The ban has been updated successfully", "green", "index.php?p=banlist'.$pagelink.'");</script>';
+			$log = new CSystemLog("m", "Срок бана обновлён", "Срок бана (" . $lengthrev->fields['authid'] . ") обновлён: с".$lengthrev->fields['length'].", на: ".$_POST['banlength']);
+		echo '<script>ShowBox("Бан обновлён", "Бан успешно обновлён", "green", "index.php?p=banlist'.$pagelink.'");</script>';
 	}
 }
 
 if(!$res)
 {
-	echo '<script>ShowBox("Error", "There was an error getting details. Maybe the ban has been deleted?", "red", "index.php?p=banlist'.$pagelink.'");</script>';
+	echo '<script>ShowBox("Ошибка", "Ошибка получения данных. Возможн бан был удалён?", "red", "index.php?p=banlist'.$pagelink.'");</script>';
 }
 
 $theme->assign('ban_name', $res['name']);
 $theme->assign('ban_reason', $res['reason']);
 $theme->assign('ban_authid', trim($res['authid']));
 $theme->assign('ban_ip', $res['ip']);
-$theme->assign('ban_demo', (!empty($res['dname'])?"Uploaded: <b>".$res['dname']."</b>":""));
+$theme->assign('ban_demo', (!empty($res['dname'])?"Загружено: <b>".$res['dname']."</b>":""));
 $theme->assign('customreason', ((isset($GLOBALS['config']['bans.customreasons'])&&$GLOBALS['config']['bans.customreasons']!="")?unserialize($GLOBALS['config']['bans.customreasons']):false));
 
 $theme->left_delimiter = "-{";

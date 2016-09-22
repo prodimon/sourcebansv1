@@ -19,10 +19,10 @@ global $userbank, $theme;
 if(!isset($_GET['id']))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	No admin id specified. Please only follow links
+	Не указан идентификатор администратора
 </div>';
 	PageDie();
 }
@@ -32,10 +32,10 @@ if(!$userbank->GetProperty("user", $_GET['id']))
 {
 	$log = new CSystemLog("e", "Getting admin data failed", "Can't find data for admin with id '".$_GET['id']."'");
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	Error getting current data.
+	Ошибка получения текущих данных.
 </div>';
 	PageDie();
 }
@@ -48,10 +48,10 @@ if(!$userbank->HasAccess(ADMIN_OWNER))
 	{
 		$log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty("user") . " tried to edit ".$userbank->GetProperty('user', $_GET['id'])."'s details, but doesnt have access.");
 		echo '<div id="msg-red" >
-		<i><img src="./images/warning.png" alt="Warning" /></i>
-		<b>Error</b>
+		<i><img src="./images/warning.png" alt="Внимание" /></i>
+		<b>Ошибка</b>
 		<br />
-		You are not allowed to edit other profiles.
+		Вы не можете редактировать других профилей.
 	</div>';
 		PageDie();
 	}
@@ -76,14 +76,14 @@ if(isset($_POST['adminname']))
 	if(empty($a_name))
 	{
 		$error++;
-		$errorScript .= "$('adminname.msg').innerHTML = 'You must type a name for the admin.';";
+		$errorScript .= "$('adminname.msg').innerHTML = 'Введите имя админа.';";
 		$errorScript .= "$('adminname.msg').setStyle('display', 'block');";
 	}
 	else{
         if(strstr($a_name, "'"))
 		{
 			$error++;
-			$errorScript .= "$('adminname.msg').innerHTML = 'An admin name can not contain a \" \' \".';";
+			$errorScript .= "$('adminname.msg').innerHTML = 'Имя админа не может содержать символов \" \' \".';";
 			$errorScript .= "$('adminname.msg').setStyle('display', 'block');";
 		}
 		else
@@ -91,7 +91,7 @@ if(isset($_POST['adminname']))
             if($a_name != $userbank->GetProperty('user', $_GET['id']) && is_taken("admins", "user", $a_name))
             {
                 $error++;
-				$errorScript .= "$('adminname.msg').innerHTML = 'An admin with this name already exists.';";
+				$errorScript .= "$('adminname.msg').innerHTML = 'Админ с таким именем уже существует.';";
 				$errorScript .= "$('adminname.msg').setStyle('display', 'block');";
             }
 		}
@@ -101,7 +101,7 @@ if(isset($_POST['adminname']))
 	if((empty($a_steam) || strlen($a_steam) < 10))
 	{
 		$error++;
-		$errorScript .= "$('steam.msg').innerHTML = 'You must type a Steam ID or Community ID for the admin.';";
+		$errorScript .= "$('steam.msg').innerHTML = 'Введите Steam ID или Community ID админа.';";
 		$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 	}
 	else
@@ -114,7 +114,7 @@ if(isset($_POST['adminname']))
 		|| !validate_steam($a_steam = FriendIDToSteamID($a_steam)))))
 		{
 			$error++;
-			$errorScript .= "$('steam.msg').innerHTML = 'Please enter a valid Steam ID or Community ID.';";
+			$errorScript .= "$('steam.msg').innerHTML = 'Введите действительный Steam ID или Community ID.';";
 			$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 		}
 		else
@@ -132,7 +132,7 @@ if(isset($_POST['adminname']))
 					}
 				}
 				$error++;
-				$errorScript .= "$('steam.msg').innerHTML = 'Admin ".htmlspecialchars(addslashes($name))." already uses this Steam ID.';";
+				$errorScript .= "$('steam.msg').innerHTML = 'Steam ID уже используется админом ".htmlspecialchars(addslashes($name)).".';";
 				$errorScript .= "$('steam.msg').setStyle('display', 'block');";
 			}
 		}
@@ -145,7 +145,7 @@ if(isset($_POST['adminname']))
 		if($GLOBALS['userbank']->GetProperty('extraflags', $_GET['id']) != 0 || $GLOBALS['userbank']->GetProperty('gid', $_GET['id']) > 0)
 		{
 			$error++;
-			$errorScript .= "$('email.msg').innerHTML = 'You must type an e-mail address.';";
+			$errorScript .= "$('email.msg').innerHTML = 'Вы должны ввести E-mail адрес.';";
 			$errorScript .= "$('email.msg').setStyle('display', 'block');";
 		}
 	}
@@ -163,7 +163,7 @@ if(isset($_POST['adminname']))
 				}
 			}
 			$error++;
-			$errorScript .= "$('email.msg').innerHTML = 'This email address is already being used by ".htmlspecialchars(addslashes($name)).".';";
+			$errorScript .= "$('email.msg').innerHTML = 'Этот e-mail уже используетя админом ".htmlspecialchars(addslashes($name)).".';";
 			$errorScript .= "$('email.msg').setStyle('display', 'block');";
 		}
 		/*else if(!validate_email($a_email))
@@ -185,7 +185,7 @@ if(isset($_POST['adminname']))
 			if(strlen($_POST['password']) < MIN_PASS_LENGTH)
 			{
 				$error++;
-				$errorScript .= "$('password.msg').innerHTML = 'Your password must be at-least " . MIN_PASS_LENGTH . " characters long.';";
+				$errorScript .= "$('password.msg').innerHTML = 'Пароль должен быть не менее " . MIN_PASS_LENGTH . " символов.';";
 				$errorScript .= "$('password.msg').setStyle('display', 'block');";
 			}
 			else 
@@ -194,14 +194,14 @@ if(isset($_POST['adminname']))
 				if(empty($_POST['password2']))
 				{
 					$error++;
-					$errorScript .= "$('password2.msg').innerHTML = 'You must confirm the password.';";
+					$errorScript .= "$('password2.msg').innerHTML = 'Подтвердите пароль.';";
 					$errorScript .= "$('password2.msg').setStyle('display', 'block');";
 				}
 				// Passwords match?
 				else if($_POST['password'] != $_POST['password2'])
 				{
 					$error++;
-					$errorScript .= "$('password2.msg').innerHTML = 'Your passwords don't match.';";
+					$errorScript .= "$('password2.msg').innerHTML = 'Пароли не совпадают.';";
 					$errorScript .= "$('password2.msg').setStyle('display', 'block');";
 				}
 			}
@@ -218,14 +218,14 @@ if(isset($_POST['adminname']))
 			if(empty($_POST['a_serverpass']) && empty($srvpw))
 			{
 				$error++;
-				$errorScript .= "$('a_serverpass.msg').innerHTML = 'You must type a server password or uncheck the box.';";
+				$errorScript .= "$('a_serverpass.msg').innerHTML = 'Введите пароль сервера, или снимите галочку.';";
 				$errorScript .= "$('a_serverpass.msg').setStyle('display', 'block');";
 			}
 			// Password too short?
 			else if(strlen($_POST['a_serverpass']) < MIN_PASS_LENGTH)
 			{
 				$error++;
-				$errorScript .= "$('a_serverpass.msg').innerHTML = 'Your password must be at-least " . MIN_PASS_LENGTH . " characters long.';";
+				$errorScript .= "$('a_serverpass.msg').innerHTML = 'Пароль должен быть не менее " . MIN_PASS_LENGTH . " символов.';";
 				$errorScript .= "$('a_serverpass.msg').setStyle('display', 'block');";
 			}
 		}
@@ -286,13 +286,13 @@ if(isset($_POST['adminname']))
 		}
 		
 		$admname = $GLOBALS['db']->GetRow("SELECT user FROM `".DB_PREFIX."_admins` WHERE aid = ?", array((int)$_GET['id']));
-		$log = new CSystemLog("m", "Admin Details Updated", "Admin (" . $admname['user'] . ") details has been changed");
+		$log = new CSystemLog("m", "Данные админа обновлены", "Данные админа (" . $admname['user'] . ") обновлены");
 		if($ownpwchanged)
-			echo '<script>ShowBox("Admin details updated", "The admin details has been updated successfully", "green", "index.php?p=login");TabToReload();</script>';
+			echo '<script>ShowBox("Данные админа обновлены", "Данные админа успешно обновлены", "green", "index.php?p=login");TabToReload();</script>';
 		else if(isset($rehashing))
-			echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Admin details updated", "The admin details has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+			echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Данные админа обновлены", "Данные админа успешно обновлены", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 		else
-			echo '<script>ShowBox("Admin details updated", "The admin details has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+			echo '<script>ShowBox("Данные админа обновлены", "Данные админа успешно обновлены", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 	}
 }
 // get current values

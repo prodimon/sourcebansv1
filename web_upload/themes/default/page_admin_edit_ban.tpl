@@ -3,20 +3,20 @@
 		<div id="0">
 			<div id="msg-green" style="display:none;">
 				<i><img src="./images/yay.png" alt="Warning" /></i>
-				<b>Ban Updated</b>
+				<b>Бан обновлён</b>
 				<br />
-				The ban details have been updated.<br /><br />
-				<i>Redirecting back to bans page</i>
+				Детали бана были обновлены.<br /><br />
+				<i>Переадрессация на страницу банов</i>
 			</div>
 			<div id="add-group">
-			<h3>Ban Details</h3>
-			For more information or help regarding a certain subject move your mouse over the question mark.<br /><br />
+			<h3>Детали бана</h3>
+			За дополнительной информацией или помощью наведите курсор мыши на знак вопроса.<br /><br />
 			<input type="hidden" name="insert_type" value="add">
 			<table width="90%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 			  <tr>
 			    <td valign="top" width="35%">
 				  <div class="rowdesc">
-				    -{help_icon title="Player name" message="This is the name of the player that was banned."}-Player name
+				    -{help_icon title="Имя игрока" message="Имя забаненного игрока."}-Имя игрока
 				  </div>
 				</td>
 			    <td>
@@ -28,14 +28,14 @@
 			  <tr>
     		<td valign="top" width="35%">
     			<div class="rowdesc">
-    				-{help_icon title="Ban Type" message="Choose whether to ban by Steam ID or IP address."}-Ban Type 
+    				-{help_icon title="Тип бана" message="Как банить: по STEAM ID или по IP."}-Тип бана
     			</div>
     		</td>
     		<td>
     			<div align="left">
     				<select id="type" name="type" TABINDEX=2 class="submit-fields">
 						<option value="0">Steam ID</option>
-						<option value="1">IP Address</option>
+						<option value="1">IP адрес</option>
 					</select>
     			</div>
     		</td>
@@ -43,7 +43,7 @@
   		<tr>
     		<td valign="top">
     			<div class="rowdesc">
-    				-{help_icon title="Steam ID" message="This is the Steam ID of the player that is banned. You may want to type a Community ID either."}-Steam ID
+    				-{help_icon title="Steam ID" message="Steam ID забаненного игрока. Также можно ввести его Community ID."}-Steam ID
     			</div>
     		</td>
     		<td>
@@ -56,7 +56,7 @@
  		  <tr>
     		<td valign="top" width="35%">
     			<div class="rowdesc">
-    				-{help_icon title="IP" message="This is the IP of the player that is banned"}-IP Address
+    				-{help_icon title="IP адрес" message="IP адрес забаненного игрока"}-IP адрес
     			</div>
     		</td>
     		<td>
@@ -69,14 +69,14 @@
  		  <tr>
     		<td valign="top" width="35%">
     			<div class="rowdesc">
-    				-{help_icon title="Reason" message="The reason that this player was banned."}-Reason
+    				-{help_icon title="Причина" message="Причина бана."}-Причина
     			</div>
     		</td>
     		<td>
     			<div align="left">
     				<select id="listReason" name="listReason" TABINDEX=4 class="submit-fields" onChange="changeReason(this[this.selectedIndex].value);">
-    					<option value="" selected> -- Select Reason -- </option>
-					<optgroup label="Hacking">
+    					<option value="" selected> -- Выберите причину -- </option>
+					<optgroup label="Читерство">
 						<option value="Aimbot">Aimbot</option>
 						<option value="Antirecoil">Antirecoil</option>
 						<option value="Wallhack">Wallhack</option>
@@ -85,15 +85,17 @@
 						<option value="No Smoke">No Smoke</option>
 						<option value="No Flash">No Flash</option>
 					</optgroup>
-					<optgroup label="Behavior">
+					<optgroup label="Поведение">
 						<option value="Team Killing">Team Killing</option>
 						<option value="Team Flashing">Team Flashing</option>
-						<option value="Spamming Mic/Chat">Spamming Mic/Chat</option>
-						<option value="Inappropriate Spray">Inappropriate Spray</option>
-						<option value="Inappropriate Language">Inappropriate Language</option>
-						<option value="Inappropriate Name">Inappropriate Name</option>
-						<option value="Ignoring Admins">Ignoring Admins</option>
+						<option value="Spamming Mic/Chat">Спамил В Мик/Чат</option>
+						<option value="Inappropriate Spray">Неуместный спрей</option>
+						<option value="Inappropriate Language">Неуместный язык</option>
+						<option value="Inappropriate Name">Неуместный ник</option>
+						<option value="Ignoring Admins">Игнор админа</option>
 						<option value="Team Stacking">Team Stacking</option>
+						<option value="Мат/Оскорбления">Мат/Оскорбления</option>
+						<option value="Реклама">Реклама</option>
 					</optgroup>
 					-{if $customreason}-
 					<optgroup label="Custom">
@@ -102,7 +104,7 @@
 					-{/foreach}-
 					</optgroup>
 					-{/if}-
-					<option value="other">Other Reason</option>
+					<option value="other">Другая причина</option>
 				</select>
 				<div id="dreason" style="display:none;">
      					<textarea class="submit-fields" TABINDEX=4 cols="30" rows="5" id="txtReason" name="txtReason"></textarea>
@@ -112,50 +114,50 @@
     		</td>
       </tr>			  
 			 <tr>
-			    <td valign="top" width="35%"><div class="rowdesc">-{help_icon title="Ban Length" message="Select how long you want to ban this person for."}-Ban Length </div></td>
+			    <td valign="top" width="35%"><div class="rowdesc">-{help_icon title="Срок бана" message="Выберите срок бана."}-Срок бана </div></td>
 			    <td><div align="left">
 			      <select id="banlength" name="banlength" TABINDEX=5 class="submit-fields">
-									<option value="0">Permanent</option>
-										<optgroup label="minutes">
-									<option value="1">1 minute</option>
-									<option value="5">5 minutes</option>
-									<option value="10">10 minutes</option>
-									<option value="15">15 minutes</option>
-									<option value="30">30 minutes</option>
-									<option value="45">45 minutes</option>
-										</optgroup><optgroup label="hours">
-									<option value="60">1 hour</option>
-									<option value="120">2 hours</option>
-									<option value="180">3 hours</option>
-									<option value="240">4 hours</option>
-									<option value="480">8 hours</option>
-									<option value="720">12 hours</option>
-										</optgroup><optgroup label="days">
-									<option value="1440">1 day</option>
-									<option value="2880">2 days</option>
-									<option value="4320">3 days</option>
-									<option value="5760">4 days</option>
-									<option value="7200">5 days</option>
-									<option value="8640">6 days</option>
-										</optgroup><optgroup label="weeks">
-									<option value="10080">1 week</option>
-									<option value="20160">2 weeks</option>
-									<option value="30240">3 weeks</option>
-										</optgroup><optgroup label="months">
-									<option value="43200">1 month</option>
-									<option value="86400">2 months</option>
-									<option value="129600">3 months</option>
-									<option value="259200">6 months</option>
-									<option value="518400">12 months</option>
+									<option value="0">Навсегда</option>
+										<optgroup label="минуты">
+									<option value="1">1 минута</option>
+									<option value="5">5 минут</option>
+									<option value="10">10 минут</option>
+									<option value="15">15 минут</option>
+									<option value="30">30 минут</option>
+									<option value="45">45 минут</option>
+										</optgroup><optgroup label="часы">
+									<option value="60">1 час</option>
+									<option value="120">2 часа</option>
+									<option value="180">3 часа</option>
+									<option value="240">4 часа</option>
+									<option value="480">8 часов</option>
+									<option value="720">12 часов</option>
+										</optgroup><optgroup label="дни">
+									<option value="1440">1 день</option>
+									<option value="2880">2 дня</option>
+									<option value="4320">3 дня</option>
+									<option value="5760">4 дня</option>
+									<option value="7200">5 дней</option>
+									<option value="8640">6 дней</option>
+										</optgroup><optgroup label="недели">
+									<option value="10080">1 неделя</option>
+									<option value="20160">2 недели</option>
+									<option value="30240">3 недели</option>
+										</optgroup><optgroup label="месяцы">
+									<option value="43200">1 месяц</option>
+									<option value="86400">2 месяца</option>
+									<option value="129600">3 месяца</option>
+									<option value="259200">6 месяцев</option>
+									<option value="518400">12 месяцев</option>
 									</optgroup></select>
 			    </div><div id="length.msg" class="badentry"></div></td>
 			  </tr>
 			  
 			   <tr>
-			    <td valign="top" width="35%"><div class="rowdesc">-{help_icon title="Upload Demo" message="Click here to upload a demo with this ban submission."}-Upload Demo
+			    <td valign="top" width="35%"><div class="rowdesc">-{help_icon title="Загрузить демо" message="Нажмите здесь, чтобы загрузить демо."}-Загрузить демо
 			    </div></td>
 			    <td><div align="left">
-			    	-{sb_button text="Upload a Demo" onclick="childWindow=open('pages/admin.uploaddemo.php','upload','resizable=no,width=300,height=130');" class="save" id="uploaddemo" submit=false}-
+			    	-{sb_button text="Загрузить демо" onclick="childWindow=open('pages/admin.uploaddemo.php','upload','resizable=no,width=300,height=130');" class="save" id="uploaddemo" submit=false}-
 			    </div><div id="demo.msg" style="color:#CC0000;">-{$ban_demo}-</div></td>
 			  </tr>
 			 
@@ -164,9 +166,9 @@
 			    <td>
 			      <input type="hidden" name="did" id="did" value="" />
 			      <input type="hidden" name="dname" id="dname" value="" /> 
-			      	-{sb_button text="Save Changes" class="ok" id="editban" submit=true}-
+			      	-{sb_button text="Сохранить" class="ok" id="editban" submit=true}-
 			     	 &nbsp;
-			     	 -{sb_button text="Back" onclick="history.go(-1)" class="cancel" id="back" submit=false}-
+			     	 -{sb_button text="Назад" onclick="history.go(-1)" class="cancel" id="back" submit=false}-
 			      </td>
 			  </tr>
 			</table>
@@ -176,7 +178,7 @@
 			var dname = "";
 			function demo(id, name)
 			{
-				$('demo.msg').setHTML("Uploaded: <b>" + name + "</b>");
+				$('demo.msg').setHTML("Загружено: <b>" + name + "</b>");
 			
 				$('did').value = id;
 				$('dname').value = name;

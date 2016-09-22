@@ -1,51 +1,51 @@
-<h3>Please select an option to administer.</h3>
+<h3>Выберите опцию.</h3>
 <div id="cpanel">
 	<ul>
 		{if $access_admins}
 			<li>
 				<a href="index.php?p=admin&amp;c=admins">
-				<img src="themes/default/images/admin/admins.png" alt="Admin Settings" border="0" /><br />
-				Admin Settings
+				<img src="themes/default/images/admin/admins.png" alt="Настройки админов" border="0" /><br />
+				Настройки админов
 		  		</a>
 			</li>
 		{/if}
 		{if $access_servers}
 			<li>
 				<a href="index.php?p=admin&amp;c=servers">
-				<img src="themes/default/images/admin/servers.png" alt="Server Admin" border="0" /><br />
-				Server Settings
+				<img src="themes/default/images/admin/servers.png" alt="Настройки серверов" border="0" /><br />
+				Настройки серверов
 		  		</a>
 			</li>
 		{/if}
 		{if $access_bans}
 			<li>
 				<a href="index.php?p=admin&amp;c=bans">
-				<img src="themes/default/images/admin/bans.png" alt="Edit Bans" border="0" /><br />
-				Bans
+				<img src="themes/default/images/admin/bans.png" alt="Редактировать баны" border="0" /><br />
+				Редактировать баны
 		  		</a>
 			</li>
 		{/if}
 		{if $access_groups}
 			<li>
 				<a href="index.php?p=admin&amp;c=groups">
-				<img src="themes/default/images/admin/groups.png" alt="Edit Groups" border="0" /><br />
-				Group Settings
+				<img src="themes/default/images/admin/groups.png" alt="Редактировать группы" border="0" /><br />
+				Настройки групп
 		  		</a>
 			</li>
 		{/if}
 		{if $access_settings}
 			<li>
 				<a href="index.php?p=admin&amp;c=settings">
-				<img src="themes/default/images/admin/settings.png" alt="SourceBans Settings" border="0" /><br />
-				Webpanel Settings
+				<img src="themes/default/images/admin/settings.png" alt="Настройки SourceBans" border="0" /><br />
+				Настройки ВЕБ панели
 		  		</a> 
 			</li>
 		{/if}
 		{if $access_mods}
 			<li>
 				<a href="index.php?p=admin&amp;c=mods">
-				<img src="themes/default/images/admin/mods.png" alt="Mods" border="0" /><br />
-				Manage Mods
+				<img src="themes/default/images/admin/mods.png" alt="МОДы" border="0" /><br />
+				Управление МОДами
 		  		</a>
 			</li>
 		{/if}
@@ -55,43 +55,43 @@
 
 <table width="100%" border="0" cellpadding="3" cellspacing="0">
 	<tr>
-		<td width="33%" align="center"><h3>Version Information</h3></td>
-		<td width="33%" align="center"><h3>Admin Information</h3></td>
-		<td width="33%" align="center"><h3>Ban Information</h3></td>
+		<td width="33%" align="center"><h3>Информация о версии</h3></td>
+		<td width="33%" align="center"><h3>Информация о админах</h3></td>
+		<td width="33%" align="center"><h3>Информация о банах</h3></td>
 	</tr>
 	<tr>
-		<td>Latest release: <strong id='relver'>Please Wait...</strong></td>
-		<td>Total admins: <strong>{$total_admins}</strong></td>
-		<td>Total bans: <strong>{$total_bans}</strong></td>
+		<td>Последняя версия: <strong id='relver'>Ждите...</strong></td>
+		<td>Всего админов: <strong>{$total_admins}</strong></td>
+		<td>Всего банов: <strong>{$total_bans}</strong></td>
 	</tr>
 	<tr>
 		<td>
 			{if $sb_svn}
-				Latest SVN: <strong id='svnrev'>Please Wait...</strong>
+				Последняя SVN версия: <strong id='svnrev'>Ждите...</strong>
 			{/if}		
 		</td>
 		<td>&nbsp;</td>
 		<td>Connection blocks: <strong>{$total_blocks}</strong></td>
 	</tr>
 	<tr>
-		<td id='versionmsg'>Please Wait...</td>
+		<td id='versionmsg'>Ждите...</td>
 		<td> <strong> </strong></td>
-		<td>Total demo size: <strong>{$demosize}</td>
+		<td>Общий размер загруженных демо: <strong>{$demosize}</td>
 	</tr>
 	<tr>
-		<td width="33%" align="center"><h3>Server Information</h3></td>
-		<td width="33%" align="center"><h3>Protest Information</h3></td>
-		<td width="33%" align="center"><h3>Submission Information</h3></td>
+		<td width="33%" align="center"><h3>Информация о серверах</h3></td>
+		<td width="33%" align="center"><h3>Информация о протестах</h3></td>
+		<td width="33%" align="center"><h3>Информация о предложенных банах</h3></td>
 	</tr>
 	<tr>
-		<td>Total Servers: <strong>{$total_servers}</strong></td>
-		<td>Total protests: <strong>{$total_protests}</strong></td>
-		<td>Total submissions: <strong>{$total_submissions}</strong></td>
+		<td>Всего серверов: <strong>{$total_servers}</strong></td>
+		<td>Всего протестов банов: <strong>{$total_protests}</strong></td>
+		<td>Всего заявок на  бан: <strong>{$total_submissions}</strong></td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>
-		<td>Archived protests: <strong>{$archived_protests}</strong></td>
-		<td>Archived submissions: <strong>{$archived_submissions}</strong></td>
+		<td>Протестов в архива: <strong>{$archived_protests}</strong></td>
+		<td>Заявок на  бан в архиве: <strong>{$archived_submissions}</strong></td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>

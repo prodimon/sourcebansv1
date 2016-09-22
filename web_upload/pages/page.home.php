@@ -44,7 +44,7 @@ while (!$res->EOF)
 	}
 	$info['link_url'] = "window.location = '" . $info['search_link'] . "';";
 	$info['name'] = htmlspecialchars(addslashes($info['name']), ENT_QUOTES, 'UTF-8');
-	$info['popup'] = "ShowBox('Blocked player: " . $info['name'] . "', '" . $info['name'] . " tried to enter<br />' + document.getElementById('".$info['server']."').title + '<br />at " . $info['date'] . "<br /><div align=middle><a href=" . $info['search_link'] . ">Click here for ban details.</a></div>', 'red', '', true);";
+	$info['popup'] = "ShowBox('Игрок: " . $info['name'] . " заблокирован', '" . $info['name'] . " пытался войти на<br />' + document.getElementById('".$info['server']."').title + '<br />at " . $info['date'] . "<br /><div align=middle><a href=" . $info['search_link'] . ">Показать детали.</a></div>', 'red', '', true);";
 		
     $GLOBALS['server_qry'] .= "xajax_ServerHostProperty(".$res->fields['sid'].", 'block_".$res->fields['sid']."_$blcount', 'title', 100);";
         
@@ -68,7 +68,7 @@ while (!$res->EOF)
 	$info = array();
 	$info['name'] = stripslashes($res->fields[3]);
 	$info['created'] = SBDate($dateformat,$res->fields['created']);
-	$ltemp = explode(",",$res->fields[6] == 0 ? 'Permanent' : SecondsToString(intval($res->fields[6])));
+	$ltemp = explode(",",$res->fields[6] == 0 ? 'Навсегда' : SecondsToString(intval($res->fields[6])));
 	$info['length'] = $ltemp[0];
 	$info['icon'] = empty($res->fields[13]) ? 'web.png' : $res->fields[13];
 	$info['authid'] = $res->fields[2];
@@ -87,11 +87,11 @@ while (!$res->EOF)
 		$info['unbanned'] = true;
 		
 		if($res->fields[14] == 'D')
-			$info['ub_reason'] = 'D';
+			$info['ub_reason'] = 'У';
 		elseif($res->fields[14] == 'U')
-			$info['ub_reason'] = 'U';
+			$info['ub_reason'] = 'Р';
 		else
-			$info['ub_reason'] = 'E';
+			$info['ub_reason'] = 'И';
 	}
 	else
 	{

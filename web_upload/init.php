@@ -56,7 +56,7 @@ if(!file_exists(ROOT.'/config.php') || !include_once(ROOT . '/config.php')) {
 	// No were not
 	if($_SERVER['HTTP_HOST'] != "localhost")
 	{
-		echo "SourceBans is not installed.";
+		echo "SourceBans не установлен.";
 		die();
 	}
 }
@@ -64,7 +64,7 @@ if(!defined("DEVELOPER_MODE") && !defined("IS_UPDATE") && file_exists(ROOT."/ins
 {
 	if($_SERVER['HTTP_HOST'] != "localhost")
 	{
-		echo "Please delete the install directory before you use SourceBans";
+		echo "Удалите папку <b>install</b>.";
 		die();
 	}
 }
@@ -73,7 +73,7 @@ if(!defined("DEVELOPER_MODE") && !defined("IS_UPDATE") && file_exists(ROOT."/upd
 {
 	if($_SERVER['HTTP_HOST'] != "localhost")
 	{
-		echo "Please delete the updater directory before using SourceBans";
+		echo "Удалите папку <b>updater</b>.";
 		die();
 	}
 }
@@ -132,20 +132,20 @@ function sbError($errno, $errstr, $errfile, $errline)
     switch ($errno) {
     case E_USER_ERROR:
         $msg = "[$errno] $errstr<br />\n";
-        $msg .= "Fatal error on line $errline in file $errfile";
+        $msg .= "Критическая ошибка в строке $errline, файл $errfile";
      	$log = new CSystemLog("e", "PHP Error", $msg);
         exit(1);
         break;
 
     case E_USER_WARNING:
         $msg = "[$errno] $errstr<br />\n";
-        $msg .= "Error on line $errline in file $errfile";
+        $msg .= "Ошибка в строке $errline, файл $errfile";
         $GLOBALS['log']->AddLogItem("w", "PHP Warning", $msg);
         break;
 
     case E_USER_NOTICE:
          $msg = "[$errno] $errstr<br />\n";
-         $msg .= "Notice on line $errline in file $errfile";
+         $msg .= "Предупреждение в строке $errline, файл $errfile";
          $GLOBALS['log']->AddLogItem("m", "PHP Notice", $msg);
         break;
 
@@ -302,11 +302,11 @@ define('SB_THEME', $theme_name);
 
 if(!@file_exists(SB_THEMES . $theme_name . "/theme.conf.php"))
 {
-	die("Theme Error: <b>".$theme_name."</b> is not a valid theme. Must have a valid <b>theme.conf.php</b> file.");
+	die("Ошибка шаблона: <b>В".$theme_name."</b> не существует файла <b>theme.conf.php</b> file.");
 }
 if(!@is_writable(SB_THEMES_COMPILE))
 {
-	die("Theme Error: <b>".SB_THEMES_COMPILE."</b> MUST be writable.");
+	die("Ошибка шаблона: <b>папка ".SB_THEMES_COMPILE."</b> не перезаписываемая.");
 }
 
 $theme = new Smarty();

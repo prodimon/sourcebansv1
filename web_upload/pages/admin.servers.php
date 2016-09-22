@@ -77,7 +77,7 @@
         $theme->assign('rcon', 	'');
         $theme->assign('modid', '');
 		
-		$theme->assign('submit_text', "Add Server");
+		$theme->assign('submit_text', "Добавить сервер");
 	?>
 	
 	

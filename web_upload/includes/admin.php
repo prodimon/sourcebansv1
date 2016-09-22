@@ -17,7 +17,7 @@ global $userbank;
 if(!isset($_GET['c']))
 {
 	include TEMPLATES_PATH . "/page.admin.php";
-	RewritePageTitle("Administration");
+	RewritePageTitle("Админцентр");
 }
 else 
 {
@@ -30,23 +30,23 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$groupsTabMenu = new CTabsMenu();
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_GROUPS ) )
-				$groupsTabMenu->addMenuItem("List groups", 0);
+				$groupsTabMenu->addMenuItem("Список групп", 0);
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_GROUP ) )
-				$groupsTabMenu->addMenuItem("Add a group", 1);
+				$groupsTabMenu->addMenuItem("Добавить группу", 1);
 			$groupsTabMenu->outputMenu();
 			// ====================[ ADMIN SIDE MENU END ] ===================	
 			
 			include TEMPLATES_PATH . "/admin.groups.php";	
-			RewritePageTitle("Group Management");
+			RewritePageTitle("Управление группами");
 		}
 		elseif($_GET['o'] == 'edit')
 		{
 			$groupsTabMenu = new CTabsMenu();
-			$groupsTabMenu->addMenuItem("Back",0, "", "javascript:history.go(-1);", true);
+			$groupsTabMenu->addMenuItem("Назад",0, "", "javascript:history.go(-1);", true);
 			$groupsTabMenu->outputMenu();
 			
 			include TEMPLATES_PATH . "/admin.edit.group.php";
-			RewritePageTitle("Edit Groups");
+			RewritePageTitle("Редактировать группы");
 		}
 	}elseif($_GET['c'] == "admins")
 	 // ###################[ Admins ]##################################################################
@@ -58,11 +58,11 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$adminTabMenu = new CTabsMenu();
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_LIST_ADMINS ) )
-				$adminTabMenu->addMenuItem("List admins", 0);		
+				$adminTabMenu->addMenuItem("Список админов", 0);		
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_ADMINS ) )
 			{
-				$adminTabMenu->addMenuItem("Add new admin", 1);
-				$adminTabMenu->addMenuItem("Overrides", 2);
+				$adminTabMenu->addMenuItem("Добавить админа", 1);
+				$adminTabMenu->addMenuItem("Переопределения", 2);
 			}
 			$adminTabMenu->outputMenu();
 			// ====================[ ADMIN SIDE MENU END ] ===================
@@ -174,33 +174,33 @@ else
 			$query = $GLOBALS['db']->GetRow("SELECT COUNT(ADM.aid) AS cnt FROM `" . DB_PREFIX . "_admins` AS ADM".$join." WHERE ADM.aid > 0".$where);
 			$admin_count = $query['cnt'];
 			include TEMPLATES_PATH . "/admin.admins.php";
-			RewritePageTitle("Admin Management");
+			RewritePageTitle("Управление админами");
 		}
 		elseif($_GET['o'] == 'editgroup' || $_GET['o'] == 'editdetails' || $_GET['o'] == 'editpermissions' || $_GET['o'] == 'editservers')
 		{
 			$adminTabMenu = new CTabsMenu();
-			$adminTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$adminTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$adminTabMenu->outputMenu();
 		
 			if($_GET['o'] == 'editgroup')
 			{
 				include TEMPLATES_PATH . "/admin.edit.admingroup.php";
-				RewritePageTitle("Edit Admin Groups");
+				RewritePageTitle("Редактировать группы админов");
 			}
 			elseif($_GET['o'] == 'editdetails')
 			{
 				include TEMPLATES_PATH . "/admin.edit.admindetails.php";
-				RewritePageTitle("Edit Admin Details");
+				RewritePageTitle("Редактировать админа");
 			}
 			elseif($_GET['o'] == 'editpermissions')
 			{
 				include TEMPLATES_PATH . "/admin.edit.adminperms.php";
-				RewritePageTitle("Edit Admin Permissions");
+				RewritePageTitle("Редактировать разрешения админа");
 			}
 			elseif($_GET['o'] == 'editservers')
 			{
 				include TEMPLATES_PATH . "/admin.edit.adminservers.php";
-				RewritePageTitle("Edit Server Access");
+				RewritePageTitle("Редактировать доступ к серверу");
 			}
 		}
 	}
@@ -214,50 +214,50 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$serverTabMenu = new CTabsMenu();
 			if($userbank->HasAccess( ADMIN_OWNER|ADMIN_LIST_SERVERS ) )
-				$serverTabMenu->addMenuItem("List servers",0);	
+				$serverTabMenu->addMenuItem("Список серверов",0);	
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_SERVER ) )
-				$serverTabMenu->addMenuItem("Add new server",1);
+				$serverTabMenu->addMenuItem("Добавить сервер",1);
 			$serverTabMenu->outputMenu();
 			// ====================[ ADMIN SIDE MENU END ] ===================
 			
 			include TEMPLATES_PATH . "/admin.servers.php";
-			RewritePageTitle("Server Management");
+			RewritePageTitle("Управление серверами");
 		}
 		elseif($_GET['o'] == 'edit')
 		{
 			$serverTabMenu = new CTabsMenu();
-			$serverTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$serverTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$serverTabMenu->outputMenu();		
 			
 			include TEMPLATES_PATH . "/admin.edit.server.php";
-			RewritePageTitle("Edit Server");
+			RewritePageTitle("Редактировать сервер");
 		}
 		elseif($_GET['o'] == 'rcon')
 		{
 			$serverTabMenu = new CTabsMenu();
-			$serverTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$serverTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$serverTabMenu->outputMenu();
 						
 			include TEMPLATES_PATH . "/admin.rcon.php";
-			RewritePageTitle("Server RCON");
+			RewritePageTitle("RCON");
 		}
 		elseif($_GET['o'] == 'dbsetup')
 		{
 			$serverTabMenu = new CTabsMenu();
-			$serverTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$serverTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$serverTabMenu->outputMenu();
 						
 			include TEMPLATES_PATH . "/admin.servers.db.php";
-			RewritePageTitle("Database Config");
+			RewritePageTitle("Настройки базы данных");
 		}
 		elseif($_GET['o'] == 'admincheck')
 		{
 			$serverTabMenu = new CTabsMenu();
-			$serverTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$serverTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$serverTabMenu->outputMenu();
 						
 			include TEMPLATES_PATH . "/admin.srvadmins.php";
-			RewritePageTitle("Server Admins");
+			RewritePageTitle("Админы сервера");
 		}
 	}
 	elseif($_GET['c'] == "bans")
@@ -270,42 +270,42 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$banTabMenu = new CTabsMenu();
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_BAN ) ) {
-				$banTabMenu->addMenuItem("Add a ban",0);
+				$banTabMenu->addMenuItem("Добавить бан",0);
 				if($GLOBALS['config']['config.enablegroupbanning']==1)
-					$banTabMenu->addMenuItem("Group ban",4);
+					$banTabMenu->addMenuItem("Бан группы",4);
 			}
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_BAN_PROTESTS ) )
-				$banTabMenu->addMenuItem("Ban protests",1);
+				$banTabMenu->addMenuItem("Протесты банов",1);
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_BAN_SUBMISSIONS ) )
-				$banTabMenu->addMenuItem("Ban submissions", 2);
+				$banTabMenu->addMenuItem("Заявки на бан", 2);
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_BAN_IMPORT ) )
-				$banTabMenu->addMenuItem("Import bans", 3);
-			$banTabMenu->addMenuItem("Ban list", 5, "", "index.php?p=banlist",true);
+				$banTabMenu->addMenuItem("Импорт банов", 3);
+			$banTabMenu->addMenuItem("Список банов", 5, "", "index.php?p=banlist",true);
 			$banTabMenu->outputMenu();
 			// ====================[ ADMIN SIDE MENU END ] ===================
 
 			include TEMPLATES_PATH . "/admin.bans.php";
 			
 			if(isset($_GET['mode']) && $_GET['mode'] == "delete")
-				echo "<script>ShowBox('Ban Deleted', 'The ban has been deleted from SourceBans', 'green', '', true);</script>";
+				echo "<script>ShowBox('Бан удалён', 'Бан был успешно удалён из SourceBans', 'green', '', true);</script>";
 			elseif(isset($_GET['mode']) && $_GET['mode']=="unban")
-				echo "<script>ShowBox('Player Unbanned', 'The Player has been unbanned from SourceBans', 'green', '', true);</script>";
+				echo "<script>ShowBox('Игрок разбанен', 'Игрок был успешно разбанен', 'green', '', true);</script>";
 			
 			RewritePageTitle("Bans");
 		}
 		elseif($_GET['o'] == 'edit')
 		{
 			$banTabMenu = new CTabsMenu();
-			$banTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$banTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$banTabMenu->outputMenu();			
 			
 			include TEMPLATES_PATH . "/admin.edit.ban.php";
-			RewritePageTitle("Edit Ban Details");
+			RewritePageTitle("Редактировать детали бана");
 		}
 		elseif($_GET['o'] == 'email')
 		{
 			$banTabMenu = new CTabsMenu();
-			$banTabMenu->addMenuItem("Back", 0, "", "javascript:history.go(-1);", true);
+			$banTabMenu->addMenuItem("Назад", 0, "", "javascript:history.go(-1);", true);
 			$banTabMenu->outputMenu();					
 			
 			include TEMPLATES_PATH . "/admin.email.php";
@@ -322,7 +322,7 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$banTabMenu = new CTabsMenu();
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_BAN ) ) {
-				$banTabMenu->addMenuItem("Add a block", 0);
+				$banTabMenu->addMenuItem("Блокировать", 0);
 			}
 			$banTabMenu->addMenuItem("Comms list", 1, "", "index.php?p=commslist",true);
 			$banTabMenu->outputMenu();
@@ -331,16 +331,16 @@ else
 			include TEMPLATES_PATH . "/admin.comms.php";
 
 			if(isset($_GET['mode']) && $_GET['mode'] == "delete")
-				echo "<script>ShowBox('Ban Deleted', 'The ban has been deleted from SourceBans', 'green', '', true);</script>";
+				echo "<script>ShowBox('Удалить бан', 'Бан был удалён из SourceBans', 'green', '', true);</script>";
 			elseif(isset($_GET['mode']) && $_GET['mode']=="unban")
-				echo "<script>ShowBox('Player Unbanned', 'The Player has been unbanned from SourceBans', 'green', '', true);</script>";
+				echo "<script>ShowBox('Разблокировать', 'Игрок был разбанила из SourceBans', 'green', '', true);</script>";
 
 			RewritePageTitle("Comms");
 		}
 		elseif($_GET['o'] == 'edit')
 		{
 			$banTabMenu = new CTabsMenu();
-			$banTabMenu->addMenuItem("Back", 0,"", "javascript:history.go(-1);", true);
+			$banTabMenu->addMenuItem("Назад", 0,"", "javascript:history.go(-1);", true);
 			$banTabMenu->outputMenu();
 
 			include TEMPLATES_PATH . "/admin.edit.comms.php";
@@ -356,9 +356,9 @@ else
 			// ====================[ ADMIN SIDE MENU START ] ===================
 			$modTabMenu = new CTabsMenu();
 			if($userbank->HasAccess( ADMIN_OWNER|ADMIN_LIST_MODS ) )
-				$modTabMenu->addMenuItem("List MODs",0);
+				$modTabMenu->addMenuItem("Список МОДов",0);
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_MODS ) )
-				$modTabMenu->addMenuItem("Add new MOD",1);
+				$modTabMenu->addMenuItem("Добавить МОД",1);
 			$modTabMenu->outputMenu();
 			// ====================[ ADMIN SIDE MENU END ] ===================	
 			
@@ -366,16 +366,16 @@ else
 			$query = $GLOBALS['db']->GetRow("SELECT COUNT(mid) AS cnt FROM `" . DB_PREFIX . "_mods`") ;
 			$mod_count = $query['cnt'];
 			include TEMPLATES_PATH . "/admin.mods.php";
-			RewritePageTitle("Manage Mods");	
+			RewritePageTitle("Управление МОДами");	
 		}
 		elseif($_GET['o'] == 'edit')
 		{
 			$modTabMenu = new CTabsMenu();
-			$modTabMenu->addMenuItem("Back",0, "", "javascript:history.go(-1);", true);
+			$modTabMenu->addMenuItem("Назад",0, "", "javascript:history.go(-1);", true);
 			$modTabMenu->outputMenu();					
 			
 			include TEMPLATES_PATH . "/admin.edit.mod.php";
-			RewritePageTitle("Edit Mod Details");
+			RewritePageTitle("Редактировать детали МОДа");
 		}	
 	}
 	elseif($_GET['c'] == "settings")
@@ -386,16 +386,16 @@ else
 			$settingsTabMenu = new CTabsMenu();
 			if($userbank->HasAccess(ADMIN_OWNER|ADMIN_WEB_SETTINGS ) )
 			{
-				$settingsTabMenu->addMenuItem("Main Settings",0);
-				$settingsTabMenu->addMenuItem("Features",3);
+				$settingsTabMenu->addMenuItem("Главные настройки",0);
+				$settingsTabMenu->addMenuItem("Опции",3);
 			}
-			$settingsTabMenu->addMenuItem("Themes", 1);
-			$settingsTabMenu->addMenuItem("System Log", 2);
+			$settingsTabMenu->addMenuItem("Шаблоны", 1);
+			$settingsTabMenu->addMenuItem("Системный лог", 2);
 			$settingsTabMenu->outputMenu();
 		// ====================[ ADMIN SIDE MENU END ] ===================
 	
 		include TEMPLATES_PATH . "/admin.settings.php";
-		RewritePageTitle("SourceBans Settings");
+		RewritePageTitle("Настройки SourceBans");
 	}
 }
 ?>

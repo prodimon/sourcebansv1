@@ -19,10 +19,10 @@ global $userbank, $theme;
 if(!isset($_GET['id']))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	No admin id specified. Please only follow links
+	Не передан ID админа
 </div>';
 	PageDie();
 }
@@ -30,24 +30,24 @@ if(!isset($_GET['id']))
 $_GET['id'] = (int)$_GET['id'];
 if(!$userbank->HasAccess(ADMIN_OWNER|ADMIN_EDIT_ADMINS))
 {
-	$log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty("user") . " tried to edit ".$userbank->GetProperty('user', $_GET['id'])."'s groups, but doesn't have access.");
+	$log = new CSystemLog("w", "Ошибка доступа", $userbank->GetProperty("user") . " пытался отредактировать группу админа ".$userbank->GetProperty('user', $_GET['id']).", не имея на это прав.");
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	You are not allowed to edit other admin\'s groups.
+	У Вас недостаточно прав для редактирования групп другого админа.
 </div>';
 	PageDie();
 }
 
 if(!$userbank->GetProperty("user", $_GET['id']))
 {
-	$log = new CSystemLog("e", "Getting admin data failed", "Can't find data for admin with id '".$_GET['id']."'");
+	$log = new CSystemLog("e", "Данные админа не получены", "Не получены данные админа под id '".$_GET['id']."'");
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	Error getting current data.</div>';
+	Ошибка получения данных.</div>';
 	PageDie();
 }
 
@@ -69,7 +69,7 @@ if(isset($_POST['wg']) || isset($_GET['wg']) || isset($_GET['sg']))
 	$email = $GLOBALS['userbank']->GetProperty('email', $_GET['id']);
 	if($_POST['wg'] > 0 && (empty($password) || empty($email)))
 	{
-		echo '<script>ShowBox("Error", "Admins have to have a password and email set in order to get web permissions.<br /><a href=\"index.php?p=admin&c=admins&o=editdetails&id=' . $_GET['id'] . '\" title=\"Edit Admin Details\">Set the details</a> first and try again.", "red");</script>';
+		echo '<script>ShowBox("Error", "Админ должен ввести E-mail адрес и пароль для доступа к настройкам сайта.<br /><a href=\"index.php?p=admin&c=admins&o=editdetails&id=' . $_GET['id'] . '\" title=\"Edit Admin Details\">Set the details</a> first and try again.", "red");</script>';
 	}
 	else
 	{
@@ -117,13 +117,13 @@ if(isset($_POST['wg']) || isset($_GET['wg']) || isset($_GET['sg']))
 					$allservers[] = $access['sid'];
 				}
 			}
-			echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Admin updated", "The admin has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+			echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Админ обновлён", "Админ успешно обновлён", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 		}
 		else
-			echo '<script>ShowBox("Admin updated", "The admin has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+			echo '<script>ShowBox("Админ обновлён", "Админ успешно обновлён", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 		
 		$admname = $GLOBALS['db']->GetRow("SELECT user FROM `".DB_PREFIX."_admins` WHERE aid = ?", array((int)$_GET['id']));
-		$log = new CSystemLog("m", "Admin's Groups Updated", "Admin (" . $admname['user'] . ") groups has been updated");
+		$log = new CSystemLog("m", "Группа админов обновлена", "Админ группа (" . $admname['user'] . ") была обновлена");
 	}
 }
 

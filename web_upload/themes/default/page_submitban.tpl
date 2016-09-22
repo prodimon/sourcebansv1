@@ -1,7 +1,7 @@
 <div id="submit-introduction">
-<h3>Submit a player</h3>
-Here you will be able to submit a ban for a player who is breaking the rules of the gameserver. When submitting a ban we request you to fill out all the fields to be as descriptive as possible in your comments. This will ensure that your ban submission is processed much faster.<br /><br />
-For a short explination on how to create a demo, click <a href="javascript:void(0)" onclick="ShowBox('How To Record A Demo', 'While you are spectating the offending player, press the ` key on your keyboard. Then type record [demoname] and hit enter. Also type sb_status for extra information in SteamBans servers. The file will be in your mod folder.', 'blue', '', true);">here</a>
+<h3>SПредложить бан</h3>
+Здесь Вы сможете предложить бан игрока, который нарушает правила на игровом сервере. При предложении бана, мы просим Вас заполнить все поля, чтобы быть максимально информативным в своем комментарии. Это гарантирует, что ваше предложение бана обработается гораздо быстрее.<br /><br />
+Чтобы узнать о том, как создавать демо нажмите <a href="javascript:void(0)" onclick="ShowBox('Как записать Демо', 'Перейдите в режим наблюдателя. Переключитесь на нарушающего игрока. Нажмите клавишу `на вашей клавиатуре. Потом в консоли введите record [demoname] и нажмите ввод. Также введите sb_status для получения дополнительной информации на серверах SteamBans.Файл будет находиться в папке с модом.', 'blue', '', true);">здесь</a>
 </div>
 <div id="submit-main">
 <form action="index.php?p=submit" method="post" enctype="multipart/form-data">
@@ -9,11 +9,11 @@ For a short explination on how to create a demo, click <a href="javascript:void(
 <table cellspacing='10' width='100%' align='center'>
 <tr>
 	<td colspan="3">
-		Ban Details:	</td>
+		Детали бана:	</td>
 </tr>
 <tr>
 	<td width="20%">
-		Players SteamID:</td>
+		SteamID игрока:</td>
 	<td>
 		<input type="text" name="SteamID" size="40" maxlength="64" value="{$STEAMID}" class="submit-fields" />
 	</td>
@@ -21,58 +21,58 @@ For a short explination on how to create a demo, click <a href="javascript:void(
 </tr>
 <tr>
 	<td width="20%">
-		Players IP:</td>
+		IP игрока:</td>
 	<td>
 		<input type="text" name="BanIP" size="40" maxlength="64" value="{$ban_ip}" class="submit-fields" />
 	</td>
 </tr>
 <tr>
 	<td width="20%">
-        Players Nick Name<span class="mandatory">*</span>:</td>
+        Ник игрока<span class="mandatory">*</span>:</td>
 	<td>
         <input type="text" size="40" maxlength="70" name="PlayerName" value="{$player_name}" class="submit-fields" /></td>
 </tr>
 <tr>
 	<td width="20%" valign="top">
-		Comments<span class="mandatory">*</span>:<br />
-		(Please write down a descriptive comment. So NO comments like: "hacking")	</td>
+		Причина бана<span class="mandatory">*</span>:<br />
+		(Введите расширенный комментарий к бану. Никаких комментариев типа: "Читак")	</td>
 	<td><textarea name="BanReason" cols="30" rows="5" class="submit-fields">{$ban_reason}</textarea></td>
     </tr>
 <tr>
 	<td width="20%">
-		Your Name:	</td>
+		Ваше имя:	</td>
 	<td>
 		<input type="text" size="40" maxlength="70" name="SubmitName" value="{$subplayer_name}" class="submit-fields" />	</td>
     </tr>
 
 <tr>
 	<td width="20%">
-		Your Email<span class="mandatory">*</span>:	</td>
+		Ваш E-mail<span class="mandatory">*</span>:	</td>
 	<td>
 		<input type="text" size="40" maxlength="70" name="EmailAddr" value="{$player_email}" class="submit-fields" />	</td>
     </tr>
 <tr>
 	<td width="20%">
-		Server<span class="mandatory">*</span>:	</td>
+		Сервер<span class="mandatory">*</span>:	</td>
 	<td colspan="2">
         <select id="server" name="server">
-			<option value="-1">-- Select Server --</option>
+			<option value="-1">-- Выберите сервер --</option>
 			{foreach from="$server_list" item="server}
 				<option value="{$server.sid}" {if $server_selected == $server.sid}selected{/if}>{$server.hostname}</option>
 			{/foreach}
-			<option value="0">Other server / Not listed here</option>
+			<option value="0">Другой сервер / Нет в списке</option>
 		</select> 
     </td>
     </tr>
 <tr>
 	<td width="20%">
-		Upload demo:	</td>
+		Загрузить демо:	</td>
 	<td>
 		<input name="demo_file" type="file" size="25" class="submit-fields" /><br />
-		Note: Only DEM, <a href="http://www.winzip.com" target="_blank">ZIP</a>, <a href="http://www.rarlab.com" target="_blank">RAR</a>, <a href="http://www.7-zip.org" target="_blank">7Z</a>, <a href="http://www.bzip.org" target="_blank">BZ2</a> or <a href="http://www.gzip.org" target="_blank">GZ</a> allowed.	</td>
+		Предупреждение: Разрешено загружать файлы только в формате <a href="http://www.winzip.com" target="_blank">.zip</a> или <a href="http://www.rarlab.com" target="_blank">.rar</a>.	</td>
     </tr>
 <tr>
-	<td width="20%"><span class="mandatory">*</span> = Mandatory Field</td>
+	<td width="20%"><span class="mandatory">*</span> = Обязательные поля</td>
 	<td>
 		{sb_button text=Ok onclick="" class=ok id=save submit=true}
 	</td>
@@ -80,6 +80,6 @@ For a short explination on how to create a demo, click <a href="javascript:void(
 </tr>
 </table>
 </form>
-<b>What happens if someone gets banned?</b><br />
-If someone gets banned, the specific STEAMID or IP will be included in this SourceBans database and everytime this player tries to connect to one of our servers he/she will be blocked and will receive a message that they are blocked by SourceBans. 
+<b>Что случиться если кого-то забанят ?</b><br />
+Если кого-то забанят, то его STEAMID или IP адрес будут включены в эту базу данных SourceBans, и каждый раз этот игрок пытается подключиться к одному из наших серверов он / она будет заблокирован и получит сообщение о том, что заблокирован в SourceBans.
 </div>

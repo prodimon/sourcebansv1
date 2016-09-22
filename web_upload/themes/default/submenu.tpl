@@ -10,10 +10,10 @@
 <div id="innerwrapper">
 	<div id="navigation">
 		<div id="nav"></div>
-		<div id="search2">
+		<div id="search">
 			<form method="get" action="index.php">
-				<input type="hidden" name="p" value="commslist" />
-				<input class="searchbox" alt="Steam ID" name="searchText" type="text" onfocus="this.value='';" onblur="if (this.value=='') {this.value=' Search comms blocks...';}" value=" Search comms blocks... " /><input type="submit" name="Submit" value="" style="cursor:pointer;" class="button" />
+				<input type="hidden" name="p" value="banlist" />
+				<input class="searchbox" alt="Поиск" name="searchText" type="text" onfocus="this.value='';" onblur="if (this.value=='') {this.value='  Поиск банов...';}" value=" Поиск банов..." /><input type="submit" name="Поиск" value="" style="cursor:pointer;" class="button" />
 			</form>
-            </div>
+			</div>
 	</div>

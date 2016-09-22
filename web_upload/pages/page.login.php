@@ -17,10 +17,10 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 RewritePageTitle("Admin Login");
 
 global $userbank, $theme;
-$submenu = array( array( "title" => 'Lost Your Password?', "url" => 'index.php?p=lostpassword' ) );
+$submenu = array( array( "title" => 'Забыли пароль?', "url" => 'index.php?p=lostpassword' ) );
 SubMenu( $submenu );
 if(isset($_GET['m']) && $_GET['m'] == "no_access")
-	echo "<script>ShowBox('Error - No Access', 'You dont have permission to access this page.<br />Please login with an account that has access.', 'red', '', false);</script>";
+	echo "<script>ShowBox('Ошибка доступа', 'У Вас недостаточно прав для просмотра этой страницы.<br />', 'red', '', false);</script>";
 	
 	
 $theme->assign('redir', "DoLogin('".(isset($_SESSION['q'])?$_SESSION['q']:'')."');");

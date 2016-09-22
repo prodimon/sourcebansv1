@@ -227,7 +227,7 @@ function DoLogin(redir)
 	var nopw = 0;
 	if(!$('loginUsername').value)
 	{
-		$('loginUsername.msg').setHTML('You must enter your loginname!');
+		$('loginUsername.msg').setHTML('Вы должны ввести логин!');
 		$('loginUsername.msg').setStyle('display', 'block');
 		err++;
 	}else
@@ -238,7 +238,7 @@ function DoLogin(redir)
 	
 	if(!$('loginPassword').value)
 	{
-		$('loginPassword.msg').setHTML('You must enter your password!');
+		$('loginPassword.msg').setHTML('Вы должны ввести пароль!');
 		$('loginPassword.msg').setStyle('display', 'block');
 		nopw = 1;
 	}else
@@ -271,7 +271,7 @@ function SlideUp(id)
 
 function RemoveGroup(id, name, type)
 {
-	var noPerm = confirm("Are you sure you want to delete the group: '" + name +"'?");
+	var noPerm = confirm("Вы уверены что хотите удалить группу: '" + name +"'?");
 	if(noPerm == false)
 	{
 		return;
@@ -281,7 +281,7 @@ function RemoveGroup(id, name, type)
 
 function RemoveAdmin(id, name)
 {
-	var noPerm = confirm("Are you sure you want to delete '" + name +"'?");
+	var noPerm = confirm("Вы уверены что хотите удалить '" + name +"'?");
 	if(noPerm == false)
 	{
 		return;
@@ -292,13 +292,13 @@ function RemoveAdmin(id, name)
 function RemoveSubmission(id, name, archiv)
 {
 	if(archiv == '2') {
-		var noPerm = confirm("Are you sure you want to restore the ban submission for '" + name + "' from the archive?");
+		var noPerm = confirm("Вы уверены что хотите восстановить запрос на бан игрока '" + name + "' из архива?");
 	}
 	else if(archiv == '1') {
-		var noPerm = confirm("Are you sure you want to move the ban submission for '" + name +"' to the archive?");
+		var noPerm = confirm("Вы уверены что хотите перенести запрос на бан игрока '" + name +"' в архив?");
 	}
 	else {
-		var noPerm = confirm("Are you sure you want to delete the ban submission for '" + name +"'?");
+		var noPerm = confirm("Вы уверены что хотите удалить запрос на бан игрока '" + name +"'?");
 	}
 	if(noPerm == false)
 		return;
@@ -309,13 +309,13 @@ function RemoveSubmission(id, name, archiv)
 function RemoveProtest(id, name, archiv)
 {
 	if(archiv == '2') {
-		var noPerm = confirm("Are you sure you want to restore the ban protest for '" + name + "' from the archive?");
+		var noPerm = confirm("Вы уверены что хотите восстановить протест бана игрока '" + name + "' из архива?");
 	}
 	else if(archiv == '1') {
-		var noPerm = confirm("Are you sure you want to move the ban protest for '" + name +"' to the archive?");
+		var noPerm = confirm("Вы уверены что хотите перенести протест бана игрока '" + name +"' в архив?");
 	}
 	else {
-		var noPerm = confirm("Are you sure you want to delete the ban protest for '" + name +"'?");
+		var noPerm = confirm("Вы уверены что хотите удалить протест бана игрока '" + name +"'?");
 	}
 	if(noPerm == false)
 	{
@@ -326,7 +326,7 @@ function RemoveProtest(id, name, archiv)
 
 function RemoveServer(id, name)
 {
-	var noPerm = confirm("Are you sure you want to delete the server: '" + name +"'?");
+	var noPerm = confirm("Вы уверены что хотите удалить сервер: '" + name +"'?");
 	if(noPerm == false)
 	{
 		return;
@@ -337,8 +337,8 @@ function RemoveServer(id, name)
 function RemoveBan(id, key, page, name, confirm, bulk)
 {
 	if(confirm==0) {
-		ShowBox('Delete Ban', 'Are you sure you want to delete the ban'+(bulk=="true"?"s":"")+' for '+(bulk=="true"?"those players":"\'"+ name +"\'")+'?', 'blue', '', true);
-		$('dialog-control').setHTML('<input type="button" onclick="RemoveBan(\''+id+'\', \''+key+'\', \''+page+'\', \''+addslashes(name.replace(/\'/g,'\\\''))+'\', \'1\''+(bulk=="true"?", \'true\'":"")+');" name="rban" class="btn ok" onmouseover="ButtonOver(\'rban\')" onmouseout="ButtonOver(\'rban\')" id="rban" value="Remove Ban" />&nbsp;<input type="button" onclick="closeMsg(\'\');$(\'bulk_action\').options[0].selected=true;" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Cancel" />');
+		ShowBox('Удалить бан', 'Вы уверены что хотите удалить бан'+(bulk=="true"?"ы":"")+' для '+(bulk=="true"?"этих игроков":"\'"+ name +"\'")+'?', 'blue', '', true);
+		$('dialog-control').setHTML('<input type="button" onclick="RemoveBan(\''+id+'\', \''+key+'\', \''+page+'\', \''+addslashes(name.replace(/\'/g,'\\\''))+'\', \'1\''+(bulk=="true"?", \'true\'":"")+');" name="rban" class="btn ok" onmouseover="ButtonOver(\'rban\')" onmouseout="ButtonOver(\'rban\')" id="rban" value="Удалить бан" />&nbsp;<input type="button" onclick="closeMsg(\'\');$(\'bulk_action\').options[0].selected=true;" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Отмена" />');
 	} else if(confirm==1) {
 		if(page != "") 
 			var pagelink = page;
@@ -351,8 +351,8 @@ function RemoveBan(id, key, page, name, confirm, bulk)
 function UnbanBan(id, key, page, name, popup, bulk)
 {
 	if(popup==1) {
-		ShowBox('Unban Reason', '<b>Please give a short comment, why you are going to unban '+(bulk=="true"?"those players":"\'"+ name +"\'")+'!</b><br><textarea rows="3" cols="40" name="ureason" id="ureason" style="overflow:auto;"></textarea><br><div id="ureason.msg" class="badentry"></div>', 'blue', '', true);
-		$('dialog-control').setHTML('<input type="button" onclick="UnbanBan(\''+id+'\', \''+key+'\', \''+page+'\', \''+addslashes(name.replace(/\'/g,'\\\''))+'\', \'0\''+(bulk=="true"?", \'true\'":"")+');" name="uban" class="btn ok" onmouseover="ButtonOver(\'uban\')" onmouseout="ButtonOver(\'uban\')" id="uban" value="Unban Ban" />&nbsp;<input type="button" onclick="closeMsg(\'\');$(\'bulk_action\').options[0].selected=true;" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Cancel" />');
+		ShowBox('Причина разбана', '<b>Пожалуйста напишите короткий комментарий почему вы хотите  разабанить '+(bulk=="true"?"этих игроков":"\'"+ name +"\'")+'!</b><br><textarea rows="3" cols="40" name="ureason" id="ureason" style="overflow:auto;"></textarea><br><div id="ureason.msg" class="badentry"></div>', 'blue', '', true);
+		$('dialog-control').setHTML('<input type="button" onclick="UnbanBan(\''+id+'\', \''+key+'\', \''+page+'\', \''+addslashes(name.replace(/\'/g,'\\\''))+'\', \'0\''+(bulk=="true"?", \'true\'":"")+');" name="uban" class="btn ok" onmouseover="ButtonOver(\'uban\')" onmouseout="ButtonOver(\'uban\')" id="uban" value="Разбанить" />&nbsp;<input type="button" onclick="closeMsg(\'\');$(\'bulk_action\').options[0].selected=true;" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Отмена" />');
 	} else if(popup==0) {
 		if(page != "") 
 			var pagelink = page;
@@ -360,7 +360,7 @@ function UnbanBan(id, key, page, name, popup, bulk)
 			var pagelink = "";
 		reason = $('ureason').value;
 		if(reason == "") {
-			$('ureason.msg').setHTML("Please leave a comment.");
+			$('ureason.msg').setHTML("Пожалуйста оставьте комментарий.");
 			$('ureason.msg').setStyle('display', 'block');
 			return;
 		} else {
@@ -540,7 +540,7 @@ function update_web()
 	$('webperm').setHTML('');
 	
 	if(document.getElementById('webg').value == "c" || document.getElementById('webg').value == "n") {
-		$('web.msg').setHTML('Please Wait...');
+		$('web.msg').setHTML('Ждите...');
 		$('web.msg').setStyle('display', 'block');
 	}
 	
@@ -569,7 +569,7 @@ function update_server_groups()
 	
 	if(document.getElementById('serverg').value == "n")
 	{
-		$('group.msg').setHTML('Please Wait...');
+		$('group.msg').setHTML('Ждите...');
 		$('group.msg').setStyle('display', 'block');
 		var height = 50;
 		Shrink('nsgroup', 500, height);
@@ -688,7 +688,7 @@ function ProcessEditAdminPermissions()
 	 	if(IsNumeric($('immunity').value))
 			xajax_EditAdminPerms(aid, Mask, srvMask);
 		else
-			ShowBox("Error", "Immunity must be a numerical value (0-9)", "red", "", true);
+			ShowBox("Ошибка", "Значение Иммунитета должно быть цифровым (0-9)", "red", "", true);
 	}else
 		xajax_EditAdminPerms(aid, Mask, srvMask);
 }
@@ -702,8 +702,8 @@ function ProcessEditGroup(type, name)
 	
 	if(name == "")
 	{
-		ShowBox("Error", "You have to type a name for the group.", "red", "", true);
-		$('groupname.msg').innerHTML = 'You have to type a name for the group.';
+		ShowBox("Ошибка", "Вы должны ввести имя группы.", "red", "", true);
+		$('groupname.msg').innerHTML = 'Введите имя группы.';
 		$('groupname.msg').setStyle('display', 'block');
 		return;
 	}
@@ -715,7 +715,7 @@ function ProcessEditGroup(type, name)
 	
 	if($('immunity') && !IsNumeric($('immunity').value))
 	{
-		ShowBox("Error", "Immunity must be a numerical value (0-9)", "red", "", true);
+		ShowBox("Ошибка", "Значение Иммунитета должно быть цифровым (0-9)", "red", "", true);
 		return;
 	}
 	
@@ -762,7 +762,7 @@ function update_server()
 	$('serverperm').setHTML('');
 	
 	if(document.getElementById('serverg').value == "c" || document.getElementById('serverg').value == "n") {
-		$('server.msg').setHTML('Please Wait...');
+		$('server.msg').setHTML('Ждите...');
 		$('server.msg').setStyle('display', 'block');
 	}
 	
@@ -809,7 +809,7 @@ function process_edit_server()
 {
     if($('rcon').value != $('rcon2').value)
     {
-        $('rcon2.msg').innerHTML = 'Passwords don\'t match.';
+        $('rcon2.msg').innerHTML = 'Пароли не совпадают.';
         $('rcon2.msg').setStyle('display', 'block');
         return;
     }
@@ -995,7 +995,7 @@ function ProcessMod()
 	var err = 0;
 	if(!$('name').value)
 	{
-		$('name.msg').setHTML('You must enter the name of the mod you are adding.');
+		$('name.msg').setHTML('Вы должны ввести имя для создаваемого МОДа.');
 		$('name.msg').setStyle('display', 'block');
 		err++;
 	}else
@@ -1006,7 +1006,7 @@ function ProcessMod()
 	
 	if(!$('folder').value)
 	{
-		$('folder.msg').setHTML('You must enter mod\'s folder name.');
+		$('folder.msg').setHTML('Вы должны ввести имя папки МОДа.');
 		$('folder.msg').setStyle('display', 'block');
 		err++;
 	}else
@@ -1044,7 +1044,7 @@ function ShowBox(title, msg, color, redir, noclose)
 	FadeElIn('dialog-placement', 750);
 	
 	var jsCde = "closeMsg('" + redir + "');";
-	$('dialog-control').setHTML("<input name='dialog-close' onclick=\""+jsCde+"\" class='btn ok' onmouseover=\"ButtonOver('dialog-close')\" onmouseout='ButtonOver(\"dialog-close\")' id=\"dialog-close\" value=\"Okay\" type=\"button\">");
+	$('dialog-control').setHTML("<input name='dialog-close' onclick=\""+jsCde+"\" class='btn ok' onmouseover=\"ButtonOver('dialog-close')\" onmouseout='ButtonOver(\"dialog-close\")' id=\"dialog-close\" value=\"Окей\" type=\"button\">");
 	$('dialog-control').setStyle('display', 'block');
 	
 	if(!noclose)
@@ -1087,7 +1087,7 @@ function CheckEmail(type, id)
 {
 	var err = 0;
 	if($('subject').value == "") {
-		$('subject.msg').setHTML("You must type a subject for the email.");
+		$('subject.msg').setHTML("Вы должны ввести тему для отправки email.");
 		$('subject.msg').setStyle('display', 'block');
 		err++;
 	} else {
@@ -1096,7 +1096,7 @@ function CheckEmail(type, id)
 	}
 		
 	if($('message').value == "") {
-		$('message.msg').setHTML("You must type a message for the email.");
+		$('message.msg').setHTML("Вы должны ввести комментарий для отправки email.");
 		$('message.msg').setStyle('display', 'block');
 		err++;
 	} else {
@@ -1145,7 +1145,7 @@ function ButtonOver(el)
 
 function ClearLogs()
 {
-	var noPerm = confirm("Are you sure you want to delete all of the log entries?");
+	var noPerm = confirm("Вы уверены, что хотите удалить все записи в журнале?");
 	if(noPerm == false)
 	{
 		return;
@@ -1155,7 +1155,7 @@ function ClearLogs()
 
 function RemoveMod(name, id)
 {
-	var noPerm = confirm("Are you sure you want to delete '" + name +"'?");
+	var noPerm = confirm("Вы уверены что хотите удалить '" + name +"'?");
 	if(noPerm == false)
 		return;
 	xajax_RemoveMod(id);
@@ -1165,7 +1165,7 @@ function UpdateGroupPermissionCheckBoxes()
 {
 	$('perms').setHTML('');
 	if(document.getElementById('grouptype').value != 3 && document.getElementById('grouptype').value != 0) {
-		$('type.msg').setHTML('Please Wait...');
+		$('type.msg').setHTML('Ждите...');
 		$('type.msg').setStyle('display', 'block');
 	}
 	if(document.getElementById('grouptype').value == 1)
@@ -1215,7 +1215,7 @@ function changePage(newPage, type, advSearch, advType)
 
 function ShowKickBox(check, type)
 {
-	ShowBox('Ban Added', 'The ban has been successfully added<br><iframe id="srvkicker" frameborder="0" width="100%" src="pages/admin.kickit.php?check='+check+'&type='+type+'"></iframe>', 'green', 'index.php?p=admin&c=bans', true);
+	ShowBox('Бан добавлен', 'Бан был успешно добавлен<br><iframe id="srvkicker" frameborder="0" width="100%" src="pages/admin.kickit.php?check='+check+'&type='+type+'"></iframe>', 'green', 'index.php?p=admin&c=bans', true);
 }
 
 function ShowRehashBox(servers, title, msg, color, redir)
@@ -1226,7 +1226,7 @@ function ShowRehashBox(servers, title, msg, color, redir)
 		ShowBox(title, msg, color, redir, true);
 		return;
 	}
-	msg = msg + '<br /><hr /><i>Rehashing Admin and Group data on all related servers...</i><div id="rehashDiv" name="rehashDiv" width="100%"></div>';
+	msg = msg + '<br /><hr /><i>Обновление данных администратора и группы по всем связанным серверам...</i><div id="rehashDiv" name="rehashDiv" width="100%"></div>';
 	ShowBox(title, msg, color, redir, true);
 	$('dialog-control').setStyle('display', 'none');
 	xajax_RehashAdmins(servers);
@@ -1237,7 +1237,7 @@ function ProcessComment()
 	var err = 0;
 	if($('commenttext').value == "")
 	{
-		$('commenttext.msg').setHTML('You have to type your comment');
+		$('commenttext.msg').setHTML('Введите комментарий');
 		$('commenttext.msg').setStyle('display', 'block');
 		err++;
 	}else
@@ -1268,7 +1268,7 @@ function ProcessComment()
 
 function RemoveComment(cid, type, page)
 {
-	var checkUp = confirm("Are you sure you want to delete the comment?");
+	var checkUp = confirm("Вы уверены что хотите удалить этот комментарий?");
 	if(checkUp == false)
 		return;
 	xajax_RemoveComment(cid, type, page);
@@ -1361,14 +1361,14 @@ function TickSelectAll()
 	}
 	if($('tickswitch').value==0) {
 		$('tickswitch').value=1;
-		$('tickswitch').setProperty('title','Deselect All');
-		$('tickswitchlink').setProperty('title','Deselect All');
-		$('tickswitchlink').innerHTML = 'Deselect All';
+		$('tickswitch').setProperty('title','Снять все');
+		$('tickswitchlink').setProperty('title','Снять все');
+		$('tickswitchlink').innerHTML = 'Снять все';
 	} else {
 		$('tickswitch').value=0;
-		$('tickswitch').setProperty('title','Select All');
-		$('tickswitchlink').setProperty('title','Select All');
-		$('tickswitchlink').innerHTML = 'Select All';
+		$('tickswitch').setProperty('title','Выбрать все');
+		$('tickswitchlink').setProperty('title','Выбрать все');
+		$('tickswitchlink').innerHTML = 'Выбрать все';
 	}
 }
 
@@ -1384,20 +1384,20 @@ function BulkEdit(action, bankey)
 	switch(option)
 	{
 		case "U":
-			UnbanBan(ids, bankey, "", "Bulk Unban", "1", "true");
+			UnbanBan(ids, bankey, "", "Разбанить всех", "1", "true");
 		break;
 		case "D":
-			RemoveBan(ids, bankey, "", "Bulk Delete", "0", "true");
+			RemoveBan(ids, bankey, "", "Удалить всех", "0", "true");
 		break;
 	}
 }
 
 function BanFriendsProcess(fid, name)
 {
-	var checkUp = confirm("Are you sure you want to ban all steam community friends of '"+name+"'?");
+	var checkUp = confirm("Вы уверены что хотите забанить всех друзей игрока '"+name+"'?");
 	if(checkUp == false)
 		return;
-	ShowBox("Banning friends of "+name, "Banning all steam community friends of '"+name+"'.<br />Please wait...<br />This can last very long, depending on the amount of friends.", 'blue', '', true);
+	ShowBox("Banning friends of "+name, "Баним все друзей игрока '"+name+"'.<br />Ждите...<br />Это может занять очень моного времени, все зависит от кол-ва его друзей.", 'blue', '', true);
 	$('dialog-control').setStyle('display', 'none');
 	xajax_BanFriends(fid, name);
 }
@@ -1405,13 +1405,13 @@ function BanFriendsProcess(fid, name)
 function OpenMessageBox(sid, name, popup)
 {
 	if(popup==1) {
-		ShowBox('Send Message', '<b>Please type the message you want to send to <br>\''+name+'\'.</b><br>You need to have basechat.smx enabled as we use<br><i>&lt;sm_psay&gt;</i>.<br><textarea rows="3" cols="40" name="ingamemsg" id="ingamemsg" style="overflow:auto;"></textarea><br><div id="ingamemsg.msg" class="badentry"></div>', 'blue', '', true);
-		$('dialog-control').setHTML('<input type="button" name="ingmsg" class="btn ok" onmouseover="ButtonOver(\'ingmsg\')" onmouseout="ButtonOver(\'ingmsg\')" id="ingmsg" value="Send Message" />&nbsp;<input type="button" onclick="closeMsg(\'\');" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Cancel" />');
+		ShowBox('Отправить сообщение', '<b>Пожалуйста ввеите сообщение, которое вы хотите отправить <br>\''+name+'\'.</b><br>На сервере должен быть включен basechat.smx<br><i>&lt;sm_psay&gt;</i>.<br><textarea rows="3" cols="40" name="ingamemsg" id="ingamemsg" style="overflow:auto;"></textarea><br><div id="ingamemsg.msg" class="badentry"></div>', 'blue', '', true);
+		$('dialog-control').setHTML('<input type="button" name="ingmsg" class="btn ok" onmouseover="ButtonOver(\'ingmsg\')" onmouseout="ButtonOver(\'ingmsg\')" id="ingmsg" value="Отправить" />&nbsp;<input type="button" onclick="closeMsg(\'\');" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Отмена" />');
 		$('ingmsg').addEvent('click', function(){OpenMessageBox(sid, name, 0);});
 	} else if(popup==0) {
 		message = $('ingamemsg').value;
 		if(message == "") {
-			$('ingamemsg.msg').setHTML("Please type your message.");
+			$('ingamemsg.msg').setHTML("Пожалуйста введите сообщение.");
 			$('ingamemsg.msg').setStyle('display', 'block');
 			return;
 		} else {
@@ -1427,8 +1427,8 @@ function OpenMessageBox(sid, name, popup)
 function KickPlayerConfirm(sid, name, conf)
 {
 	if(conf==0)	{
-		ShowBox('Kick Player', '<b>Are you sure you want to kick player  <br>\''+name+'\'?</b>', 'blue', '', true);
-		$('dialog-control').setHTML('<input type="button" name="kbutton" class="btn ok" onmouseover="ButtonOver(\'kbutton\')" onmouseout="ButtonOver(\'kbutton\')" id="kbutton" value="Yes" />&nbsp;<input type="button" onclick="closeMsg(\'\');" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="No" />');
+		ShowBox('Kick Player', '<b>Вы уверены что хотите выкинуть игрока  <br>\''+name+'\'?</b>', 'blue', '', true);
+		$('dialog-control').setHTML('<input type="button" name="kbutton" class="btn ok" onmouseover="ButtonOver(\'kbutton\')" onmouseout="ButtonOver(\'kbutton\')" id="kbutton" value="Да" />&nbsp;<input type="button" onclick="closeMsg(\'\');" name="astop" class="btn cancel" onmouseover="ButtonOver(\'astop\')" onmouseout="ButtonOver(\'astop\')" id="astop" value="Нет" />');
 		$('kbutton').addEvent('click', function(){KickPlayerConfirm(sid, name, 1);});
 	} else if(conf==1) {
 		$('dialog-control').setStyle('display', 'none');
@@ -1438,7 +1438,7 @@ function KickPlayerConfirm(sid, name, conf)
 
 function mapimg(filename)
 {
-	$('mapimg.msg').setHTML("Uploaded: <b>" + filename + "</b>");
+	$('mapimg.msg').setHTML("Загружен: <b>" + filename + "</b>");
 }
 
 function selectLengthTypeReason(length, type, reason)
@@ -1466,7 +1466,7 @@ function selectLengthTypeReason(length, type, reason)
 
 function ViewCommunityProfile(sid, name)
 {
-    ShowBox('View Community Profile', 'Generating Community Profile link for "'+name+'", please wait...', 'blue', '', true);
+    ShowBox('Просмотр профиля Steam Community', 'Создание ссылки профиля Steam Community "'+name+'", Ждите...', 'blue', '', true);
     $('dialog-control').setStyle('display', 'none');
     xajax_ViewCommunityProfile(sid, name);
 }

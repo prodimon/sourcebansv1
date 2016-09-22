@@ -1,11 +1,11 @@
 <form action="" method="post">
 	<div id="add-group">
-		<h3>Mod Details</h3>
-		For more information or help regarding a certain subject move your mouse over the question mark.<br /><br />
+		<h3>Детали МОДа</h3>
+		За дополнительной информацией или помощью наведите курсор мыши на знак вопроса.<br /><br />
 		<input type="hidden" name="insert_type" value="add">
 		<table width="90%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 			<tr>
-		    	<td valign="top" width="35%"><div class="rowdesc">{help_icon title="Mod Name" message="Type the name of the mod you are adding."}Mod Name</div></td>
+		    	<td valign="top" width="35%"><div class="rowdesc">{help_icon title="Название МОДа" message="Введите название МОДа."}Название МОДа</div></td>
 		    	<td>
 		    		<div align="left"> 
 					    <input type="hidden" id="icon_hid" name="icon_hid" value="{$mod_icon}">
@@ -16,7 +16,7 @@
 		  </tr>
 		  
 			<tr>
-				<td valign="top"><div class="rowdesc">{help_icon title="Folder Name" message="Type the name of this mods folder. For example, Counter-Strike: Source's mod folder is 'cstrike'"}Mod Folder</div></td>
+				<td valign="top"><div class="rowdesc">{help_icon title="Имя папки" message="Введите имя папки МОДа. Например, для МОДа Counter-Strike: Source's папка будет 'cstrike'"}Папка МОДа</div></td>
 		    	<td>
 		    		<div align="left">
 		      			<input type="text" TABINDEX=2 class="submit-fields" id="folder" name="folder" value="{$folder}" />
@@ -25,7 +25,7 @@
 		    	</td>
 		  </tr>
       <tr>
-				<td valign="top"><div class="rowdesc">{help_icon title="Steam Universe Number" message="(STEAM_<b>X</b>:Y:Z) Some games display the steamid differently than others. Type the first number in the SteamID (<b>X</b>) depending on how it's rendered by this mod. (Default: 0)."}Steam Universe Number</div></td>
+				<td valign="top"><div class="rowdesc">{help_icon title="Значение Steam Universe" message="(STEAM_<b>X</b>:Y:Z) Некоторые игры отображают Steamid иначе, чем другие. Введите первый номер SteamID (<b>X</b>) в зависимости от того как она воспринимается этим МОДом. (По умолчанию: 0)."}Значение Steam Universe</div></td>
 		    	<td>
 		    		<div align="left">
 		      			<input type="text" TABINDEX=3 class="submit-fields" id="steam_universe" name="steam_universe" value="{$steam_universe}" />
@@ -33,7 +33,7 @@
 		    	</td>
 		  </tr>
 		  <tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Mod Enabled" message="Select if this mod is enabled and assignable to bans and servers."}Enabled</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="МОД включен" message="Отметьте, если МОД включен и используется серверами."}Включен</div></td>
 		    	<td>
 		    		<div align="left">
 		      			<input type="checkbox" TABINDEX=4 id="enabled" name="enabled" value="1" />
@@ -42,14 +42,14 @@
 		  </tr>
 		 	
 			<tr>
-				<td valign="top" width="35%"><div class="rowdesc">{help_icon title="Upload Icon" message="Click here to upload an icon to associate with this mod."}Upload Icon</div></td>
+				<td valign="top" width="35%"><div class="rowdesc">{help_icon title="Загрузить иконку" message="Нажмите здесь, чтобы выбрать и загрузить иконку МОДа."}Загрузить иконку</div></td>
 		    	<td>
 		    		<div align="left">
-		      			{sb_button text="Upload MOD Icon" onclick="childWindow=open('pages/admin.uploadicon.php','upload','resizable=yes,width=300,height=130');" class="save" id="upload" submit=false} 
+		      			{sb_button text="Загрузить иконку" onclick="childWindow=open('pages/admin.uploadicon.php','upload','resizable=yes,width=300,height=130');" class="save" id="upload" submit=false} 
 		    		</div>
 		    		<div id="icon.msg" class="badentry" style="display:block;">
 			    		{if $mod_icon}
-			    			Uploaded: <b>{$mod_icon}</b>
+			    			Загружено: <b>{$mod_icon}</b>
 			    		{/if}
 		    		</div>
 		    	</td>
@@ -57,9 +57,9 @@
 			<tr>
 		    	<td>&nbsp;</td>
 		    	<td>      
-			    	{sb_button text="Save Changes" class="ok" id="editmod" submit=true}
+			    	{sb_button text="Сохранить" class="ok" id="editmod" submit=true}
 			     	 &nbsp;
-			     	 {sb_button text="Back" onclick="history.go(-1)" class="cancel" id="back" submit=false} 
+			     	 {sb_button text="Назад" onclick="history.go(-1)" class="cancel" id="back" submit=false} 
 		      	</td>
 		  	</tr>
 		</table>

@@ -19,22 +19,22 @@ global $theme;
 if(!isset($_GET['id']))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	No admin id specified. Please only follow links
+	Не указан идентификатор администратора.
 </div>';
 	PageDie();
 }
 
 if(!$userbank->GetProperty("user", $_GET['id']))
 {
-	$log = new CSystemLog("e", "Getting admin data failed", "Can't find data for admin with id '".$_GET['id']."'");
+	$log = new CSystemLog("e", "Ошибка чтения данных", "Ошибка получения данных для админа под id '".$_GET['id']."'");
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	Error getting current data.
+	Ошибка чтения данных.
 </div>';
 	PageDie();
 }
@@ -42,12 +42,12 @@ if(!$userbank->GetProperty("user", $_GET['id']))
 $aid = (int)$_GET['id'];
 if(!$userbank->HasAccess(ADMIN_OWNER|ADMIN_EDIT_ADMINS))
 {
-	$log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty("user") . " tried to edit ".$userbank->GetProperty('user', $_GET['id'])."'s server access, but doesnt have access.");
+	$log = new CSystemLog("w", "Ошибка доступа", $userbank->GetProperty("user") . " пытался отредактировать серверные разрешения для ".$userbank->GetProperty('user', $_GET['id']).",не имея на это прав.");
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	You are not allowed to edit admins server access.
+	У Вас недостаточно прав на редактирование серверных разрешений для другого админа.
 </div>';
 	PageDie();
 }
@@ -117,12 +117,12 @@ if(isset($_POST['editadminserver']))
 			}
 		}
 		
-		echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Admin server access updated", "The admin server access has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+		echo '<script>ShowRehashBox("'.implode(",", $allservers).'", "Админ обновлён", "Админ сервера успешно обновлён", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 	} else
-		echo '<script>ShowBox("Admin server access updated", "The admin server access has been updated successfully", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
+		echo '<script>ShowBox("Админ обновлён", "Админ сервера успешно обновлён", "green", "index.php?p=admin&c=admins");TabToReload();</script>';
 	
 	$admname = $GLOBALS['db']->GetRow("SELECT user FROM `".DB_PREFIX."_admins` WHERE aid = ?", array((int)$aid));
-	$log = new CSystemLog("m", "Admin Servers Updated", "Admin (" . $admname['user'] . ") server access has been changed");
+	$log = new CSystemLog("m", "Обновлены сервера админаАдмин обновил сервер", "Доступ к серверам (" . $admname['user'] . ") был изменен");
 }
 
 

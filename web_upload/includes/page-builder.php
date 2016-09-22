@@ -28,66 +28,66 @@ switch ($_GET['p'])
 		$page = INCLUDES_PATH . "/admin.php";
 		break;
 	case "submit":
-		RewritePageTitle("Submit a Ban");
+		RewritePageTitle("Добавить бан");
 		$page = TEMPLATES_PATH . "/page.submit.php";
 		break;
 	case "banlist":
-		RewritePageTitle("Ban List");
+		RewritePageTitle("Список банов");
 		$page = TEMPLATES_PATH ."/page.banlist.php";
 		break;
 	case "commslist":
-		RewritePageTitle("Communications Block List");
+		RewritePageTitle("Список блокировок чата/микрофона");
 		$page = TEMPLATES_PATH ."/page.commslist.php";
 		break;
 	case "servers":
-		RewritePageTitle("Server List");
+		RewritePageTitle("Список серверов");
 		$page = TEMPLATES_PATH . "/page.servers.php";
 		break;
 	case "serverinfo":
-		RewritePageTitle("Server Info");
+		RewritePageTitle("Информация о сервере");
 		$page = TEMPLATES_PATH . "/page.serverinfo.php";
 		break;
 	case "protest":
-		RewritePageTitle("Protest a Ban");
+		RewritePageTitle("Протест бана");
 		$page = TEMPLATES_PATH . "/page.protest.php";
 		break;
 	case "account":
-		RewritePageTitle("Your Account");
+		RewritePageTitle("Ваш аккаунт");
 		$page = TEMPLATES_PATH . "/page.youraccount.php";
 		break;
 	case "lostpassword":
-		RewritePageTitle("Lost your password");
+		RewritePageTitle("Забыли пароль");
 		$page = TEMPLATES_PATH . "/page.lostpassword.php";
 		break;
 	case "home":
-		RewritePageTitle("Dashboard");
+		RewritePageTitle("Главная");
 		$page = TEMPLATES_PATH . "/page.home.php";
 		break;
 	default:
 		switch($GLOBALS['config']['config.defaultpage'])
 		{
 			case 1:
-				RewritePageTitle("Ban List");
+				RewritePageTitle("Список банов");
 				$page = TEMPLATES_PATH . "/page.banlist.php";
 				$_GET['p'] = "banlist";
 				break;
 			case 2:
-				RewritePageTitle("Server Info");
+				RewritePageTitle("Информация о сервере");
 				$page = TEMPLATES_PATH . "/page.servers.php";
 				$_GET['p'] = "servers";
 				break;
 			case 3:
-				RewritePageTitle("Submit a Ban");
+				RewritePageTitle("Добавить бан");
 				$page = TEMPLATES_PATH . "/page.submit.php";
 				$_GET['p'] = "submit";
 				break;
 			case 4:
-				RewritePageTitle("Protest a Ban");
+				RewritePageTitle("Протест бана");
 				$page = TEMPLATES_PATH . "/page.protest.php";
 				$_GET['p'] = "protest";
 				break;
 			default: //case 0:
-				RewritePageTitle("Dashboard");
+				RewritePageTitle("Главная");
 				$page = TEMPLATES_PATH . "/page.home.php";
 				$_GET['p'] = "home";
 				break;

@@ -23,10 +23,10 @@ if(isset($_GET['validation'],$_GET['email']) && !empty($_GET['email']) && !empty
 	if(strlen($validation) < 60)
 	{
 		echo '<div id="msg-red" style="">
-			<i><img src="./images/warning.png" alt="Warning" /></i>
-			<b>Error</b>
+			<i><img src="./images/warning.png" alt="Внимание!" /></i>
+			<b>Ошибка</b>
 			<br />
-			The validation string is too short.
+			Проверочный код слишком короткий.
 			</div>';
 		exit();
 	}
@@ -36,29 +36,29 @@ if(isset($_GET['validation'],$_GET['email']) && !empty($_GET['email']) && !empty
 	{
 		$newpass = generate_salt(MIN_PASS_LENGTH+8);
 		$query = $GLOBALS['db']->Execute("UPDATE `" . DB_PREFIX . "_admins` SET `password` = '" . $userbank->encrypt_password($newpass) . "', validate = NULL WHERE `aid` = ?", array($q['aid']));
-		$message = "Hello " . $q['user'] . ",\n\n";
-		$message .= "Your password reset was successful.\n";
-		$message .= "Your password was changed to: ".$newpass."\n\n";
-		$message .= "Login to your SourceBans account and change your password in Your Account.\n";
+		$message = "Здравствуйте " . $q['user'] . ",\n\n";
+		$message .= "Выш пароль был успешно сброшен.\n";
+		$message .= "Ваш новый пароль: ".$newpass."\n\n";
+		$message .= "Зайдите на вашу страницу статистики SourceBan для смены пароля.\n";
 
 		$headers = 'From: lostpwd@' . $_SERVER['HTTP_HOST'] . "\n" .
 		'X-Mailer: PHP/' . phpversion();
-		$m = mail($email, "SourceBans Password Reset", $message, $headers);
+		$m = mail($email, "Сброс пароля от статистики SourceBans", $message, $headers);
 		
 		echo '<div id="msg-blue" style="">
-			<i><img src="./images/info.png" alt="Info" /></i>
-			<b>Password Reset</b>
+			<i><img src="./images/info.png" alt="Информация" /></i>
+			<b>Сброс пароля</b>
 			<br />
-			Your password has been reset and sent to your email.<br />Please check your spam folder too.<br />Please login using this password, <br />then use the change password link in Your Account.
+			Ваш пароль был сброшен и отправлен на Ваш e-mail..<br />Проверьте также папку "Спам".<br />Войдите с высланным Вам паролем, <br />И смените его.
 			</div>';
 	}
 	else 
 	{
 		echo '<div id="msg-red" style="">
-			<i><img src="./images/warning.png" alt="Warning" /></i>
-			<b>Error</b>
+			<i><img src="./images/warning.png" alt="Внимание" /></i>
+			<b>Ошибка</b>
 			<br />
-			The validation string does not match the email for this reset request.
+			Неверный проверочный код.
 			</div>';
 	}
 }else 

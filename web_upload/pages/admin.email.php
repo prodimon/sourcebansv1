@@ -20,10 +20,10 @@ global $theme, $userbank;
 if(!isset($_GET['id']))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	No submission or protest id specified. Please only follow links
+	Не передан ID предложения или протеста бана.
 </div>';
 	PageDie();
 }
@@ -31,10 +31,10 @@ if(!isset($_GET['id']))
 if(!isset($_GET['type']) || ($_GET['type'] != 's' && $_GET['type'] != 'p'))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
-	Invalid type. Please only follow links
+	Неверный тип
 </div>';
 	PageDie();
 }
@@ -54,8 +54,8 @@ else if($_GET['type'] == 'p')
 if(empty($email))
 {
 	echo '<div id="msg-red" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Error</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Ошибка</b>
 	<br />
 	There is no email to send to supplied.
 </div>';

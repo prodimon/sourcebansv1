@@ -58,7 +58,7 @@ if (isset($_GET['a']) && $_GET['a'] == "unban" && isset($_GET['id']))
 		{
 			$fail++;
 			if(!isset($_GET['bulk']))
-				die("You don't have access to this");
+				die("У Вас недостаточно прав!");
 			continue;
 		}
 
@@ -71,7 +71,7 @@ if (isset($_GET['a']) && $_GET['a'] == "unban" && isset($_GET['id']))
 		if(empty($row) || !$row) {
 			$fail++;
 			if(!isset($_GET['bulk'])) {
-				echo "<script>ShowBox('Player Not Unbanned', 'The player was not unbanned, either already unbanned or not a valid ban.', 'red', 'index.php?p=banlist$pagelink');</script>";
+				echo "<script>ShowBox('Игрок не разбанен', 'Игрок не разбанен, возможно он был разбанен ранее, или не был забанен вообще..', 'red', 'index.php?p=banlist$pagelink');</script>";
 				PageDie();
 			}
 			continue;
@@ -97,17 +97,17 @@ if (isset($_GET['a']) && $_GET['a'] == "unban" && isset($_GET['id']))
 
 		if($res){
 			if(!isset($_GET['bulk']))
-				echo "<script>ShowBox('Player Unbanned', '".StripQuotes($row['name'])." (" . ($row['type']==0?$row['authid']:$row['ip']) . ") has been unbanned from SourceBans.', 'green', 'index.php?p=banlist$pagelink');</script>";
-			$log = new CSystemLog("m", "Player Unbanned", "'".StripQuotes($row['name'])."' (" . ($row['type']==0?$row['authid']:$row['ip']) . ") has been unbanned");
+				echo "<script>ShowBox('Игрок разбанен', '".StripQuotes($row['name'])." (" . ($row['type']==0?$row['authid']:$row['ip']) . ") был успешно разбанен в SourceBans.', 'green', 'index.php?p=banlist$pagelink');</script>";
+			$log = new CSystemLog("m", "Игрок разбанен", "'".StripQuotes($row['name'])."' (" . ($row['type']==0?$row['authid']:$row['ip']) . ") был успешно разбанен");
 			$ucount++;
 		}else{
 			if(!isset($_GET['bulk']))
-				echo "<script>ShowBox('Player NOT Unbanned', 'There was an error unbanning ".StripQuotes($row['name'])."', 'red', 'index.php?p=banlist$pagelink', true);</script>";
+				echo "<script>ShowBox('Игрок не разбанен', 'Ошибка разбана ".StripQuotes($row['name'])."', 'red', 'index.php?p=banlist$pagelink', true);</script>";
 			$fail++;
 		}
 	}
 	if(isset($_GET['bulk']))
-		echo "<script>ShowBox('Players Unbanned', '$ucount players has been unbanned from SourceBans.<br>$fail failed.', 'green', 'index.php?p=banlist$pagelink');</script>";
+		echo "<script>ShowBox('Игрок не разбанен', '$ucount игроков было разбанено.<br>$fail ошибок.', 'green', 'index.php?p=banlist$pagelink');</script>";
 }
 else if(isset($_GET['a']) && $_GET['a'] == "delete")
 {
@@ -116,7 +116,7 @@ else if(isset($_GET['a']) && $_GET['a'] == "delete")
 
 	if (!$userbank->HasAccess(ADMIN_OWNER|ADMIN_DELETE_BAN))
 	{
-		echo "<script>ShowBox('Error', 'You do not have access to this.', 'red', 'index.php?p=banlist$pagelink');</script>";
+		echo "<script>ShowBox('Ошибка', 'У Вас недостаточно прав.', 'red', 'index.php?p=banlist$pagelink');</script>";
 		PageDie();
 	}
 	//we have a multiple ban delete asking
@@ -152,17 +152,17 @@ else if(isset($_GET['a']) && $_GET['a'] == "delete")
 
 		if($res){
 			if(!isset($_GET['bulk']))
-				echo "<script>ShowBox('Ban Deleted', 'The ban for \'".StripQuotes($steam['name'])."\' (".($steam['type']==0?$steam['authid']:$steam['ip']).") has been deleted from SourceBans', 'green', 'index.php?p=banlist$pagelink');</script>";
-			$log = new CSystemLog("m", "Ban Deleted", "Ban '".StripQuotes($steam['name'])."' (" . ($steam['type']==0?$steam['authid']:$steam['ip']) . ") has been deleted.");
+				echo "<script>ShowBox('Бан удалён', 'Бан игрока \'".StripQuotes($steam['name'])."\' (".($steam['type']==0?$steam['authid']:$steam['ip']).") был успешно удалён из SourceBans', 'green', 'index.php?p=banlist$pagelink');</script>";
+			$log = new CSystemLog("m", "Бан удалён", "Бан игрока '".StripQuotes($steam['name'])."' (" . ($steam['type']==0?$steam['authid']:$steam['ip']) . ") был успешно удалён.");
 			$dcount++;
 		}else{
 			if(!isset($_GET['bulk']))
-				echo "<script>ShowBox('Ban NOT Deleted', 'The ban for \'".StripQuotes($steam['name'])."\' had an error while being removed.', 'red', 'index.php?p=banlist$pagelink', true);</script>";
+				echo "<script>ShowBox('Бан не удалён', 'Произошла ошибка при разбане игрока \'".StripQuotes($steam['name'])."\'.', 'red', 'index.php?p=banlist$pagelink', true);</script>";
 			$fail++;
 		}
 	}
 	if(isset($_GET['bulk']))
-		echo "<script>ShowBox('Players Deleted', '$dcount players has been deleted from SourceBans.<br>$fail failed.', 'green', 'index.php?p=banlist$pagelink');</script>";
+		echo "<script>ShowBox('Баны удалены', '$dcount банов было удалено из SourceBans.<br>$fail ошибок.', 'green', 'index.php?p=banlist$pagelink');</script>";
 }
 
 $BansStart = intval(($page-1) * $BansPerPage);
@@ -177,11 +177,11 @@ if(isset($_GET["hideinactive"]) && $_GET["hideinactive"] == "true") {// hide
 	//ShowBox('Show inactive bans', 'Inactive bans will be shown in the banlist.', 'green', 'index.php?p=banlist', true);
 }
 if(isset($_SESSION["hideinactive"])) {
-	$hidetext = "Show";
+	$hidetext = "Показать";
 	$hideinactive = " AND RemoveType IS NULL";
 	$hideinactiven = " WHERE RemoveType IS NULL";
 } else {
-	$hidetext = "Hide";
+	$hidetext = "Скрыть";
 	$hideinactive = "";
 	$hideinactiven = "";
 }
@@ -342,7 +342,7 @@ if(isset($_GET['advSearch']))
 		case "comment":
 			if($userbank->is_admin())
 			{
-				$where = "WHERE CO.type = 'B' AND CO.commenttxt LIKE ?";
+				$where = "WHERE CO.commenttxt LIKE ?";
 				$advcrit = array("%$value%");
 			}
 			else
@@ -358,13 +358,13 @@ if(isset($_GET['advSearch']))
 			$advcrit = array();
 		break;
 	}
-	
+
 	// Make sure we got a "WHERE" clause there, if we add the hide inactive condition
 	if(empty($where) && isset($_SESSION["hideinactive"]))
 	{
 		$hideinactive = $hideinactiven;
 	}
-	
+
 		$res = $GLOBALS['db']->Execute(
 				    	"SELECT BA.bid ban_id, BA.type, BA.ip ban_ip, BA.authid, BA.name player_name, created ban_created, ends ban_ends, length ban_length, reason ban_reason, BA.ureason unban_reason, BA.aid, AD.gid AS gid, adminIp, BA.sid ban_server, country ban_country, RemovedOn, RemovedBy, RemoveType row_type,
 			SE.ip server_ip, AD.user admin_name, AD.gid, MO.icon as mod_icon,
@@ -389,7 +389,7 @@ $BanCount = $res_count->fields[0];
 if ($BansEnd > $BanCount) $BansEnd = $BanCount;
 if (!$res)
 {
-	echo "No Bans Found.";
+	echo "Баны не найдены.";
 	PageDie();
 }
 
@@ -436,7 +436,7 @@ while (!$res->EOF)
 	else
 		$data['admin'] = stripslashes($res->fields['admin_name']);
 	$data['reason'] = stripslashes($res->fields['ban_reason']);
-	$data['ban_length'] = $res->fields['ban_length'] == 0 ? 'Permanent' : SecondsToString(intval($res->fields['ban_length']));
+	$data['ban_length'] = $res->fields['ban_length'] == 0 ? 'Навсегда' : SecondsToString(intval($res->fields['ban_length']));
 
 	if($res->fields['row_type'] == 'D' || $res->fields['row_type'] == 'U' || $res->fields['row_type'] == 'E' || ($res->fields['ban_length'] && $res->fields['ban_ends'] < time()))
 	{
@@ -444,11 +444,11 @@ while (!$res->EOF)
 		$data['class'] = "listtable_1_unbanned";
 
 		if($res->fields['row_type'] == "D")
-			$data['ub_reason'] = "(Deleted)";
+			$data['ub_reason'] = "(Удалён)";
 		elseif($res->fields['row_type'] == "U")
-			$data['ub_reason'] = "(Unbanned)";
+			$data['ub_reason'] = "(Разбанен)";
 		else
-			$data['ub_reason'] = "(Expired)";
+			$data['ub_reason'] = "(Истек)";
 
 		$data['ureason'] = stripslashes($res->fields['unban_reason']);
 
@@ -470,17 +470,17 @@ while (!$res->EOF)
 	else
 		$alrdybnd = $GLOBALS['db']->Execute("SELECT count(bid) as count FROM `".DB_PREFIX."_bans` WHERE ip = '".$res->fields['ban_ip']."' AND (length = 0 OR ends > UNIX_TIMESTAMP()) AND RemovedBy IS NULL AND type = '1';");
 	if($alrdybnd->fields['count']==0)
-		$data['reban_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Reban',"index.php?p=admin&c=bans".$pagelink."&rebanid=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
+		$data['reban_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Забанить снова',"index.php?p=admin&c=bans".$pagelink."&rebanid=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
 	else
 		$data['reban_link'] = false;
-	$data['blockcomm_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Block Comms',"index.php?p=admin&c=comms".$pagelink."&blockfromban=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
+	$data['blockcomm_link'] = CreateLinkR('<img src="images/forbidden.png" border="0" alt="" style="vertical-align:middle" /> Блокировать чат/микрофон',"index.php?p=admin&c=comms".$pagelink."&blockfromban=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']."#^0");
 	$data['details_link'] = CreateLinkR('click','getdemo.php?type=B&id='.$res->fields['ban_id']);
-	$data['groups_link'] = CreateLinkR('<img src="images/groups.png" border="0" alt="" style="vertical-align:middle" /> Show Groups',"index.php?p=admin&c=bans&fid=".$data['communityid']."#^4");
-	$data['friend_ban_link'] = CreateLinkR('<img src="images/group_delete.png" border="0" alt="" style="vertical-align:middle" /> Ban Friends', '#', '', '_self', false, "BanFriendsProcess('".$data['communityid']."','".StripQuotes($data['player'])."');return false;");
-	$data['edit_link'] = CreateLinkR('<img src="images/edit.gif" border="0" alt="" style="vertical-align:middle" /> Edit Details',"index.php?p=admin&c=bans&o=edit".$pagelink."&id=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']);
+	$data['groups_link'] = CreateLinkR('<img src="images/groups.png" border="0" alt="" style="vertical-align:middle" /> Показать группы',"index.php?p=admin&c=bans&fid=".$data['communityid']."#^4");
+	$data['friend_ban_link'] = CreateLinkR('<img src="images/group_delete.png" border="0" alt="" style="vertical-align:middle" /> Забанить друзей', '#', '', '_self', false, "BanFriendsProcess('".$data['communityid']."','".StripQuotes($data['player'])."');return false;");
+	$data['edit_link'] = CreateLinkR('<img src="images/edit.gif" border="0" alt="" style="vertical-align:middle" /> Редактировать',"index.php?p=admin&c=bans&o=edit".$pagelink."&id=".$res->fields['ban_id']."&key=".$_SESSION['banlist_postkey']);
 
-	$data['unban_link'] = CreateLinkR('<img src="images/locked.gif" border="0" alt="" style="vertical-align:middle" /> Unban',"#","", "_self", false, "UnbanBan('".$res->fields['ban_id']."', '".$_SESSION['banlist_postkey']."', '".$pagelink."', '".StripQuotes($data['player'])."', 1, false);return false;");
-	$data['delete_link'] = CreateLinkR('<img src="images/delete.gif" border="0" alt="" style="vertical-align:middle" /> Delete Ban',"#","", "_self", false, "RemoveBan('".$res->fields['ban_id']."', '".$_SESSION['banlist_postkey']."', '".$pagelink."', '".StripQuotes($data['player'])."', 0, false);return false;");
+	$data['unban_link'] = CreateLinkR('<img src="images/locked.gif" border="0" alt="" style="vertical-align:middle" /> Разбанить',"#","", "_self", false, "UnbanBan('".$res->fields['ban_id']."', '".$_SESSION['banlist_postkey']."', '".$pagelink."', '".StripQuotes($data['player'])."', 1, false);return false;");
+	$data['delete_link'] = CreateLinkR('<img src="images/delete.gif" border="0" alt="" style="vertical-align:middle" /> Удалить бан',"#","", "_self", false, "RemoveBan('".$res->fields['ban_id']."', '".$_SESSION['banlist_postkey']."', '".$pagelink."', '".StripQuotes($data['player'])."', 0, false);return false;");
 
 	
 	$data['server_id'] = $res->fields['ban_server'];
@@ -499,7 +499,7 @@ while (!$res->EOF)
     if($res->fields['history_count'] > 1)
         $data['prevoff_link'] = $res->fields['history_count'] . " " . CreateLinkR("(search)","index.php?p=banlist&searchText=" . ($data['type']==0?$data['steamid']:$res->fields['ban_ip']) . "&Submit");
     else
-        $data['prevoff_link'] = "No previous bans";
+        $data['prevoff_link'] = "Нет предыдущих банов";
 
 
 
@@ -517,14 +517,14 @@ while (!$res->EOF)
 	if ($res->fields['demo_count'] == 0)
 	{
 		$data['demo_available'] = false;
-		$data['demo_quick'] = 'N/A';
-		$data['demo_link'] = CreateLinkR('<img src="images/demo.gif" border="0" alt="" style="vertical-align:middle" /> No Demos',"#");
+		$data['demo_quick'] = 'Н/Д';
+		$data['demo_link'] = CreateLinkR('<img src="images/demo.gif" border="0" alt="" style="vertical-align:middle" /> Нет демо',"#");
 	}
 	else
 	{
 		$data['demo_available'] = true;
 		$data['demo_quick'] = CreateLinkR('Demo',"getdemo.php?type=B&id=".$data['ban_id']);
-		$data['demo_link'] = CreateLinkR('<img src="images/demo.gif" border="0" alt="" style="vertical-align:middle" /> Review Demo',"getdemo.php?type=B&id=".$data['ban_id']);
+		$data['demo_link'] = CreateLinkR('<img src="images/demo.gif" border="0" alt="" style="vertical-align:middle" /> Показать демо',"getdemo.php?type=B&id=".$data['ban_id']);
 	}
 
 
@@ -537,7 +537,7 @@ while (!$res->EOF)
 	foreach($banlog AS $logged) {
 		if(!empty($logstring))
 			$logstring .= ", ";
-		$logstring .= '<span title="Server: '.$logged["ip"].':'.$logged["port"].', Date: '.SBDate($dateformat,$logged["time"]).'">'.($logged["name"]!=""?htmlspecialchars($logged["name"]):"<i>no name</i>").'</span>';
+		$logstring .= '<span title="Server: '.$logged["ip"].':'.$logged["port"].', Date: '.SBDate($dateformat,$logged["time"]).'">'.($logged["name"]!=""?htmlspecialchars($logged["name"]):"<i>Нет имени</i>").'</span>';
 	}
 	$data['banlog'] = $logstring;
 
@@ -558,9 +558,9 @@ while (!$res->EOF)
 				$cdata = array();
 				$cdata['morecom'] = ($morecom==1?true:false);
 				if($commentres->fields['aid'] == $userbank->GetAid() || $userbank->HasAccess(ADMIN_OWNER)) {
-					$cdata['editcomlink'] = CreateLinkR('<img src=\'images/edit.gif\' border=\'0\' alt=\'\' style=\'vertical-align:middle\' />','index.php?p=banlist&comment='.$data['ban_id'].'&ctype=B&cid='.$commentres->fields['cid'].$pagelink,'Edit Comment');
+					$cdata['editcomlink'] = CreateLinkR('<img src=\'images/edit.gif\' border=\'0\' alt=\'\' style=\'vertical-align:middle\' />','index.php?p=banlist&comment='.$data['ban_id'].'&ctype=B&cid='.$commentres->fields['cid'].$pagelink,'Редактировать комментарий');
 					if($userbank->HasAccess(ADMIN_OWNER)) {
-						$cdata['delcomlink'] = "<a href=\"#\" class=\"tip\" title=\"<img src='images/delete.gif' border='0' alt='' style='vertical-align:middle' /> :: Delete Comment\" target=\"_self\" onclick=\"RemoveComment(".$commentres->fields['cid'].",'B',".(isset($_GET["page"])?$page:-1).");\"><img src='images/delete.gif' border='0' alt='' style='vertical-align:middle' /></a>";
+						$cdata['delcomlink'] = "<a href=\"#\" class=\"tip\" title=\"<img src='images/delete.gif' border='0' alt='' style='vertical-align:middle' /> :: Удалить комментарий\" target=\"_self\" onclick=\"RemoveComment(".$commentres->fields['cid'].",'B',".(isset($_GET["page"])?$_GET["page"]:-1).");\"><img src='images/delete.gif' border='0' alt='' style='vertical-align:middle' /></a>";
 					}
 				}
 				else {
@@ -590,13 +590,13 @@ while (!$res->EOF)
 			}
 		}
 		else
-			$comment = "None";
+			$comment = "Отсутствуют";
 
 		$data['commentdata'] = $comment;
 	}
 
 
-	$data['addcomment'] = CreateLinkR('<img src="images/details.gif" border="0" alt="" style="vertical-align:middle" /> Add Comment','index.php?p=banlist&comment='.$data['ban_id'].'&ctype=B'.$pagelink);
+	$data['addcomment'] = CreateLinkR('<img src="images/details.gif" border="0" alt="" style="vertical-align:middle" /> Добавить комментарий','index.php?p=banlist&comment='.$data['ban_id'].'&ctype=B'.$pagelink);
 	//-----------------------------------
 
 	$data['ub_reason'] = (isset($data['ub_reason'])?$data['ub_reason']:"");
@@ -616,9 +616,9 @@ else
 if ($page > 1)
 {
 	if(isset($_GET['c']) && $_GET['c'] == "bans")
-		$prev = CreateLinkR('<img border="0" alt="prev" src="images/left.gif" style="vertical-align:middle;" /> prev',"javascript:void(0);", "", "_self", false, $prev);
+		$prev = CreateLinkR('<img border="0" alt="пред." src="images/left.gif" style="vertical-align:middle;" /> пред.',"javascript:void(0);", "", "_self", false, $prev);
 	else
-		$prev = CreateLinkR('<img border="0" alt="prev" src="images/left.gif" style="vertical-align:middle;" /> prev',"index.php?p=banlist&page=".($page-1).(isset($_GET['searchText']) > 0?"&searchText=".$_GET['searchText']:'' . $advSearchString));
+		$prev = CreateLinkR('<img border="0" alt="пред." src="images/left.gif" style="vertical-align:middle;" /> пред.',"index.php?p=banlist&page=".($page-1).(isset($_GET['searchText']) > 0?"&searchText=".$_GET['searchText']:'' . $advSearchString));
 }
 else
 {
@@ -630,16 +630,16 @@ if ($BansEnd < $BanCount)
 	{
 		if(!isset($nxt))
 			$nxt = "";
-			$next = CreateLinkR('next <img border="0" alt="next" src="images/right.gif" style="vertical-align:middle;" />',"javascript:void(0);", "", "_self", false, $nxt);
+			$next = CreateLinkR('след. <img border="0" alt="след." src="images/right.gif" style="vertical-align:middle;" />',"javascript:void(0);", "", "_self", false, $nxt);
 	}
 	else
-		$next = CreateLinkR('next <img border="0" alt="next" src="images/right.gif" style="vertical-align:middle;" />',"index.php?p=banlist&page=".($page+1).(isset($_GET['searchText']) ?"&searchText=".$_GET['searchText']:'' . $advSearchString));
+		$next = CreateLinkR('след. <img border="0" alt="след." src="images/right.gif" style="vertical-align:middle;" />',"index.php?p=banlist&page=".($page+1).(isset($_GET['searchText']) ?"&searchText=".$_GET['searchText']:'' . $advSearchString));
 }
 else
 	$next = "";
 
 //=================[ Start Layout ]==================================
-$ban_nav = 'displaying&nbsp;'.$BansStart.'&nbsp;-&nbsp;'.$BansEnd.'&nbsp;of&nbsp;'.$BanCount.'&nbsp;results';
+$ban_nav = 'Отображается&nbsp;'.$BansStart.'&nbsp;-&nbsp;'.$BansEnd.'&nbsp;из&nbsp;'.$BanCount.'&nbsp;результатов';
 
 if (strlen($prev) > 0)
 {
@@ -667,7 +667,7 @@ if($pages > 1) {
 //----------------------------------------
 if(isset($_GET["comment"])) {
 	$_GET["comment"] = (int)$_GET["comment"];
-	$theme->assign('commenttype', (isset($_GET["cid"])?"Edit":"Add"));
+	$theme->assign('commenttype', (isset($_GET["cid"])?"Редактировать":"Добавить"));
 	if(isset($_GET["cid"])) {
 		$_GET["cid"] = (int)$_GET["cid"];
 		$ceditdata = $GLOBALS['db']->GetRow("SELECT * FROM ".DB_PREFIX."_comments WHERE cid = '".$_GET["cid"]."'");
@@ -679,9 +679,9 @@ if(isset($_GET["comment"])) {
 		$cotherdataedit = "";
 		$ctext = "";
 	}
-	
+
 	$_GET["ctype"] = substr($_GET["ctype"], 0, 1);
-	
+
 	$cotherdata = $GLOBALS['db']->Execute("SELECT cid, aid, commenttxt, added, edittime,
 											(SELECT user FROM `".DB_PREFIX."_admins` WHERE aid = C.aid) AS comname,
 											(SELECT user FROM `".DB_PREFIX."_admins` WHERE aid = C.editaid) AS editname

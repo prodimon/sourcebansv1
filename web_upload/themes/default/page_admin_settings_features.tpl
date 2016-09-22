@@ -2,10 +2,10 @@
     <input type="hidden" name="settingsGroup" value="features" />
     <table width="99%" border="0" style="border-collapse:collapse;" id="group.features" cellpadding="3">
         <tr>
-            <td valign="top" colspan="2"><h3>Ban Features</h3>For more information or help regarding a certain subject move your mouse over the question mark.<br /><br /></td>
+            <td valign="top" colspan="2"><h3>Опции банов</h3>За дополнительной информацией или помощью наведите курсор мыши на знак вопроса.<br /><br /></td>
         </tr>
         <tr>
-            <td valign="top" width="35%"><div class="rowdesc">{help_icon title="Enable Public Bans" message="Check this box to enable the entire ban list to be publically downloaded and shared."}Make Export Bans Public</div></td>
+            <td valign="top" width="35%"><div class="rowdesc">{help_icon title="Возможность скачать банлист" message="Включите это, чтобы пользователи могли скачать список банов."}Публикация банов</div></td>
             <td>
                 <div align="left">
                    <input type="checkbox" name="export_public" id="export_public" />
@@ -13,7 +13,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="top"><div class="rowdesc">{help_icon title="Enable KickIt" message="Check this box to kick a player when a ban is posted."}Enable KickIt</div></td>
+            <td valign="top"><div class="rowdesc">{help_icon title="Кикать игрока" message="Включено - забаненный игрок будет кикаться с сервера при следующих попытках захода на сервер."}Кикать игрока</div></td>
             <td>
                 <div align="left">
                    <input type="checkbox" name="enable_kickit" id="enable_kickit" />
@@ -21,7 +21,7 @@
             </td>
         </tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Group Banning" message="Check this box, if you want to enable banning of whole steam community groups."}Enable Group Banning</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Включить бан групп" message="Включите, для возможности бана групп сообщества Steam."}Бан групп</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" name="enable_groupbanning" id="enable_groupbanning" />
@@ -30,7 +30,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Friend Banning" message="Check this box, if you want to enable banning all steam community friends of a player."}Enable Friends Banning</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Бан друзей" message="Возможность банить друзей игрока из профиля сообщества Steam."}Бан друзей</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" name="enable_friendsbanning" id="enable_friendsbanning" />
@@ -39,7 +39,7 @@
 		    </td>
 		</tr>
 		<tr>
-			<td valign="top"><div class="rowdesc">{help_icon title="Enable Admin Rehashing" message="Check this box, if you want to enable the admin rehashing everytime an admin/group has been changed."}Enable Admin Rehashing</div></td>
+			<td valign="top"><div class="rowdesc">{help_icon title="Обновление админов" message="Включено - при добавлении админа на сервер отправляется команда "sm_rehash", что позволяет обновлять админов на сервере моментально."}Автообновление админов</div></td>
 		    <td>
 		    	<div align="left">
 		      		<input type="checkbox" name="enable_adminrehashing" id="enable_adminrehashing" />
@@ -49,9 +49,9 @@
 		</tr>
         <tr>
             <td colspan="2" align="center">
-                {sb_button text="Save Changes" class="ok" id="fsettings" submit=true}
+                {sb_button text="Сохранить" class="ok" id="fsettings" submit=true}
                 &nbsp;
-                {sb_button text="Back" class="cancel" id="fback"}
+                {sb_button text="Назад" class="cancel" id="fback"}
             </td>
         </tr>
     </table>

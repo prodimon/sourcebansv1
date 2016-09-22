@@ -2,22 +2,22 @@
 	Access Denied!
 {else}
 	<div id="msg-green" style="display:none;">
-		<i><img src="./images/yay.png" alt="Warning" /></i>
-		<b>Admin Added</b>
+		<i><img src="./images/yay.png" alt="Внимание" /></i>
+		<b>Админ добавлен</b>
 		<br />
-		The new admin has been successfully added to the system.<br /><br />
-		<i>Redirecting back to admins page</i>
+		Админ был успешно добавлен.<br /><br />
+		<i>Переадрессация...</i>
 	</div>
 	
 	
 	<div id="add-group">
-		<h3>Admin Details</h3>
-		For more information or help regarding a certain subject move your mouse over the question mark.<br /><br />
+		<h3>Детали админа</h3>
+		За дополнительной информацией или помощью, наведите курсор мыши на знак вопроса.<br /><br />
 		<table width="90%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 			<tr>
 		    	<td valign="top" width="35%">
 		    		<div class="rowdesc">
-		    			{help_icon title="Admin Login" message="This is the username the admin will use to login-to their admin panel. Also this will identify the admin on any bans they make."}Admin Login 
+		    			{help_icon title="Логин" message="Это имя пользователя будет использоваться администратором, для входа в панель управления."}Логин 
 		    		</div>
 		    	</td>
 		    	<td>
@@ -30,7 +30,7 @@
 		  	<tr>
 		    	<td valign="top">
 		    		<div class="rowdesc">
-		    			{help_icon title="Steam ID" message="This is the admins 'STEAM' id. This must be set so that admins can use their admin rights ingame."}Admin Steam ID / Community ID
+		    			{help_icon title="Steam ID" message="STEAM ID админа. Для использования админских прав на сервере."}Steam ID или Community ID админа
 		    		</div>
 		    	</td>
 		    	<td>
@@ -43,7 +43,7 @@
 		  	<tr>
 		    	<td valign="top">
 		    		<div class="rowdesc">
-		    			{help_icon title="Admin Email" message="Set the admins e-mail address. This will be used for sending out any automated messages from the system and changing of forgotten passwords. This is only required, if you set webpanel permissions."}Admin Email 
+		    			{help_icon title="Email админа" message="E-mail админа. Необходимо для отправки сообщений от автоматизированной системы или изменения паролей. Нужен только для получения ВЕБ разрешений."}E-mail админа
 		    		</div>
 		    	</td>
 		    	<td>
@@ -56,7 +56,7 @@
 		  	<tr>
 		    	<td valign="top">
 		    		<div class="rowdesc">
-		    			{help_icon title="Password" message="The password the admin will need to access the admin panel. This is only required, if you set webpanel permissions."}Admin Password 
+		    			{help_icon title="Пароль" message="Пароль админа для доступа к веб-панели. Нужен только для получения ВЕБ разрешений."}Пароль админа
 		    		</div>
 		    	</td>
 		    	<td>
@@ -69,7 +69,7 @@
 		  	<tr>
 		    	<td valign="top">
 		    		<div class="rowdesc">
-		    			{help_icon title="Password" message="Type the password again to confirm."}Admin Password (confirm) 
+		    			{help_icon title="Пароль" message="Повторите пароль."}Подтверждение пароля 
 		    		</div>
 		    	</td>
 		    	<td>
@@ -82,7 +82,7 @@
 		    <tr>
 		    	<td valign="top" width="35%">
 		    		<div class="rowdesc">
-		    			{help_icon title="Server Admin Password" message="If this box is checked, you will need to specify this password in the game server before you can use your admin rights."}Server Password <small>(<a href="http://wiki.alliedmods.net/Adding_Admins_%28SourceMod%29#Passwords" title="SourceMod Password Info" target="_blank">More</a>)</small>
+		    			{help_icon title="Серверный пароль" message="Если этот флажок установлен, то вам нужно указать пароль в игровом сервере, для использования серверных прав админа."}Пароль сервера <small>(<a href="http://wiki.alliedmods.net/Adding_Admins_%28SourceMod%29#Passwords" title="Информация о паролах в SourceMod" target="_blank">Подробнее</a>)</small>
 		    		</div>
 		    	</td>
 		    	<td>
@@ -98,12 +98,12 @@
 		<br />
 	
 		
-		<h3>Admin Access</h3>
+		<h3>Выберите сервер</h3>
 			<table width="90%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 		  	<tr>
 		    	<td valign="top" width="35%">
 		    		<div class="rowdesc">
-		    			{help_icon title="Server" message="<b>Server: </b><br>Choose the server, or server group that this admin will be able to administer."}Server Access 
+		    			{help_icon title="Сервер" message="<b>Сервер: </b><br>Выберите сервер или группу серверов, которы он будет администрировать."}Сервер 
 		    		</div>
 		    	</td>
 		    	<td>&nbsp;</td>
@@ -113,14 +113,14 @@
 			  		<table width="90%" border="0" cellspacing="0" cellpadding="4" align="center">
 						{foreach from="$group_list" item="group"}
 							<tr>
-								<td colspan="2" class="tablerow4">{$group.name}<b><i>(Group)</i></b></td>
+								<td colspan="2" class="tablerow4">{$group.name}<b><i>(Группа)</i></b></td>
 								<td align="center" class="tablerow4"><input type="checkbox" id="group[]" name="group[]" value="g{$group.gid}" /></td>
 							</tr>
 						{/foreach}
 					
 						{foreach from="$server_list" item="server"}
 							<tr class="tablerow1">
-								<td colspan="2" class="tablerow1" id="sa{$server.sid}"><i>Retrieving Hostname... {$server.ip}:{$server.port}</i></td>
+								<td colspan="2" class="tablerow1" id="sa{$server.sid}"><i>Получение имени сервера... {$server.ip}:{$server.port}</i></td>
 								<td align="center" class="tablerow1">
 									<input type="checkbox" name="servers[]" id="servers[]" value="s{$server.sid}" />
 						  		</td> 
@@ -137,22 +137,22 @@
 		
 		
 		
-		<h3>Admin Permissions</h3>
+		<h3>Разрешения админа</h3>
 		<table width="90%" border="0" style="border-collapse:collapse;" id="group.details" cellpadding="3">
 			<tr>
 			    <td valign="top" width="35%">
 			    	<div class="rowdesc">
-			    		{help_icon title="Admin Group" message="<b>Custom Permisions: </b><br>Select this to choose custom permissions for this admin.<br><br><b>New Group: </b><br>Select this to choose custom permissions and then save the permissions as a new group.<br><br><b>Groups: </b><br>Select a pre-made group to add the admin to."}Server Admin Group 
+			    		{help_icon title="Группа админов" message="<b>Выборочные права: </b><br>Выберите эту опцию, чтобы выдать админу определённые права.<br><br><b>Новая группа: </b><br>Выберите эту опцию для выбора определенных прав и сохранения их в новую группу.<br><br><b>Группы: </b><br>Выберите готовые группы."}Группа админов 
 			    	</div>
 			    </td>
 			    <td>
 			    	<div align="left" id="admingroup">
 				      	<select TABINDEX=8 onchange="update_server()" name="serverg" id="serverg" class="submit-fields">
-					        <option value="-2">Please Select...</option>
-					        <option value="-3">No Permissions</option>
-					        <option value="c">Custom Permissions</option>
-					        <option value="n">New Admin Group</option>
-					        <optgroup label="Groups" style="font-weight:bold;">
+					        <option value="-2">Выберите...</option>
+					        <option value="-3">Нет разрешений</option>
+					        <option value="c">Выборочные разрешения</option>
+					        <option value="n">Новая группа админов</option>
+					        <optgroup label="Группы" style="font-weight:bold;">
 						        {foreach from="$server_admin_group_list" item="server_wg"}
 									<option value='{$server_wg.id}'>{$server_wg.name}</option>
 								{/foreach}
@@ -168,17 +168,17 @@
 		   	<tr>
 		    	<td valign="top">
 		    		<div class="rowdesc">
-		    			{help_icon title="Admin Group" message="<b>Custom Permisions: </b><br>Select this to choose custom permissions for this admin.<br><br><b>New Group: </b><br>Select this to choose custom permissions and then save the permissions as a new group.<br><br><b>Groups: </b><br>Select a pre-made group to add the admin to."}Web Admin Group 
+		    			{help_icon title="Группа админов" message="<b>Выборочные права: </b><br>Выберите эту опцию, для выдачи админу определенных разрешений.<br><br><b>Новая группа: </b><br>Выберите эту опцию для выбора определенных прав и сохранения их в новую группу.<br><br><b>Группы: </b><br>Выберите готовые группы."}Группа ВЕБ админов
 		    		</div>
 		    	</td>
 		    	<td>
 		    		<div align="left" id="webgroup">
 						<select TABINDEX=9 onchange="update_web()" name="webg" id="webg" class="submit-fields">
-							<option value="-2">Please Select...</option>
-							<option value="-3">No Permissions</option>
-							<option value="c">Custom Permissions</option>
-							<option value="n">New Admin Group</option>
-							<optgroup label="Groups" style="font-weight:bold;">
+							<option value="-2">Выберите...</option>
+							<option value="-3">Нет разрешений</option>
+							<option value="c">Выборочные разрешения</option>
+							<option value="n">Новая группа админов</option>
+							<optgroup label="Группы" style="font-weight:bold;">
 								{foreach from="$server_group_list" item="server_g"}
 									<option value='{$server_g.gid}'>{$server_g.name}</option>
 								{/foreach}
@@ -194,9 +194,9 @@
 		  	<tr>
 		    	<td>&nbsp;</td>
 		    	<td>
-			    	{sb_button text="Add Admin" onclick="ProcessAddAdmin();" class="ok" id="aadmin" submit=false}
+			    	{sb_button text="Добавить админа" onclick="ProcessAddAdmin();" class="ok" id="aadmin" submit=false}
 				      &nbsp;
-				    {sb_button text="Back" onclick="history.go(-1)" class="cancel" id="aback"}
+				    {sb_button text="Назад" onclick="history.go(-1)" class="cancel" id="aback"}
 		      	</td>
 		  	</tr>
 		</table>

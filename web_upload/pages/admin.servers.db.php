@@ -65,7 +65,7 @@ $srv_cfg = str_replace("{port}", DB_PORT, $srv_cfg);
 	
 if(strtolower(DB_HOST) == "localhost")
 {
-	ShowBox("Local server warning", "You have said your MySQL server is running on the same box as the webserver, this is fine, but you may need to alter the following config to set the remote domain/ip of your MySQL server. Unless your gameserver is on the same box as your webserver." , "blue", "", true);
+	ShowBox("Внимание", "Вы указали, что MySQL запущен на той же машине, что и вебсервер. Замените \"localhost\" на адрес Вашего веб сервера." , "blue", "", true);
 }
 
 $theme->assign('conf', $srv_cfg);

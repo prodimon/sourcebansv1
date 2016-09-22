@@ -50,30 +50,30 @@
 			if( $version > $this->getCurrentRevision() )
 			{
 				$i++;
-				$retstr .= "Running update: <b>v" . $version . "</b>... ";
+				$retstr .= "Запущено обновление: <b>версия - " . $version . "</b>... ";
 				if( !include (ROOT . "updater/data/" . $key))
 				{
 					// OHSHI! Something went tits up :(
-					$retstr .= "<b>Error executing: /updater/data/" . $key . ". Stopping Update!</b>";
+					$retstr .= "<b>Ошибка: /updater/data/" . $key . ". Обновление остановлено!</b>";
 					$error = true;
 					break;
 				}
 				else
 				{
 					// File was executed successfully 
-					$retstr .= "Done.<br /><br />";
+					$retstr .= "Завершено.<br /><br />";
 					$this->_updateVersionNumber($version);
 				}
 			}
 		}
 		if( $i == 0 )
-			$retstr .= "<br />Nothing to update...";
+			$retstr .= "<br />Нет обновлений...";
 		else
 		{
 			if(!$error)
-				$retstr .= "<br />Updated successfully. Please delete the /updater folder.";
+				$retstr .= "<br />Обновление завершено. Пожалуйста, удалите папку /updater.";
 			else
-				$retstr .= "<br />Update Failed.";
+				$retstr .= "<br />Ошибка обновления.";
 		}
 		return $retstr;
 	}

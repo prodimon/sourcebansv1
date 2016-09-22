@@ -30,7 +30,7 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 		}
         else
         {
-            $log = new CSystemLog("w", "Hacking Attempt", $userbank->GetProperty('user') . " tried to clear the logs, but doesn't have access.");
+            $log = new CSystemLog("w", "Ошибка доступа", $userbank->GetProperty('user') . " пытался очистить лог, не имея на это прав.");
         }
 	}
 	
@@ -75,21 +75,21 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 	$log_count = $logs->LogCount($where);
 	$log = $logs->getAll($list_start, intval($GLOBALS['config']['banlist.bansperpage']), $where);
 	if(($page > 1))
-		$prev = CreateLinkR('<img border="0" alt="prev" src="images/left.gif" style="vertical-align:middle;" /> prev',"index.php?p=admin&c=settings" . $searchlink . "&page=" .($page-1) . "#^2");
+		$prev = CreateLinkR('<img border="0" alt="prev" src="images/left.gif" style="vertical-align:middle;" /> пред.',"index.php?p=admin&c=settings" . $searchlink . "&page=" .($page-1) . "#^2");
 	else 
 		$prev = "";
 		
 	if($list_end < $log_count)
-		$next = CreateLinkR('next <img border="0" alt="prev" src="images/right.gif" style="vertical-align:middle;" />',"index.php?p=admin&c=settings" . $searchlink . "&page=" .($page+1)."#^2");
+		$next = CreateLinkR('след. <img border="0" alt="prev" src="images/right.gif" style="vertical-align:middle;" />',"index.php?p=admin&c=settings" . $searchlink . "&page=" .($page+1)."#^2");
 	else 
 		$next = "";
 
 		
 	$pages = (round($log_count/intval($GLOBALS['config']['banlist.bansperpage']))==0)?1:round($log_count/intval($GLOBALS['config']['banlist.bansperpage']));
 	if($pages>1)
-		$page_numbers =  'Page ' . $page . ' of ' . $pages . " - " . $prev . " | " . $next;
+		$page_numbers =  'Страница ' . $page . ' из ' . $pages . " - " . $prev . " | " . $next;
 	else
-		$page_numbers = 'Page ' . $page . ' of ' . $pages;
+		$page_numbers = 'Страница ' . $page . ' из ' . $pages;
 		
 		
 	$pages = ceil($log_count/intval($GLOBALS['config']['banlist.bansperpage']));
@@ -113,11 +113,11 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 	{
 		$log_item = array();
 		if($l['type'] == "m")
-			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/help.png' alt='Info'>"; 
+			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/help.png' alt='Инфо'>"; 
 		elseif($l['type'] == "w")
-			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/warning.png' alt='Warning'>"; 
+			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/warning.png' alt='Внимание'>"; 
 		elseif($l['type'] == "e")
-			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/error.png' alt='Warning'>"; 
+			$log_item['type_img'] = "<img src='themes/".SB_THEME."/images/admin/error.png' alt='Внимание'>"; 
 		$log_item['user'] = !empty($l['user'])?$l['user']:'Guest';
 		$log_item['date_str'] = SBDate($dateformat, $l['created']);
 		$log_item = array_merge($l, $log_item);	
@@ -150,7 +150,7 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 <div id="admin-page-content">
 <?php if(!$userbank->HasAccess(ADMIN_OWNER|ADMIN_WEB_SETTINGS))
 {
-	echo '<div id="0" style="display:none;">Access Denied!</div>';
+	echo '<div id="0" style="display:none;">Доступ запрещен!</div>';
 }
 else
 {
@@ -161,9 +161,9 @@ else
 		if ($_POST['settingsGroup'] == "mainsettings")
 		{
 			if(!is_numeric($_POST['config_password_minlength']))
-				$errors .= "Min password length must be a number<br />";
+				$errors .= "Минимальная длина пароля должна быть указана в цифрах<br />";
 			if(!is_numeric($_POST['banlist_bansperpage']))
-				$errors .= "Bans per page must be a number";
+				$errors .= "Количество банов на страницу должно быть указано в цифрах";
 			if(empty($errors))
 			{
 				if(isset($_POST['enable_submit']) && $_POST['enable_submit'] == "on") {
@@ -226,9 +226,9 @@ else
 												(?, 'bans.customreasons'),
 												(" . (int)$_POST['default_page'] . ", 'config.defaultpage')", array($_POST['template_title'], $_POST['template_logo'], $_POST['config_dateformat'], $_POST['dash_intro_title'], $_POST['dash_intro_text'], $tz_string, $summertime, $cureason));
 
-				?><script>ShowBox('Settings updated', 'The changes have been successfully updated', 'green', 'index.php?p=admin&c=settings');</script><?php 
+				?><script>ShowBox('Настройки обновлены', 'Настройки успешно обновлены', 'green', 'index.php?p=admin&c=settings');</script><?php 
 			}else{
-				CreateRedBox("Error", $errors); 
+				CreateRedBox("Ошибка", $errors); 
 			}
 		}
 		
@@ -252,7 +252,7 @@ else
 											(" . (int)$adminrehash . ", 'config.enableadminrehashing')");
 											
 
-			?><script>ShowBox('Settings updated', 'The changes have been successfully updated', 'green', 'index.php?p=admin&c=settings');</script><?php 
+			?><script>ShowBox('Настройки обновлены', 'Настройки успешно обновлены', 'green', 'index.php?p=admin&c=settings');</script><?php 
 		}
 	}
 
@@ -298,7 +298,7 @@ else
 	#########[Logs Page]###############
 	echo '<div id="2" style="display:none;">';
 		if($userbank->HasAccess(ADMIN_OWNER))
-			$theme->assign('clear_logs', "( <a href='javascript:ClearLogs();'>Clear Log</a> )");
+			$theme->assign('clear_logs', "( <a href='javascript:ClearLogs();'>Очистить лог</a> )");
 		$theme->assign('page_numbers', 			$page_numbers);
 		$theme->assign('log_items',				$log_list);
 				
@@ -329,7 +329,7 @@ $('enable_adminrehashing').checked = <?php echo $GLOBALS['config']['config.enabl
 if(ini_get('safe_mode')==1) {
 	print "$('enable_groupbanning').disabled = true;\n";
 	print "$('enable_friendsbanning').disabled = true;\n";
-	print "$('enable_friendsbanning.msg').setHTML('You can\'t use these features. You need to set PHP safe mode off.');\n";
+	print "$('enable_friendsbanning.msg').setHTML('Вы не можете использовать эти возможности. Вам нужно отключить безопасный режим в настройках РНР.');\n";
 	print "$('enable_friendsbanning.msg').setStyle('display', 'block');\n";
 }
 ?>

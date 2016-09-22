@@ -26,11 +26,11 @@
     		</a>
 		</div>
 		<div id="head-userbox">
-	         Welcome {$username}
+	         Добро пожаловать {$username}
 	         {if $logged_in}
-	         	(<a href='index.php?p=logout'>Logout</a>)<br /><a href='index.php?p=account'>Your account</a>
+	         	(<a href='index.php?p=logout'>Выйти</a>)<br /><a href='index.php?p=account'>Профиль</a>
 	         {else}
-	          	(<a href='index.php?p=login'>Login</a>)
+	          	(<a href='index.php?p=login'>Войти</a>)
 	         {/if}
 		</div>
 	</div>     

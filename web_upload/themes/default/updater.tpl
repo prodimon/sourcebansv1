@@ -30,8 +30,8 @@
 			</div>
 
 	</div><div id="msg-red-debug" style="display:none;" >
-	<i><img src="./images/warning.png" alt="Warning" /></i>
-	<b>Debug</b>
+	<i><img src="./images/warning.png" alt="Внимание" /></i>
+	<b>Отладка</b>
 	<br />
 	<div id="debug-text">
 	</div>
@@ -42,16 +42,16 @@
 
 
 <div id="content_title">
-	<b>Updater</b>
+	<b>Обновление</b>
 </div>
 <div id="breadcrumb">
 </div>
 <div id="content">
-<h3>Setup...</h3>
+<h3>Установка...</h3>
 <ul>{$setup}</ul>
 
 {if $progress}
-<h3>Updating...</h3>
+<h3>Обновление...</h3>
 <ul>{$progress}</ul>
 {/if}
 </div>

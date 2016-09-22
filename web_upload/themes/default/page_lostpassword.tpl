@@ -2,24 +2,24 @@
 	<div id="login-content">
 
 		<div id="msg-red" style="display:none;">
-			<i><img src="./images/warning.png" alt="Warning" /></i>
-			<b>Error</b>
+			<i><img src="./images/warning.png" alt="Внимание" /></i>
+			<b>Ошибка</b>
 			<br />
-			The email address you supplied is not registered on the system.</i>
+			Введенный e-mail не найден в базе.</i>
 		</div>
 		<div id="msg-blue" style="display:none;">
-			<i><img src="./images/info.png" alt="Warning" /></i>
-			<b>Information</b>
+			<i><img src="./images/info.png" alt="Внимание" /></i>
+			<b>Информация</b>
 			<br />
-			Please check your email inbox (and spam) for a link which will help you reset your password.</i>
+			На ваш электронный ящик выслана информация для сброса пароля. Проверьте свою почту (и папку "Спам").</i>
 		</div>
 
 	  	<h4>
-	  		Please type your email address in the box below to have your password reset. 
+	  		Введите адрес электронной почты в поле ниже, чтобы сбросить пароль. 
 	  	</h4><br />
 	  	
   		<div id="loginPasswordDiv">
-	    	<label for="email">Your E-Mail Address:</label><br />
+	    	<label for="email">Ваш E-mail адрес:</label><br />
 	   		<input id="email" class="loginmedium" type="text" name="password" value="" />
 		</div>
 		

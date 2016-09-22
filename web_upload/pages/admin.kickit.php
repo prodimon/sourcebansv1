@@ -34,7 +34,7 @@ function LoadServers($check, $type) {
 	if(!$userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_BAN))
 	{
 		$objResponse->redirect("index.php?p=login&m=no_access", 0);
-		$log = new CSystemLog("w", "Hacking Attempt", $username . " tried to use kickit, but doesnt have access.");
+		$log = new CSystemLog("w", "Ошибка доступа", $username . " пытался когото кикнуть, не имея на это прав.");
 		return $objResponse;
 	}
 	$id = 0;
@@ -42,11 +42,11 @@ function LoadServers($check, $type) {
 	while(!$servers->EOF) {
 		//search for player
 		if(!empty($servers->fields["rcon"])) {
-			$text = '<font size="1">Searching...</font>';
+			$text = '<font size="1">Поиск...</font>';
 			$objResponse->addScript("xajax_KickPlayer('".$check."', '".$servers->fields["sid"]."', '".$id."', '".$type."');");
 		}
 		else { //no rcon = servercount + 1 ;)
-			$text = '<font size="1">No rcon password.</font>';
+			$text = '<font size="1">Не задан РКОН пароль.</font>';
 			$objResponse->addScript('set_counter(1);');
 		}		
 		$objResponse->addAssign("srv_".$id, "innerHTML", $text);
@@ -64,7 +64,7 @@ function KickPlayer($check, $sid, $num, $type) {
 	if(!$userbank->HasAccess(ADMIN_OWNER|ADMIN_ADD_BAN))
 	{
 		$objResponse->redirect("index.php?p=login&m=no_access", 0);
-		$log = new CSystemLog("w", "Hacking Attempt", $username . " tried to process a playerkick, but doesnt have access.");
+		$log = new CSystemLog("w", "Ошибка доступа", $username . " пытался кого-то кикнуть, не имея на это прав.");
 		return $objResponse;
 	}
 	
@@ -81,7 +81,7 @@ function KickPlayer($check, $sid, $num, $type) {
 		if(!$r->Auth())
 		{
 			$GLOBALS['db']->Execute("UPDATE ".DB_PREFIX."_servers SET rcon = '' WHERE sid = '".$sid."' LIMIT 1;");		
-			$objResponse->addAssign("srv_$num", "innerHTML", "<font color='red' size='1'>Wrong RCON Password, please change!</font>");
+			$objResponse->addAssign("srv_$num", "innerHTML", "<font color='red' size='1'>Неверный РКОН!</font>");
 			$objResponse->addScript('set_counter(1);');
 			return $objResponse;
 		}
@@ -99,13 +99,13 @@ function KickPlayer($check, $sid, $num, $type) {
 		//search for the steamid on the server
 		if((int)$type==0) {
 			foreach($matches[3] AS $match) {
-				if(getAccountId($match) == getAccountId($check)) {
+				if(substr($match, 8) == substr($check, 8)) {
 					// gotcha!!! kick him!
 					$gothim = true;
 					$GLOBALS['db']->Execute("UPDATE `".DB_PREFIX."_bans` SET sid = '".$sid."' WHERE authid = '".$check."' AND RemovedBy IS NULL;");
 					$requri = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], "pages/admin.kickit.php"));
-					$kick = $r->sendCommand("kickid \"".$match."\" \"You have been banned by this server, check http://" . $_SERVER['HTTP_HOST'].$requri." for more info.\"");
-					$objResponse->addAssign("srv_$num", "innerHTML", "<font color='green' size='1'><b><u>Player Found & Kicked!!!</u></b></font>");
+					$kick = $r->sendCommand("kickid ".$match." \"Вы были забанены, посетите http://" . $_SERVER['HTTP_HOST'].$requri." для большей информации.\"");
+					$objResponse->addAssign("srv_$num", "innerHTML", "<font color='green' size='1'><b><u>Игрок найден и кикнут!!!</u></b></font>");
 					$objResponse->addScript("set_counter('-1');");
 					return $objResponse;
 				}
@@ -121,8 +121,8 @@ function KickPlayer($check, $sid, $num, $type) {
 					$gothim = true;
 					$GLOBALS['db']->Execute("UPDATE `".DB_PREFIX."_bans` SET sid = '".$sid."' WHERE ip = '".$check."' AND RemovedBy IS NULL;");
 					$requri = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], "pages/admin.kickit.php"));
-					$kick = $r->sendCommand("kickid ".$userid." \"You have been banned by this server, check http://" . $_SERVER['HTTP_HOST'].$requri." for more info.\"");
-					$objResponse->addAssign("srv_$num", "innerHTML", "<font color='green' size='1'><b><u>Player Found & Kicked!!!</u></b></font>");
+					$kick = $r->sendCommand("kickid ".$userid." \"Вы были забанены, посетите http://" . $_SERVER['HTTP_HOST'].$requri." для большей информации.\"");
+					$objResponse->addAssign("srv_$num", "innerHTML", "<font color='green' size='1'><b><u>Игрок найден и кикнут!!!</u></b></font>");
 					$objResponse->addScript("set_counter('-1');");
 					return $objResponse;
 				}
@@ -130,12 +130,12 @@ function KickPlayer($check, $sid, $num, $type) {
 			}
 		}
 		if(!$gothim) {
-			$objResponse->addAssign("srv_$num", "innerHTML", "<font size='1'>Player not found.</font>");
+			$objResponse->addAssign("srv_$num", "innerHTML", "<font size='1'>Игрок не найден.</font>");
 			$objResponse->addScript('set_counter(1);');
 			return $objResponse;
 		}
 	} else {
-		$objResponse->addAssign("srv_$num", "innerHTML", "<font color='red' size='1'><i>Can't connect to server.</i></font>");
+		$objResponse->addAssign("srv_$num", "innerHTML", "<font color='red' size='1'><i>Нет соединения с сервером.</i></font>");
 		$objResponse->addScript('set_counter(1);');
 		return $objResponse;
 	}

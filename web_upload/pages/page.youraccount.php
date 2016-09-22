@@ -18,10 +18,10 @@ if(!defined("IN_SB")){echo "You should not be here. Only follow links!";die();}
 if($userbank->GetAid() == -1){echo "You shoudnt be here. looks like we messed up ><";die();}
 		
 $groupsTabMenu = new CTabsMenu();
-$groupsTabMenu->addMenuItem("View Permissions", 0);
-$groupsTabMenu->addMenuItem("Change Password", 1);
-$groupsTabMenu->addMenuItem("Server Password", 2);
-$groupsTabMenu->addMenuItem("Change Email", 3);
+$groupsTabMenu->addMenuItem("Просмотр прав", 0);
+$groupsTabMenu->addMenuItem("Сменить пароль", 1);
+$groupsTabMenu->addMenuItem("Пароль сервера", 2);
+$groupsTabMenu->addMenuItem("Сменить e-mail", 3);
 $groupsTabMenu->outputMenu();
 
 $res = $GLOBALS['db']->Execute("SELECT `srv_password`, `email` FROM `".DB_PREFIX."_admins` WHERE `aid` = '".$userbank->GetAid()."'");

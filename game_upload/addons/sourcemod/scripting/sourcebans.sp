@@ -106,6 +106,8 @@ new bool:g_bConnecting = false;
 
 new serverID = -1;
 
+#include <extras.sp>
+
 public Plugin:myinfo =
 {
 	name = "SourceBans",
@@ -916,11 +918,14 @@ stock DisplayBanTimeMenu(client)
 	
 	if(CheckCommandAccess(client, "sm_unban", ADMFLAG_UNBAN|ADMFLAG_ROOT))
 		AddMenuItem(menu, "0", "Навсегда");
-	AddMenuItem(menu, "10080", "Неделя");
-	AddMenuItem(menu, "1440", "Сутки");
-	AddMenuItem(menu, "720", "12 Часов");
-	AddMenuItem(menu, "360", "6 Часов");	
-	AddMenuItem(menu, "60", "Час");
+	AddMenuItem(menu, "10", "10 Минут");
+	AddMenuItem(menu, "30", "30 Минут");
+	AddMenuItem(menu, "60", "1 Час");
+	AddMenuItem(menu, "120", "2 Часа");
+	AddMenuItem(menu, "240", "4 Часа");
+	AddMenuItem(menu, "1440", "1 День");
+	AddMenuItem(menu, "10080", "1 Неделя");
+
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 

@@ -2,16 +2,31 @@
 {
 	"Banned Check Site"
 	{
-		"#format"		"{1:s}"
+		"#format"		"{1:s},{2:s},{3:s}"
 		"en"			"You have been banned by this server, check {1} for more info"
 		"nl"			"U bent gebanned van deze server, kijk op {1} voor meer informatie"
 		"fr"			"Vous avez été banni de ce serveur, allez sur {1} pour plus d'informations"
 		"pl"			"Zostałeś zbanowany na tym serwerze, odwiedź {1} aby poznać szczegóły"
 		"de"			"Sie wurden von diesem Server gebannt, weitere Informationen auf {1}"
-		"ru"			"Вы были забанены на этом сервере, для получения информации посетите: {1}"
+		"ru"			"Вы были забанены, причина: {1}\nВремя бана: {2}\nПодробнее на {3}"
 		"da"			"Du er blevet udlukket fra denne server, check {1} for mere info"
 		"no"			"Du har blitt stengt ute fra denne serveren, sjekk {1} for mer info."
 	}
+
+	"Banned Check Site Minutes"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"Вы были забанены, причина: {1}\nВремя бана: {2} минут(ы)\nПодробнее на {3}"
+		"ru"			"Вы были забанены, причина: {1}\nВремя бана: {2} минут(ы)\nПодробнее на {3}"
+	}
+
+	"Arleady banned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"Вы забанены здесь по причине: {1}\nРазбан: {2}\nПодробнее на: {3}"
+		"ru"			"Вы забанены здесь по причине: {1}\nРазбан: {2}\nПодробнее на: {3}"
+	}
+
 	"DB Connect Fail"
 	{
 		"en"			"Database connection failed. Please contact server operator."
